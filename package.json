@@ -4,7 +4,7 @@
   "description": "A simple library for connecting to and interacting with various AI services (including OpenAI and TensorFlow)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [
     "ai",
@@ -17,5 +17,11 @@
     "dalle"
   ],
   "author": "Brian Elizondo <brian_elizondo@msn.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.21.5",
+    "@babel/preset-env": "^7.21.5",
+    "babel-jest": "^29.5.0",
+    "jest": "^27.4.3"
+  }
 }
