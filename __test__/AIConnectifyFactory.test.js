@@ -1,8 +1,8 @@
 import AIConnectifyError from '../lib/AIConnectifyError';
 import { getAIInstance } from '../lib/connectors/AIConnectifyFactory';
 
-import ChatGPT from '../lib/connectors/ChatGPT';
-import TensorFlow from '../lib/connectors/TensorFlow';
+import ChatGPT from '../lib/connectors/AI/ChatGPT';
+import TensorFlowNode from '../lib/connectors/AI/TensorFlowNode';
 
 describe("AIConnectifyFactory function", () => {
     it("Tests if getAIInstance returns the correct instance for a supported AI with apiKey", () => {
@@ -10,8 +10,8 @@ describe("AIConnectifyFactory function", () => {
         expect(aiInstance).toBeInstanceOf(ChatGPT);
     });
     it("Tests if getAIInstance returns the correct instance for a supported AI without apiKey", () => {
-        const aiInstance = getAIInstance("TensorFlow");
-        expect(aiInstance).toBeInstanceOf(TensorFlow);
+        const aiInstance = getAIInstance("TensorFlowNode");
+        expect(aiInstance).toBeInstanceOf(TensorFlowNode);
     });
 });
 

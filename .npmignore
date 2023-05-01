@@ -1,5 +1,5 @@
+__test__
 .env
 .vscode
 .gitattributes
 *.tgz
-README.md

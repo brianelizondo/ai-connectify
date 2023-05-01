@@ -1,7 +1,7 @@
 import AIConnectifyError from '../lib/AIConnectifyError';
 import AIConnectify from '../lib/ai-connectify';
 
-const testValidAI = "TensorFlow";
+const testValidAI = "TensorFlowNode";
 const testInvalidAI = "invalidAI";
 const testApiKey = "acb123";
 
