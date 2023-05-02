@@ -1,4 +1,5 @@
 node_modules/
+jsdoc.json
 .env
 .vscode
 *.tgz

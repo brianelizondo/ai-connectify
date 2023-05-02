@@ -1,5 +1,8 @@
 __test__
+jsdoc.json
+docs/
 .env
 .vscode
 .gitattributes
 *.tgz
+README.md
