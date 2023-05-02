@@ -1,4 +1,5 @@
-[![AI Connectify Logo](images/ai_connectify_logo.png)](https://github.com/brianelizondo/ai-connectify)
+[![AI Connectify Logo](https://github.com/brianelizondo/ai-connectify/docs/images/ai_connectify_logo.png)](https://github.com/brianelizondo/ai-connectify)
+
 
 AI-Connectify is a Beta JavaScript library for connecting to various AI services at the same time, including Tensor Flow Node, ChatGPT and DALL-E. With AI-Connectify, you can easily access to AI services to perform a variety of tasks, including natural language processing, image processing, and more.
 
@@ -50,7 +51,7 @@ Here are some examples of how to use AI-Connectify:
 
 ### ChatGPT instance:
 ```js
-import { AIConnectify } from 'ai-connectify';
+import AIConnectify from 'ai-connectify';
 
 // new instance of ChatGPT
 const chatGPT= new AIConnectify.getAIInstance("ChatGPT", "YOUR_API_KEY");
@@ -63,7 +64,7 @@ console.log(completion);
 
 ### DALL-E instance:
 ```js
-import { AIConnectify } from 'ai-connectify';
+import AIConnectify from 'ai-connectify';
 
 // new instance of DALL-E
 const dalle = new AIConnectify.getAIInstance("DALLE", "YOUR_API_KEY");
@@ -87,7 +88,7 @@ console.log(imageVariation);
 
 ### Tensor Flow Node instance:
 ```js
-import { AIConnectify } from 'ai-connectify';
+import AIConnectify from 'ai-connectify';
 
 // new instance of Tensor Flow Node
 const tfNode= new AIConnectify.getAIInstance("TensorFlowNode");
