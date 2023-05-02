@@ -1,4 +1,4 @@
-[![AI Connectify Logo](https://github.com/brianelizondo/ai-connectify/docs/images/ai_connectify_logo.png)](https://github.com/brianelizondo/ai-connectify)
+[![AI Connectify Logo](./docs/images/ai_connectify_logo.png)](https://github.com/brianelizondo/ai-connectify)
 
 
 AI-Connectify is a Beta JavaScript library for connecting to various AI services at the same time, including Tensor Flow Node, ChatGPT and DALL-E. With AI-Connectify, you can easily access to AI services to perform a variety of tasks, including natural language processing, image processing, and more.
