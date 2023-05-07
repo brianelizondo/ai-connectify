@@ -10,7 +10,7 @@
 * Currently supported models include TensorFlow Node, ChatGPT and DALL-E.
 * @module AIConnectify
 */
-import AIConnectify from './lib/ai-connectify';
+const AIConnectify = require('./lib/ai-connectify');
 
 // this module should only have a default export
-export default AIConnectify;
+module.exports = AIConnectify;
