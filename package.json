@@ -1,6 +1,6 @@
 {
   "name": "ai-connectify",
-  "version": "1.0.0-beta",
+  "version": "1.0.1-beta",
   "description": "A simple library for connecting to and interacting with various AI services (including ChatGPT, DALL-E and TensorFlow)",
   "keywords": [
     "ai",
@@ -11,9 +11,8 @@
     "learning",
     "openai",
     "chatgpt",
-    "tensorflow",
     "dalle",
-    "node"
+    "tensorflow"
   ],
   "homepage": "https://github.com/brianelizondo/ai-connectify#readme",
   "bugs": {
