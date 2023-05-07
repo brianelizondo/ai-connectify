@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>DALLE<span class="signature">(apiKey, model<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>DALLE<span class="signature">(apiKey)</span><span class="type-signature"></span></h2>
         
             <div class="class-description">Represents a DALL-E AI instance.
 Given a prompt and/or an input image, the model will generate a new image.</div>
@@ -46,7 +46,7 @@ Given a prompt and/or an input image, the model will generate a new image.</div>
     
 
     
-    <h4 class="name" id="DALLE"><span class="type-signature"></span>new DALLE<span class="signature">(apiKey, model<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="DALLE"><span class="type-signature"></span>new DALLE<span class="signature">(apiKey)</span><span class="type-signature"></span></h4>
     
 
     
@@ -74,11 +74,7 @@ Given a prompt and/or an input image, the model will generate a new image.</div>
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
-        
-        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -103,61 +99,10 @@ Given a prompt and/or an input image, the model will generate a new image.</div>
             </td>
 
             
-                <td class="attributes">
-                
 
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
             
 
             <td class="description last">The OpenAI API key.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>model</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    image-alpha-001
-                
-                </td>
-            
-
-            <td class="description last">The name of the DAll-E model to use.</td>
         </tr>
 
     
@@ -198,7 +143,7 @@ Given a prompt and/or an input image, the model will generate a new image.</div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lib_connectors_AI_DALLE.js.html">lib/connectors/AI/DALLE.js</a>, <a href="lib_connectors_AI_DALLE.js.html#line22">line 22</a>
+        <a href="lib_connectors_AI_DALLE.js.html">lib/connectors/AI/DALLE.js</a>, <a href="lib_connectors_AI_DALLE.js.html#line21">line 21</a>
     </li></ul></dd>
     
 
@@ -239,7 +184,7 @@ Given a prompt and/or an input image, the model will generate a new image.</div>
             </dt>
             <dd>
                 
-<span class="param-type"><a href="AIConnectifyError.html">AIConnectifyError</a></span>
+<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
 
 
             </dd>
@@ -291,7 +236,11 @@ Given a prompt and/or an input image, the model will generate a new image.</div>
 
 
 <div class="description">
-    Creates an image given a prompt
+    IMAGES METHODS
+Given a prompt and/or an input image, the model will generate a new image.
+
+Create Image
+Creates an image given a prompt
 </div>
 
 
@@ -443,7 +392,7 @@ Given a prompt and/or an input image, the model will generate a new image.</div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lib_connectors_AI_DALLE.js.html">lib/connectors/AI/DALLE.js</a>, <a href="lib_connectors_AI_DALLE.js.html#line48">line 48</a>
+        <a href="lib_connectors_AI_DALLE.js.html">lib/connectors/AI/DALLE.js</a>, <a href="lib_connectors_AI_DALLE.js.html#line90">line 90</a>
     </li></ul></dd>
     
 
@@ -484,7 +433,7 @@ Given a prompt and/or an input image, the model will generate a new image.</div>
             </dt>
             <dd>
                 
-<span class="param-type"><a href="AIConnectifyError.html">AIConnectifyError</a></span>
+<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
 
 
             </dd>
@@ -530,7 +479,7 @@ Given a prompt and/or an input image, the model will generate a new image.</div>
     
 
     
-    <h4 class="name" id="createImageEdit"><span class="type-signature">(async) </span>createImageEdit<span class="signature">(image<span class="signature-attributes">opt</span>, prompt<span class="signature-attributes">opt</span>, mask<span class="signature-attributes">opt</span>, newConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
+    <h4 class="name" id="createImageEdit"><span class="type-signature">(async) </span>createImageEdit<span class="signature">(imagePath<span class="signature-attributes">opt</span>, prompt<span class="signature-attributes">opt</span>, mask<span class="signature-attributes">opt</span>, newConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
     
 
     
@@ -538,7 +487,8 @@ Given a prompt and/or an input image, the model will generate a new image.</div>
 
 
 <div class="description">
-    Creates an edited or extended image given an original image and a prompt
+    Create Image Edit
+Creates an edited or extended image given an original image and a prompt
 </div>
 
 
@@ -578,7 +528,7 @@ Given a prompt and/or an input image, the model will generate a new image.</div>
 
         <tr>
             
-                <td class="name"><code>image</code></td>
+                <td class="name"><code>imagePath</code></td>
             
 
             <td class="type">
@@ -768,7 +718,7 @@ Given a prompt and/or an input image, the model will generate a new image.</div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lib_connectors_AI_DALLE.js.html">lib/connectors/AI/DALLE.js</a>, <a href="lib_connectors_AI_DALLE.js.html#line74">line 74</a>
+        <a href="lib_connectors_AI_DALLE.js.html">lib/connectors/AI/DALLE.js</a>, <a href="lib_connectors_AI_DALLE.js.html#line117">line 117</a>
     </li></ul></dd>
     
 
@@ -809,7 +759,7 @@ Given a prompt and/or an input image, the model will generate a new image.</div>
             </dt>
             <dd>
                 
-<span class="param-type"><a href="AIConnectifyError.html">AIConnectifyError</a></span>
+<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
 
 
             </dd>
@@ -855,7 +805,7 @@ Given a prompt and/or an input image, the model will generate a new image.</div>
     
 
     
-    <h4 class="name" id="createImageVariation"><span class="type-signature">(async) </span>createImageVariation<span class="signature">(image<span class="signature-attributes">opt</span>, newConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
+    <h4 class="name" id="createImageVariation"><span class="type-signature">(async) </span>createImageVariation<span class="signature">(imagePath<span class="signature-attributes">opt</span>, newConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
     
 
     
@@ -863,7 +813,8 @@ Given a prompt and/or an input image, the model will generate a new image.</div>
 
 
 <div class="description">
-    Creates a variation of a given image
+    Create Image Variation
+Creates a variation of a given image
 </div>
 
 
@@ -903,7 +854,7 @@ Given a prompt and/or an input image, the model will generate a new image.</div>
 
         <tr>
             
-                <td class="name"><code>image</code></td>
+                <td class="name"><code>imagePath</code></td>
             
 
             <td class="type">
@@ -1015,7 +966,7 @@ Given a prompt and/or an input image, the model will generate a new image.</div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lib_connectors_AI_DALLE.js.html">lib/connectors/AI/DALLE.js</a>, <a href="lib_connectors_AI_DALLE.js.html#line108">line 108</a>
+        <a href="lib_connectors_AI_DALLE.js.html">lib/connectors/AI/DALLE.js</a>, <a href="lib_connectors_AI_DALLE.js.html#line158">line 158</a>
     </li></ul></dd>
     
 
@@ -1056,7 +1007,7 @@ Given a prompt and/or an input image, the model will generate a new image.</div>
             </dt>
             <dd>
                 
-<span class="param-type"><a href="AIConnectifyError.html">AIConnectifyError</a></span>
+<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
 
 
             </dd>
@@ -1097,6 +1048,339 @@ Given a prompt and/or an input image, the model will generate a new image.</div>
 
 
         
+            
+
+    
+
+    
+    <h4 class="name" id="listModels"><span class="type-signature">(async) </span>listModels<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;array>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    MODELS METHODS
+List and describe the various models available in the API. 
+Refer to the Models documentation to understand what models are available and the differences between them.
+
+List Models
+Lists the currently available models, and provides basic information about each one such as the owner and availability.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lib_connectors_AI_DALLE.js.html">lib/connectors/AI/DALLE.js</a>, <a href="lib_connectors_AI_DALLE.js.html#line50">line 50</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        - Will throw an error if an error occurs during generation.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - A Promise that resolves with the generated list of models.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;array></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="reatrieveModel"><span class="type-signature">(async) </span>reatrieveModel<span class="signature">(modelID)</span><span class="type-signature"> &rarr; {Promise.&lt;object>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Reatrive Model
+Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>modelID</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The id model to get basic information.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lib_connectors_AI_DALLE.js.html">lib/connectors/AI/DALLE.js</a>, <a href="lib_connectors_AI_DALLE.js.html#line68">line 68</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        - Will throw an error if an error occurs during generation.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - A Promise that resolves with the generated.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;object></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
     
 
     
@@ -1112,14 +1396,14 @@ Given a prompt and/or an input image, the model will generate a new image.</div>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AIConnectify.html">AIConnectify</a></li></ul><h3>Classes</h3><ul><li><a href="AIConnectify.html">AIConnectify</a></li><li><a href="AIConnectifyError.html">AIConnectifyError</a></li><li><a href="ChatGPT.html">ChatGPT</a></li><li><a href="DALLE.html">DALLE</a></li><li><a href="TensorFlowNode.html">TensorFlowNode</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AIConnectifyFactoryReturnsaninstanceoftheAIconnectorforthespecifiedAI">AIConnectifyFactory 
-Returns an instance of the AI connector for the specified AI</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AIConnectify.html">AIConnectify</a></li></ul><h3>Classes</h3><ul><li><a href="AIConnectify.html">AIConnectify</a></li><li><a href="global.html#AIConnectifyError">AIConnectifyError</a></li><li><a href="ChatGPT.html">ChatGPT</a></li><li><a href="DALLE.html">DALLE</a></li><li><a href="TensorFlowNode.html">TensorFlowNode</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AIConnectifyFactoryReturnsaninstanceoftheAIconnectorforthespecifiedAI">AIConnectifyFactory 
+Returns an instance of the AI connector for the specified AI</a></li><li><a href="global.html#tf">tf</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue May 02 2023 18:26:44 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun May 07 2023 17:43:04 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

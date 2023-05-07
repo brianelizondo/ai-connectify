@@ -43,30 +43,35 @@
 
 
     <section>
-        <article><p><a href="https://github.com/brianelizondo/ai-connectify"><img src="images/ai_connectify_logo.png" alt="AI Connectify Logo"></a></p>
+        <article><p><a href="https://github.com/brianelizondo/ai-connectify"><img src="./docs/images/ai_connectify_logo.png" alt="AI Connectify Logo"></a></p>
+<h1>AI-Connectify</h1>
 <p>AI-Connectify is a Beta JavaScript library for connecting to various AI services at the same time, including Tensor Flow Node, ChatGPT and DALL-E. With AI-Connectify, you can easily access to AI services to perform a variety of tasks, including natural language processing, image processing, and more.</p>
 <p><img src="https://img.shields.io/npm/v/ai-connectify" alt="npm">
-<a href="https://packagephobia.com/result?p=ai-connectify"><img src="https://packagephobia.com/badge?p=ai-connectify" alt="install size"></a>
+<img src="https://img.shields.io/bundlephobia/min/ai-connectify?label=install%20size" alt="npm bundle size">
 <img src="https://img.shields.io/npm/dw/ai-connectify" alt="npm"></p>
 <h2>Table of Contents</h2>
+<ul>
+<li><a href="#ai-connectify">AI-Connectify</a>
 <ul>
 <li><a href="#table-of-contents">Table of Contents</a></li>
 <li><a href="#features">Features</a></li>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#examples">Examples</a>
 <ul>
-<li><a href="#chatgpt-instance">ChatGPT instance:</a></li>
-<li><a href="#dall-e-instance">DALL-E instance:</a></li>
-<li><a href="#tensor-flow-node-instance">Tensor Flow Node instance:</a></li>
+<li><a href="#start-a-chatgpt-instance">Start a ChatGPT instance</a></li>
+<li><a href="#start-a-new-dall-e-instance">Start a new DALL-E instance</a></li>
+<li><a href="#start-a-new-tensorflow-node-instance">Start a new TensorFlow Node instance</a></li>
 </ul>
 </li>
 <li><a href="#credits">Credits</a></li>
 <li><a href="#contributing">Contributing</a></li>
 <li><a href="#license">License</a></li>
 </ul>
+</li>
+</ul>
 <h2>Features</h2>
 <ul>
-<li>A modular architecture that allows for easy integration with various AI services like Tensor Flow Node, ChatGPT and DALL-E.</li>
+<li>A modular architecture that allows for easy integration with various AI services like Tensor FlowNode, ChatGPT and DALL-E.</li>
 <li>Support for natural language processing, computer vision and machine learning use cases (Just to start).</li>
 <li>Clean and simple library for each AI service.</li>
 <li>Well-documented and extensively tested codebase.</li>
@@ -81,56 +86,104 @@
 <pre class="prettyprint source lang-console"><code>$ yarn add ai-connectify
 </code></pre>
 <p>Once the package is installed, you can import the library using <code>import</code> or <code>require</code> approach:</p>
-<pre class="prettyprint source lang-js"><code>import AIConnectify from 'ai-connnectify';
+<pre class="prettyprint source lang-js"><code>const AIConnectify = require('ai-connectify');
 </code></pre>
 <h2>Examples</h2>
 <p>Here are some examples of how to use AI-Connectify:</p>
-<h3>ChatGPT instance:</h3>
-<pre class="prettyprint source lang-js"><code>import { AIConnectify } from 'ai-connectify';
-
-// new instance of ChatGPT
-const chatGPT= new AIConnectify.getAIInstance(&quot;ChatGPT&quot;, &quot;YOUR_API_KEY&quot;);
-
-// Create a async function with the code
-const prompt = 'Write a short story about a robot who becomes sentient and learns how to love';
+<h3>Start a ChatGPT instance</h3>
+<pre class="prettyprint source lang-js"><code>const chatGPT = new AIConnectify(&quot;ChatGPT&quot;, &quot;YOUR_OPENAI_API_KEY&quot;).connector;
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> OpenAI API Reference
+You can interact with a ChatGPT instance using like reference the parameters and returns specified in the <a href="https://platform.openai.com/docs/api-reference/completions">OpenAI API Reference</a>.</p>
+</blockquote>
+<p>Lists the currently available models and provides basic information about each one such as the owner and availability.</p>
+<pre class="prettyprint source lang-js"><code>const listModels = await chatGPT.listModels();
+console.log(listModels);
+</code></pre>
+<p>Providing basic information about the model such as the owner and permissioning.</p>
+<pre class="prettyprint source lang-js"><code>const modelDetails = await chatGPT.retrieveModel(&quot;MODEL_ID&quot;);
+console.log(modelDetails);
+</code></pre>
+<p>Creates a completion for the provided prompt and parameters.</p>
+<pre class="prettyprint source lang-js"><code>const prompt = 'Write a short story about a robot who becomes sentient and learns how to love';
 const completion = await chatGPT.createCompletion(prompt);
 console.log(completion);
 </code></pre>
-<h3>DALL-E instance:</h3>
-<pre class="prettyprint source lang-js"><code>import { AIConnectify } from 'ai-connectify';
-
-// new instance of DALL-E
-const dalle = new AIConnectify.getAIInstance(&quot;DALLE&quot;, &quot;YOUR_API_KEY&quot;);
-
-// Create a async function with the code to creates an image given a prompt
-const prompt = 'a white siamese cat';
+<p>Creates a model response for the given chat conversation</p>
+<pre class="prettyprint source lang-js"><code>const messages = [{role: &quot;user&quot;, content: &quot;Hello world&quot;}];
+const chatCompletion = await chatGPT.createChatCompletion(messages);
+console.log(chatCompletion);
+</code></pre>
+<p>Creates a new edit for the provided text, instruction, and parameters.</p>
+<pre class="prettyprint source lang-js"><code>const instruction = &quot;Fix the spelling mistakes&quot;;
+const textEdit = &quot;What day of the wek is it?&quot;;
+const textEdited = await chatGPT.createEdit(instruction, textEdit);
+console.log(textEdited);
+</code></pre>
+<h3>Start a new DALL-E instance</h3>
+<pre class="prettyprint source lang-js"><code>const dalle = new AIConnectify(&quot;DALLE&quot;, &quot;YOUR_OPENAI_API_KEY&quot;).connector;
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> OpenAI API Reference
+You can interact with a DALL-E instance using like reference the parameters and returns specified in the <a href="https://platform.openai.com/docs/api-reference/images">OpenAI API Reference</a>.</p>
+</blockquote>
+<p>Creates an image given a prompt</p>
+<pre class="prettyprint source lang-js"><code>const prompt = 'a white siamese cat';
 const newImage = await dalle.createImage(prompt);
 console.log(newImage);
-
-// Create a async function with the code to 
-// creates an edited or extended image given an original image and a prompt
-const prompt = 'a white siamese cat';
-const imageEdit = await dalle.createImageEdit(IMAGE_FILE, prompt, mask);
+</code></pre>
+<p>Creates an edited or extended image given an original image and a prompt</p>
+<pre class="prettyprint source lang-js"><code>const imagePath = '/path/to/the/imageFile';
+const prompt = 'A cute baby sea otter wearing a beret';
+const imageMaskPath = '/path/to/the/imageMaskFile';
+const imageEdit = await dalle.createImageEdit(imagePath, prompt, imageMaskPath);
 console.log(imageEdit);
-
-// Create a async function with the code to creates a variation of a given image
-const prompt = 'a white siamese cat';
-const imageVariation= await dalle.createImageVariation(IMAGE_FILE);
+</code></pre>
+<p>Creates a variation of a given image</p>
+<pre class="prettyprint source lang-js"><code>const imagePath = '/path/to/the/imageFile';
+const imageVariation = await dalle.createImageVariation(imagePath);
 console.log(imageVariation);
 </code></pre>
-<h3>Tensor Flow Node instance:</h3>
-<pre class="prettyprint source lang-js"><code>import { AIConnectify } from 'ai-connectify';
+<h3>Start a new TensorFlow Node instance</h3>
+<pre class="prettyprint source lang-js"><code>const tfNode = new AIConnectify(&quot;TensorFlowNode&quot;).connector;
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> TensorFlow API Reference
+You can interact with a TensorFlow Node instance using like reference the parameters and returns specified in the <a href="https://js.tensorflow.org/api/latest/">TensorFlow API Reference</a>.</p>
+</blockquote>
+<p>Tensors are the core datastructure of TensorFlow.js They are a generalization of vectors and matrices to potentially higher dimensions.</p>
+<pre class="prettyprint source lang-js"><code>// Pass an array of values to create a vector.
+const newTensor = tfNode.tensor([1, 2, 3, 4]);
+console.log(newTensor);
 
-// new instance of Tensor Flow Node
-const tfNode= new AIConnectify.getAIInstance(&quot;TensorFlowNode&quot;);
+// Creates rank-0 tf.Tensor (scalar) with the provided value
+const newScalar = tfNode.scalar(3.14);
+console.log(newScalar);
 
-// Create a async function with the code to load a new model
-const model = await tfNode.loadModel('URL_TO_MODEL');
+// Create a buffer and set values at particular indices.
+const buffer = tfNode.buffer([2, 2]);
+buffer.set(3, 0, 0);
+buffer.set(5, 1, 0);
+// Convert the buffer back to a tensor.
+const bufferResult = buffer.toTensor();
+console.log(bufferResult);
+</code></pre>
+<p>Models are one of the primary abstractions used in TensorFlow.js Layers. Models can be trained, evaluated, and used for prediction. Models are a collection of Layers, see Model Creation for details about how Layers can be connected.</p>
+<pre class="prettyprint source lang-js"><code>// Creates a tfNode.sequential model
+const newModel = tfNode.sequential();
+newModel.add(tfNode.layers.dense({units: 32, inputShape: [50]}));
+newModel.add(tfNode.layers.dense({units: 4}));
+const inspectModel = newModel.outputs[0].shape;
+console.log(inspectModel);
 
-// Create a async function with the code to make a prediction using the loaded TensorFlow model
-const inputData = [[1, 2], [3, 4]];
-const prediction = model.predict(inputData);
-console.log(prediction.toString());
+// Defines a model consisting of two dense layers, with 10 and 4 units, respectively
+const input = tfNode.input({shape: [5]});
+const denseLayer1 = tfNode.layers.dense({units: 10, activation: 'relu'});
+const denseLayer2 = tfNode.layers.dense({units: 4, activation: 'softmax'});
+const output = denseLayer2.apply(denseLayer1.apply(input));
+const newModel = tfNode.model({inputs: input, outputs: output});
+const predictModel = newModel.predict(tfNode.ones([2, 5]));
 </code></pre>
 <h2>Credits</h2>
 <p>The original author of AI-Connectify is <a href="https://github.com/brianelizondo">Brian Elizondo</a></p>
@@ -150,14 +203,14 @@ console.log(prediction.toString());
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AIConnectify.html">AIConnectify</a></li></ul><h3>Classes</h3><ul><li><a href="AIConnectify.html">AIConnectify</a></li><li><a href="AIConnectifyError.html">AIConnectifyError</a></li><li><a href="ChatGPT.html">ChatGPT</a></li><li><a href="DALLE.html">DALLE</a></li><li><a href="TensorFlowNode.html">TensorFlowNode</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AIConnectifyFactoryReturnsaninstanceoftheAIconnectorforthespecifiedAI">AIConnectifyFactory 
-Returns an instance of the AI connector for the specified AI</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AIConnectify.html">AIConnectify</a></li></ul><h3>Classes</h3><ul><li><a href="AIConnectify.html">AIConnectify</a></li><li><a href="global.html#AIConnectifyError">AIConnectifyError</a></li><li><a href="ChatGPT.html">ChatGPT</a></li><li><a href="DALLE.html">DALLE</a></li><li><a href="TensorFlowNode.html">TensorFlowNode</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AIConnectifyFactoryReturnsaninstanceoftheAIconnectorforthespecifiedAI">AIConnectifyFactory 
+Returns an instance of the AI connector for the specified AI</a></li><li><a href="global.html#tf">tf</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue May 02 2023 18:26:44 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun May 07 2023 17:43:04 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
