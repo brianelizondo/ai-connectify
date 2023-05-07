@@ -1,23 +1,32 @@
 import AIConnectifyError from '../../lib/AIConnectifyError';
 import DALLE from '../../lib/connectors/AI/DALLE';
 
-const dallE = new DALLE("OPEN-AI-APIKEY");
-const dallePromptTest = "a white siamese cat";
-const dalleTestConfig = {
-    n: 1,
-    size: "256x256",
-    response_format: "url"
-}
+const dallE = new DALLE("OPENAI-API-KEY");
+const dallePromptTest = "A cute baby sea otter";
 
 describe("DALLE AI class", () => { 
-    it("Tests if createCompletion function returns the expected completion", async () => {
+    it("Tests if listModels function returns the list of models", async () => {
+        const listModels = await dallE.listModels();
+        expect(listModels).toEqual(expect.any(Array));
+    });
+
+    it("Tests if reatrieveModel function returns the list of models", async () => {
+        const modelDetails = await dallE.reatrieveModel("text-davinci-003");
+        expect(modelDetails).toEqual(expect.any(Object));
+    });
+
+    it("Tests if createImage function returns array with url's of the new image created", async () => {
         jest.setTimeout(10000);
-        const response = await dallE.createImage(dallePromptTest, dalleTestConfig);
-        expect(response).toEqual(expect.any(URL));
+        const newImage = await dallE.createImage(dallePromptTest);
+        expect(newImage).toEqual(expect.any(Array));
     });
 });
 
 describe("AIConnectifyError is throw in DALLE AI class", () => {
+    it("Tests is thrown error in reatrieveModel function when the model id is an empty string", async () => {
+        await expect(dallE.reatrieveModel()).rejects.toThrow(AIConnectifyError);
+        await expect(dallE.reatrieveModel("")).rejects.toThrow(AIConnectifyError);
+    });
     it("Tests is thrown error in createImage function when the prompt is an empty string", async () => {
         await expect(dallE.createImage("")).rejects.toThrow(AIConnectifyError);
     });
