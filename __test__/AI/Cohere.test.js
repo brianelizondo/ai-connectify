@@ -1,7 +1,7 @@
 import AIConnectifyError from '../../lib/AIConnectifyError';
 import Cohere from '../../lib/connectors/AI/Cohere';
 
-const cohere = new Cohere("wskRBT7chFEJIzpx27QOP7JCgVbpA1gDAtUryre5");
+const cohere = new Cohere("COHERE-AI-KEY");
 
 const classifyInputsArray = ['Confirm your email address', 'hey i need u to send some $'];
 const classifyExamplesArray = [
