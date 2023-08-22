@@ -6,8 +6,7 @@
 'use strict';
 
 /**
-* AI-Connectify is a library that allows users to interact with various AI models using different APIs. 
-* Currently supported models include TensorFlow Node, ChatGPT and DALL-E.
+* AI-Connectify is a library that allows users to interact with various AI models using different APIs.
 * @module AIConnectify
 */
 const AIConnectify = require('./lib/ai-connectify');
