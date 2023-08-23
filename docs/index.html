@@ -54,13 +54,15 @@
 <li><a href="#ai-connectify">AI-Connectify</a>
 <ul>
 <li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#currently-supported-ai-services">Currently supported AI services</a></li>
 <li><a href="#features">Features</a></li>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#examples">Examples</a>
 <ul>
-<li><a href="#start-a-chatgpt-instance">Start a ChatGPT instance</a></li>
+<li><a href="#start-a-new-chatgpt-instance">Start a new ChatGPT instance</a></li>
 <li><a href="#start-a-new-dall-e-instance">Start a new DALL-E instance</a></li>
 <li><a href="#start-a-new-tensorflow-node-instance">Start a new TensorFlow Node instance</a></li>
+<li><a href="#start-a-new-cohere-instance">Start a new Cohere instance</a></li>
 </ul>
 </li>
 <li><a href="#credits">Credits</a></li>
@@ -69,9 +71,16 @@
 </ul>
 </li>
 </ul>
+<h2>Currently supported AI services</h2>
+<ul>
+<li>ChatGPT</li>
+<li>DALL-E</li>
+<li>TensorFlow Node</li>
+<li>Cohere</li>
+</ul>
 <h2>Features</h2>
 <ul>
-<li>A modular architecture that allows for easy integration with various AI services like Tensor FlowNode, ChatGPT and DALL-E.</li>
+<li>A modular architecture that allows for easy integration with various AI services.</li>
 <li>Support for natural language processing, computer vision and machine learning use cases (Just to start).</li>
 <li>Clean and simple library for each AI service.</li>
 <li>Well-documented and extensively tested codebase.</li>
@@ -90,32 +99,37 @@
 </code></pre>
 <h2>Examples</h2>
 <p>Here are some examples of how to use AI-Connectify:</p>
-<h3>Start a ChatGPT instance</h3>
+<h3>Start a new ChatGPT instance</h3>
 <pre class="prettyprint source lang-js"><code>const chatGPT = new AIConnectify(&quot;ChatGPT&quot;, &quot;YOUR_OPENAI_API_KEY&quot;).connector;
 </code></pre>
 <blockquote>
 <p><strong>Note:</strong> OpenAI API Reference
 You can interact with a ChatGPT instance using like reference the parameters and returns specified in the <a href="https://platform.openai.com/docs/api-reference/completions">OpenAI API Reference</a>.</p>
 </blockquote>
-<p>Lists the currently available models and provides basic information about each one such as the owner and availability.</p>
+<p><strong>listModels</strong>
+Lists the currently available models and provides basic information about each one such as the owner and availability.</p>
 <pre class="prettyprint source lang-js"><code>const listModels = await chatGPT.listModels();
 console.log(listModels);
 </code></pre>
-<p>Providing basic information about the model such as the owner and permissioning.</p>
+<p><strong>retrieveModel</strong>
+Providing basic information about the model such as the owner and permissioning.</p>
 <pre class="prettyprint source lang-js"><code>const modelDetails = await chatGPT.retrieveModel(&quot;MODEL_ID&quot;);
 console.log(modelDetails);
 </code></pre>
-<p>Creates a completion for the provided prompt and parameters.</p>
+<p><strong>createCompletion</strong>
+Creates a completion for the provided prompt and parameters.</p>
 <pre class="prettyprint source lang-js"><code>const prompt = 'Write a short story about a robot who becomes sentient and learns how to love';
 const completion = await chatGPT.createCompletion(prompt);
 console.log(completion);
 </code></pre>
-<p>Creates a model response for the given chat conversation</p>
+<p><strong>createChatCompletion</strong>
+Creates a model response for the given chat conversation</p>
 <pre class="prettyprint source lang-js"><code>const messages = [{role: &quot;user&quot;, content: &quot;Hello world&quot;}];
 const chatCompletion = await chatGPT.createChatCompletion(messages);
 console.log(chatCompletion);
 </code></pre>
-<p>Creates a new edit for the provided text, instruction, and parameters.</p>
+<p><strong>createEdit</strong>
+Creates a new edit for the provided text, instruction, and parameters.</p>
 <pre class="prettyprint source lang-js"><code>const instruction = &quot;Fix the spelling mistakes&quot;;
 const textEdit = &quot;What day of the wek is it?&quot;;
 const textEdited = await chatGPT.createEdit(instruction, textEdit);
@@ -128,19 +142,22 @@ console.log(textEdited);
 <p><strong>Note:</strong> OpenAI API Reference
 You can interact with a DALL-E instance using like reference the parameters and returns specified in the <a href="https://platform.openai.com/docs/api-reference/images">OpenAI API Reference</a>.</p>
 </blockquote>
-<p>Creates an image given a prompt</p>
+<p><strong>createImage</strong>
+Creates an image given a prompt</p>
 <pre class="prettyprint source lang-js"><code>const prompt = 'a white siamese cat';
 const newImage = await dalle.createImage(prompt);
 console.log(newImage);
 </code></pre>
-<p>Creates an edited or extended image given an original image and a prompt</p>
+<p><strong>createImageEdit</strong>
+Creates an edited or extended image given an original image and a prompt</p>
 <pre class="prettyprint source lang-js"><code>const imagePath = '/path/to/the/imageFile';
 const prompt = 'A cute baby sea otter wearing a beret';
 const imageMaskPath = '/path/to/the/imageMaskFile';
 const imageEdit = await dalle.createImageEdit(imagePath, prompt, imageMaskPath);
 console.log(imageEdit);
 </code></pre>
-<p>Creates a variation of a given image</p>
+<p><strong>createImageVariation</strong>
+Creates a variation of a given image</p>
 <pre class="prettyprint source lang-js"><code>const imagePath = '/path/to/the/imageFile';
 const imageVariation = await dalle.createImageVariation(imagePath);
 console.log(imageVariation);
@@ -185,6 +202,64 @@ const output = denseLayer2.apply(denseLayer1.apply(input));
 const newModel = tfNode.model({inputs: input, outputs: output});
 const predictModel = newModel.predict(tfNode.ones([2, 5]));
 </code></pre>
+<h3>Start a new Cohere instance</h3>
+<pre class="prettyprint source lang-js"><code>const cohere = new AIConnectify(&quot;Cohere&quot;, &quot;YOUR_COHERE_API_KEY&quot;).connector;
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> Cohere API Reference
+You can interact with a Cohere instance using like reference the parameters and returns specified in the <a href="https://docs.cohere.com/reference/about">Cohere API Reference</a>.</p>
+</blockquote>
+<p><strong>generate</strong>
+Generates realistic text conditioned on a given input.</p>
+<pre class="prettyprint source lang-js"><code>const prompt = 'Please explain to me how AI works';
+const gererateText = await cohere.generate(prompt);
+console.log(gererateText);
+</code></pre>
+<p><strong>embed</strong>
+Returns text embeddings. An embedding is a list of floating point numbers that captures semantic information about the text that it represents.</p>
+<pre class="prettyprint source lang-js"><code>const texts = ['hello', 'goodbye'];
+const embedText = await cohere.embed(texts);
+console.log(embedText);
+</code></pre>
+<p><strong>classify</strong>
+Makes a prediction about which label fits the specified text inputs best. To make a prediction, Classify uses the provided <code>examples</code> of text + label pairs as a reference.</p>
+<pre class="prettyprint source lang-js"><code>const inputs = ['Confirm your email address', 'hey i need u to send some money'];
+const examplesPairs: [
+      {text: 'Hello, open to this?', label: 'Spam'},
+      {text: 'I need help please wire me $1000 right now', label: 'Spam'},
+      {text: 'Please help me?', label: 'Spam'},
+      {text: 'Your parcel will be delivered today', label: 'Not spam'},
+      {text: 'Weekly sync notes', label: 'Not spam'},
+      {text: 'Pre-read for tomorrow', label: 'Not spam'}
+];
+const classify = await cohere.classify(inputs, examplesPairs);
+console.log(embedText);
+</code></pre>
+<p><strong>tokenize</strong>
+Splits input text into smaller units called tokens using byte-pair encoding (BPE).</p>
+<pre class="prettyprint source lang-js"><code>const text = 'tokenize me!';
+const tokenizedText = await cohere.tokenize(text);
+console.log(tokenizedText);
+</code></pre>
+<p><strong>detokenize</strong>
+Takes tokens using byte-pair encoding and returns their text representation.</p>
+<pre class="prettyprint source lang-js"><code>const tokens = [10104, 12221, 1315, 34, 1420, 69];
+const detokenizedText = await cohere.detokenize(tokens);
+console.log(detokenizedText);
+</code></pre>
+<p><strong>detectLanguage</strong>
+Identifies which language each of the provided texts is written in.</p>
+<pre class="prettyprint source lang-js"><code>const texts = [&quot;Hello how are you?&quot;, &quot;Hola, como estas?&quot;, &quot;Bonjour, comment allez-vous?&quot;];
+const detectedLanguage = await cohere.detectLanguage(texts);
+console.log(detectedLanguage);
+</code></pre>
+<p><strong>sumarize</strong>
+Generates a summary in English for a given text.</p>
+<pre class="prettyprint source lang-js"><code>const textExample = 'Ice cream is a sweetened frozen food typically eaten as a snack or dessert. It may be made from milk or cream and is flavoured with a sweetener, either sugar or an alternative, and a spice, such as cocoa or vanilla, or with fruit such as strawberries or peaches. It can also be made by whisking a flavored cream base and liquid nitrogen together. Food coloring is sometimes added, in addition to stabilizers. The mixture is cooled below the freezing point of water and stirred to incorporate air spaces and to prevent detectable ice crystals from forming. The result is a smooth, semi-solid foam that is solid at very low temperature (below 2 °C or 35 °F).';
+
+const summarizedText = await cohere.summarize(textExample);
+console.log(summarizedText);
+</code></pre>
 <h2>Credits</h2>
 <p>The original author of AI-Connectify is <a href="https://github.com/brianelizondo">Brian Elizondo</a></p>
 <h2>Contributing</h2>
@@ -203,14 +278,13 @@ const predictModel = newModel.predict(tfNode.ones([2, 5]));
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AIConnectify.html">AIConnectify</a></li></ul><h3>Classes</h3><ul><li><a href="AIConnectify.html">AIConnectify</a></li><li><a href="global.html#AIConnectifyError">AIConnectifyError</a></li><li><a href="ChatGPT.html">ChatGPT</a></li><li><a href="DALLE.html">DALLE</a></li><li><a href="TensorFlowNode.html">TensorFlowNode</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AIConnectifyFactoryReturnsaninstanceoftheAIconnectorforthespecifiedAI">AIConnectifyFactory 
-Returns an instance of the AI connector for the specified AI</a></li><li><a href="global.html#tf">tf</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AIConnectify.html">AIConnectify</a></li><li><a href="module-lib_connectors_AI_ChatGPT.html">lib/connectors/AI/ChatGPT</a></li><li><a href="module-lib_connectors_AI_Cohere.html">lib/connectors/AI/Cohere</a></li><li><a href="module-lib_connectors_AI_DALLE.html">lib/connectors/AI/DALLE</a></li><li><a href="module-lib_connectors_AI_TensorFlowNode.html">lib/connectors/AI/TensorFlowNode</a></li><li><a href="module-lib_connectors_AIConnectifyFactory.html">lib/connectors/AIConnectifyFactory</a></li></ul><h3>Classes</h3><ul><li><a href="AIConnectifyError.html">AIConnectifyError</a></li><li><a href="module-AIConnectify-AIConnectify.html">AIConnectify</a></li><li><a href="module-lib_connectors_AI_ChatGPT-ChatGPT.html">ChatGPT</a></li><li><a href="module-lib_connectors_AI_Cohere-Cohere.html">Cohere</a></li><li><a href="module-lib_connectors_AI_DALLE-DALLE.html">DALLE</a></li><li><a href="module-lib_connectors_AI_TensorFlowNode-TensorFlowNode.html">TensorFlowNode</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun May 07 2023 17:43:04 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Aug 22 2023 19:58:18 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -34,26 +34,28 @@
 'use strict';
 
 /**
-* Module dependencies.
+* Module and dependencies
+* @module 
 */
 const AIConnectifyError = require('../../AIConnectifyError');
 const fs = require('fs');
 const { Configuration, OpenAIApi } = require('openai');
 
 /**
-* Represents a DALL-E AI instance.
-* Given a prompt and/or an input image, the model will generate a new image.
-* @param {string} apiKey - The OpenAI API key.
-* @throws {AIConnectifyError} - Will throw an error if apiKey is not provided.
+* Represents a DALL-E AI instance
+* Given a prompt and/or an input image, the model will generate a new image
+* @class DALLE
 */
 class DALLE {
-    constructor(apiKey, model = 'image-alpha-001') {
-        if (!apiKey) {
-            throw new AIConnectifyError('API key is required for DAll-E');
-        }
-
-        this.model = "image-alpha-001";
-        this.config = {
+    /**
+    * Create a DALLE instance
+    * @constructor
+    * @param {string} apiKey - The API key for OpenAI
+    * @param {string} [modelID='image-alpha-001'] - The model ID 
+    */
+    constructor(apiKey, modelID = 'image-alpha-001') {
+        this.model = modelID;
+        this.defaultConfig = {
             n: 1,
             size: "1024x1024",
             response_format: "url",
@@ -62,18 +64,29 @@ class DALLE {
         
         const openaiConfig = new Configuration({ apiKey });
         this.openai = new OpenAIApi(openaiConfig);
+
+        /**
+        * Merge default and new configurations
+        * @function
+        * @param {Object} defaultConfig - Default configuration
+        * @param {Object} newConfig - New configuration
+        * @returns {Object} Merged configuration
+        */
+        this.mergeConfigs = (defaultConfig, newConfig) => {
+            return { ...defaultConfig, ...newConfig };
+        }
     }
 
     /**
     * MODELS METHODS
-    * List and describe the various models available in the API. 
-    * Refer to the Models documentation to understand what models are available and the differences between them.
+    * List and describe the various models available in the API
+    * Refer to the Models documentation to understand what models are available and the differences between them
     * 
     * List Models
-    * Lists the currently available models, and provides basic information about each one such as the owner and availability.
+    * Lists the currently available models, and provides basic information about each one such as the owner and availability
     * @async
-    * @returns {Promise&lt;array>} - A Promise that resolves with the generated list of models.
-    * @throws {AIConnectifyError} - Will throw an error if an error occurs during generation.
+    * @returns {Promise&lt;Array>} - A Promise that resolves with the generated list of models
+    * @throws {AIConnectifyError} - Will throw an error if an error occurs during generation
     */
     async listModels(){
         try {
@@ -81,53 +94,57 @@ class DALLE {
             return response.data.data;
         } catch (error) {
             const errorMsg = error.response ? error.response.data.error.message : error.message;
-            throw new AIConnectifyError(`ChatGPT Error: ${errorMsg}`);
+            throw new AIConnectifyError(`DALLE error => ${errorMsg}`);
         }
     }
     
     /**
     * Reatrive Model
-    * Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
+    * Retrieves a model instance, providing basic information about the model such as the owner and permissioning
     * @async
-    * @param {string} modelID - The id model to get basic information.
-    * @returns {Promise&lt;object>} - A Promise that resolves with the generated.
-    * @throws {AIConnectifyError} - Will throw an error if an error occurs during generation.
+    * @param {string} modelID - The id model to get basic information
+    * @returns {Promise&lt;Object>} - A Promise that resolves with the generated
+    * @throws {AIConnectifyError} - Will throw an error if an error occurs during generation
     */
     async reatrieveModel(modelID) {
+        if (typeof modelID !== 'string'){
+            throw new AIConnectifyError('Cannot process the model ID');
+        }
+
         try {
             const response = await this.openai.retrieveModel(modelID);
             return response.data;
         } catch (error) {
             const errorMsg = error.response ? error.response.data.error.message : error.message;
-            throw new AIConnectifyError(`Error generating response => ${errorMsg}`);
+            throw new AIConnectifyError(`DALLE error => ${errorMsg}`);
         }
     }
 
     /**
     * IMAGES METHODS
-    * Given a prompt and/or an input image, the model will generate a new image.
+    * Given a prompt and/or an input image, the model will generate a new image
     * 
     * Create Image
     * Creates an image given a prompt
     * @async
-    * @param {string} [prompt=null] - The prompt used to generate the image.
-    * @param {Object} [newConfig=null] - An optional configuration object.
-    * @throws {AIConnectifyError} Will throw an error if an empty prompt is provided.
-    * @returns {Promise&lt;Object>} - The response data from the OpenAI API.
+    * @param {string} [promptText=null] - The prompt used to generate the image
+    * @param {Object} [newConfig={}] - An optional configuration object
+    * @returns {Promise&lt;Object>} - The response data from the OpenAI API
+    * @throws {AIConnectifyError} Will throw an error if an empty prompt is provided
     */
-    async createImage(prompt = null, newConfig = null){
-        const config = { ...this.config, ...newConfig };
-        if (!prompt || prompt.length == 0){
+    async createImage(promptText = null, newConfig = {}){
+        if (!promptText || typeof promptText !== 'string'){
             throw new AIConnectifyError('Cannot process an empty prompt');
         }
-
+        
         try {
-            const response = await this.openai.createImage({ prompt, ...config });
+            const mergedConfig = this.mergeConfigs(this.defaultConfig, newConfig);
+            const response = await this.openai.createImage({ promptText, ...mergedConfig });
             return response.data;
         } catch (error) {
             const errorMsg = error.response ? error.response.data.error.message : error.message;
             console.log(errorMsg);
-            throw new AIConnectifyError(`Error generating response: ${errorMsg}`);
+            throw new AIConnectifyError(`DALLE error => ${errorMsg}`);
         }
     }
 
@@ -135,42 +152,40 @@ class DALLE {
     * Create Image Edit
     * Creates an edited or extended image given an original image and a prompt
     * @async
-    * @param {string} [imagePath=null] - The original image.
-    * @param {string} [prompt=null] - The prompt used to generate the new image.
-    * @param {string} [mask=null] - The image mask.
-    * @param {Object} [newConfig=null] - An optional configuration object.
-    * @throws {AIConnectifyError} Will throw an error if an empty image or prompt is provided.
-    * @returns {Promise&lt;Object>} - The response data from the OpenAI API.
+    * @param {string} [imagePath=null] - The original image
+    * @param {string} [promptText=null] - The prompt used to generate the new image
+    * @param {string} [mask=null] - The image mask
+    * @param {Object} [newConfig={}] - An optional configuration object
+    * @returns {Promise&lt;Object>} - The response data from the OpenAI API
+    * @throws {AIConnectifyError} Will throw an error if an empty image or prompt is provided
     */
-    async createImageEdit(imagePath, prompt, maskPath = null, newConfig = null){
-        const config = { ...this.config, ...newConfig };
-        
-        if (!imagePath || imagePath.length == 0){
+    async createImageEdit(imagePath, promptText, maskPath = null, newConfig = {}){
+        if (!imagePath || typeof imagePath !== 'string'){
             throw new AIConnectifyError('Cannot process an empty image path');
         }
-        if (!prompt || prompt.length == 0){
+        if (!promptText || typeof promptText !== 'string'){
             throw new AIConnectifyError('Cannot process an empty prompt');
         }
         if (maskPath &amp;&amp; maskPath.length == 0){
             throw new AIConnectifyError('Cannot process an empty mask path');
         }
 
-        const maskImage = maskPath ? fs.createReadStream(maskPath) : undefined;
-        
         try {
+            const maskImage = maskPath ? fs.createReadStream(maskPath) : undefined;
+            const mergedConfig = this.mergeConfigs(this.defaultConfig, newConfig);
             const response = await this.openai.createImageEdit(
                 fs.createReadStream(imagePath),
                 maskImage,
-                prompt, 
-                config.n, 
-                config.size, 
-                config.response_format,
-                config.user
+                promptText, 
+                mergedConfig.n, 
+                mergedConfig.size, 
+                mergedConfig.response_format,
+                mergedConfig.user
             );
             return response.data;
         } catch (error) {
             const errorMsg = error.response ? error.response.data.error.message : error.message;
-            throw new AIConnectifyError(`Error generating response: ${errorMsg}`);
+            throw new AIConnectifyError(`DALLE error => ${errorMsg}`);
         }
     }
 
@@ -178,29 +193,29 @@ class DALLE {
     * Create Image Variation
     * Creates a variation of a given image
     * @async
-    * @param {string} [imagePath=null] - The original image.
-    * @param {Object} [newConfig=null] - An optional configuration object.
-    * @throws {AIConnectifyError} Will throw an error if an empty image or prompt is provided.
-    * @returns {Promise&lt;Object>} - The response data from the OpenAI API.
+    * @param {string} [imagePath=null] - The original image
+    * @param {Object} [newConfig={}] - An optional configuration object
+    * @returns {Promise&lt;Object>} - The response data from the OpenAI API
+    * @throws {AIConnectifyError} Will throw an error if an empty image or prompt is provided
     */
-    async createImageVariation(imagePath = null, newConfig = null){
-        const config = { ...this.config, ...newConfig };
-        if (!imagePath || imagePath.length == 0){
+    async createImageVariation(imagePath = null, newConfig = {}){
+        if (!imagePath || typeof imagePath !== 'string'){
             throw new AIConnectifyError('Cannot process an empty image path');
         }
 
         try {
+            const mergedConfig = this.mergeConfigs(this.defaultConfig, newConfig);
             const response = await this.openai.createImageVariation(
                 fs.createReadStream(imagePath),
-                config.n, 
-                config.size, 
-                config.response_format,
-                config.user
+                mergedConfig.n, 
+                mergedConfig.size, 
+                mergedConfig.response_format,
+                mergedConfig.user
             );
             return response.data;
         } catch (error) {
             const errorMsg = error.response ? error.response.data.error.message : error.message;
-            throw new AIConnectifyError(`Error generating response: ${errorMsg}`);
+            throw new AIConnectifyError(`DALLE error => ${errorMsg}`);
         }
     }
 }
@@ -215,14 +230,13 @@ module.exports = DALLE;</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AIConnectify.html">AIConnectify</a></li></ul><h3>Classes</h3><ul><li><a href="AIConnectify.html">AIConnectify</a></li><li><a href="global.html#AIConnectifyError">AIConnectifyError</a></li><li><a href="ChatGPT.html">ChatGPT</a></li><li><a href="DALLE.html">DALLE</a></li><li><a href="TensorFlowNode.html">TensorFlowNode</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AIConnectifyFactoryReturnsaninstanceoftheAIconnectorforthespecifiedAI">AIConnectifyFactory 
-Returns an instance of the AI connector for the specified AI</a></li><li><a href="global.html#tf">tf</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AIConnectify.html">AIConnectify</a></li><li><a href="module-lib_connectors_AI_ChatGPT.html">lib/connectors/AI/ChatGPT</a></li><li><a href="module-lib_connectors_AI_Cohere.html">lib/connectors/AI/Cohere</a></li><li><a href="module-lib_connectors_AI_DALLE.html">lib/connectors/AI/DALLE</a></li><li><a href="module-lib_connectors_AI_TensorFlowNode.html">lib/connectors/AI/TensorFlowNode</a></li><li><a href="module-lib_connectors_AIConnectifyFactory.html">lib/connectors/AIConnectifyFactory</a></li></ul><h3>Classes</h3><ul><li><a href="AIConnectifyError.html">AIConnectifyError</a></li><li><a href="module-AIConnectify-AIConnectify.html">AIConnectify</a></li><li><a href="module-lib_connectors_AI_ChatGPT-ChatGPT.html">ChatGPT</a></li><li><a href="module-lib_connectors_AI_Cohere-Cohere.html">Cohere</a></li><li><a href="module-lib_connectors_AI_DALLE-DALLE.html">DALLE</a></li><li><a href="module-lib_connectors_AI_TensorFlowNode-TensorFlowNode.html">TensorFlowNode</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun May 07 2023 17:43:04 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Aug 22 2023 19:58:18 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
