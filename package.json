@@ -31,8 +31,7 @@
   },
   "dependencies": {
     "@tensorflow/tfjs-node": "^4.4.0",
-    "cohere-ai": "^6.2.2",
-    "openai": "^3.2.1"
+    "axios": "^1.7.7"
   },
   "devDependencies": {
     "@babel/core": "^7.21.5",
