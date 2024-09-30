@@ -17,12 +17,12 @@ describe("AIRegistry class", () => {
         });
     });
     describe("Use the class methods individually", () => {
-        it("Tests if the _loadAIs method generates the AI list correctly", () => {
+        it("Tests if the '_loadAIs' method generates the AI list correctly", () => {
             expect(aiRegistryInstance.registeredAIs.lenght).toEqual(directories.lenght);
             expect(aiRegistryInstance.registeredAIs).toHaveProperty(testValidAI);
             expect(aiRegistryInstance.registeredAIs[testValidAI].apiKeyRequired).toBe(false);
         });
-        it("Tests if the _registerAI method register a new AI service correctly", () => {
+        it("Tests if the '_registerAI' method register a new AI service correctly", () => {
             const newAiService = {
                 name: "tensorFlowTest",
                 instance: new TensorFlow(),
@@ -34,7 +34,7 @@ describe("AIRegistry class", () => {
             expect(aiRegistryInstance.registeredAIs).toHaveProperty(newAiService.name);
             expect(aiRegistryInstance.registeredAIs[newAiService.name].apiKeyRequired).toBe(newAiService.apiKeyRequired);
         });
-        it("Tests if the getAI method get the AI instance correctly", () => {
+        it("Tests if the 'getAI' method get the AI instance correctly", () => {
             const ai = aiRegistryInstance.getAI(testValidAI);
             expect(new ai.aiInstance()).toBeInstanceOf(TensorFlow);
         });
