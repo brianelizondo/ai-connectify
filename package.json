@@ -31,7 +31,8 @@
   },
   "dependencies": {
     "@tensorflow/tfjs-node": "^4.21.0",
-    "axios": "^1.7.7"
+    "axios": "^1.7.7",
+    "form-data": "^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.21.5",
