@@ -1,7 +1,7 @@
 {
   "name": "ai-connectify",
-  "version": "1.1.1",
-  "description": "A simple library for connecting to and interacting with various AI services",
+  "version": "2.0.0",
+  "description": "A simple library for connecting to and interacting with various AI services at the same time",
   "keywords": [
     "ai",
     "connectify",
@@ -11,9 +11,10 @@
     "learning",
     "openai",
     "chatgpt",
+    "cohere",
     "dalle",
-    "tensorflow",
-    "cohere"
+    "stability",
+    "tensorflow"
   ],
   "homepage": "https://github.com/brianelizondo/ai-connectify#readme",
   "bugs": {
