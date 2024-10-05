@@ -302,28 +302,76 @@ describe("ChatGPTClient class", () => {
     });
 
     describe("Throw the AIConnectifyError error", () => {
+        it("Test when HttpClient request failure", () => {
+            mockHttpClient.get.mockRejectedValue(new Error('API Error'));
+            mockHttpClient.post.mockRejectedValue(new Error('API Error'));
+            mockHttpClient.delete.mockRejectedValue(new Error('API Error'));
+        });
         it("Test when organization ID is invalid", () => {
             expect(() => chatGPTClient.setOrganizationId('')).toThrow(AIConnectifyError);
         });
         it("Test when project ID is invalid", () => {
             expect(() => chatGPTClient.setProjectId('')).toThrow(AIConnectifyError);
         });
-        it("Test when 'getModels' request failure", async () => {
-            mockHttpClient.get.mockRejectedValue(new Error('API Error'));
-            await expect(chatGPTClient.getModels()).rejects.toThrow(AIConnectifyError);
-        });
         it("Test when 'getModel' request failure", async () => {
-            mockHttpClient.get.mockRejectedValue(new Error('API Error'));
-            await expect(chatGPTClient.getModel('test-model-id')).rejects.toThrow(AIConnectifyError);
+            await expect(chatGPTClient.getModel()).rejects.toThrow(AIConnectifyError);
+            await expect(chatGPTClient.getModel(12345)).rejects.toThrow('Cannot process the model ID');
+        });
+        it("Test when 'delFineTunedModel' request failure", async () => {
+            await expect(chatGPTClient.delFineTunedModel()).rejects.toThrow(AIConnectifyError);
+            await expect(chatGPTClient.delFineTunedModel(12345)).rejects.toThrow('Cannot process the model ID');
         });
         it("Test when 'createChatCompletion' request failure", async () => {
-            await expect(chatGPTClient.createChatCompletion(null, 'model')).rejects.toThrow('Cannot process the messages array');
+            await expect(chatGPTClient.createChatCompletion()).rejects.toThrow(AIConnectifyError);
+            await expect(chatGPTClient.createChatCompletion(123456)).rejects.toThrow('This is not an array');
+            await expect(chatGPTClient.createChatCompletion([1,2,3], 12345)).rejects.toThrow('Cannot process the model ID');
+        });
+        it("Test when 'createEmbeddings' request failure", async () => {
+            await expect(chatGPTClient.createEmbeddings()).rejects.toThrow(AIConnectifyError);
+            await expect(chatGPTClient.createEmbeddings(12345)).rejects.toThrow('Cannot process the model ID');
         });
         it("Test when 'createModeration' request failure", async () => {
-            await expect(chatGPTClient.createModeration('')).rejects.toThrow('Cannot process the input text');
+            await expect(chatGPTClient.createModeration()).rejects.toThrow(AIConnectifyError);
+            await expect(chatGPTClient.createModeration(12345)).rejects.toThrow('Cannot process the input text');
+            await expect(chatGPTClient.createModeration('test', 12345)).rejects.toThrow('Cannot process the model ID');
+        });
+        it("Test when 'createSpeech' request failure", async () => {
+            await expect(chatGPTClient.createSpeech()).rejects.toThrow(AIConnectifyError);
+            await expect(chatGPTClient.createSpeech(12345)).rejects.toThrow('Cannot process the input text');
+            await expect(chatGPTClient.createSpeech('test', 12345)).rejects.toThrow('Cannot process the destination folder');
+            await expect(chatGPTClient.createSpeech('test', 'test', 12345)).rejects.toThrow('Cannot process the model ID');
+            await expect(chatGPTClient.createSpeech('test', 'test', 'test',12345)).rejects.toThrow('Cannot process the response format');
+        });
+        it("Test when 'createTranscription' request failure", async () => {
+            await expect(chatGPTClient.createTranscription()).rejects.toThrow(AIConnectifyError);
+            await expect(chatGPTClient.createTranscription(12345)).rejects.toThrow('Cannot process the file path');
+            await expect(chatGPTClient.createTranscription('test', 12345)).rejects.toThrow('Cannot process the model ID');
+        });
+        it("Test when 'createTranslation' request failure", async () => {
+            await expect(chatGPTClient.createTranslation()).rejects.toThrow(AIConnectifyError);
+            await expect(chatGPTClient.createTranslation(12345)).rejects.toThrow('Cannot process the file path');
+            await expect(chatGPTClient.createTranslation('test', 12345)).rejects.toThrow('Cannot process the model ID');
+        });
+        it("Test when 'getFineTuningJob' request failure", async () => {
+            await expect(chatGPTClient.getFineTuningJob()).rejects.toThrow(AIConnectifyError);
+            await expect(chatGPTClient.getFineTuningJob(12345)).rejects.toThrow('Cannot process the fine-tuning job ID');
+        });
+        it("Test when 'getFineTuningEvents' request failure", async () => {
+            await expect(chatGPTClient.getFineTuningEvents()).rejects.toThrow(AIConnectifyError);
+            await expect(chatGPTClient.getFineTuningEvents(12345)).rejects.toThrow('Cannot process the fine-tuning job ID');
+        });
+        it("Test when 'getFineTuningCheckpoints' request failure", async () => {
+            await expect(chatGPTClient.getFineTuningCheckpoints()).rejects.toThrow(AIConnectifyError);
+            await expect(chatGPTClient.getFineTuningCheckpoints(12345)).rejects.toThrow('Cannot process the fine-tuning job ID');
+        });
+        it("Test when 'createFineTuning' request failure", async () => {
+            await expect(chatGPTClient.createFineTuning()).rejects.toThrow(AIConnectifyError);
+            await expect(chatGPTClient.createFineTuning(12345)).rejects.toThrow('Cannot process the training file ID');
+            await expect(chatGPTClient.createFineTuning('test', 12345)).rejects.toThrow('Cannot process the model ID');
         });
         it("Test when 'cancelFineTuning' request failure", async () => {
-            await expect(chatGPTClient.cancelFineTuning('')).rejects.toThrow('Cannot process the fine-tuning job ID');
+            await expect(chatGPTClient.cancelFineTuning()).rejects.toThrow(AIConnectifyError);
+            await expect(chatGPTClient.cancelFineTuning(12345)).rejects.toThrow('Cannot process the fine-tuning job ID');
         });
     });
 });

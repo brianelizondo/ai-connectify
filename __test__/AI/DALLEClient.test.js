@@ -154,31 +154,35 @@ describe("DALLEClient class", () => {
     });
 
     describe("Throw the AIConnectifyError error", () => {
+        it("Test when HttpClient request failure", () => {
+            mockHttpClient.get.mockRejectedValue(new Error('API Error'));
+            mockHttpClient.post.mockRejectedValue(new Error('API Error'));
+        });
         it("Test when organization ID is invalid", () => {
             expect(() => dalleClient.setOrganizationId('')).toThrow(AIConnectifyError);
         });
         it("Test when project ID is invalid", () => {
             expect(() => dalleClient.setProjectId('')).toThrow(AIConnectifyError);
         });
-        it("Test when 'getModels' request failure", async () => {
-            mockHttpClient.get.mockRejectedValue(new Error('API Error'));
-            await expect(dalleClient.getModels()).rejects.toThrow(AIConnectifyError);
-        });
         it("Test when 'getModel' request failure", async () => {
-            mockHttpClient.get.mockRejectedValue(new Error('API Error'));
-            await expect(dalleClient.getModel('test-model-id')).rejects.toThrow(AIConnectifyError);
+            await expect(dalleClient.getModel()).rejects.toThrow(AIConnectifyError);
+            await expect(dalleClient.getModel()).rejects.toThrow('Cannot process the model ID');
         });
         it("Test when 'createImage' request failure", async () => {
-            mockHttpClient.post.mockRejectedValue(new Error('API Error'));
-            await expect(dalleClient.createImage('prompt', 'model-id')).rejects.toThrow(AIConnectifyError);
+            await expect(dalleClient.createImage()).rejects.toThrow(AIConnectifyError);
+            await expect(dalleClient.createImage(12345)).rejects.toThrow('Cannot process the prompt');
+            await expect(dalleClient.createImage('test', 12345)).rejects.toThrow('Cannot process the model ID');
         });
         it("Test when 'createImageEdit' request failure", async () => {
-            mockHttpClient.post.mockRejectedValue(new Error('API Error'));
-            await expect(dalleClient.createImageEdit('/path', 'prompt', 'model-id')).rejects.toThrow(AIConnectifyError);
+            await expect(dalleClient.createImageEdit()).rejects.toThrow(AIConnectifyError);
+            await expect(dalleClient.createImageEdit(12345)).rejects.toThrow('Cannot process the image path');
+            await expect(dalleClient.createImageEdit('test', 12345)).rejects.toThrow('Cannot process the prompt');
+            await expect(dalleClient.createImageEdit('test', 'test', 12345)).rejects.toThrow('Cannot process the model ID');
         });
         it("Test when 'createImageVariation' request failure", async () => {
-            mockHttpClient.post.mockRejectedValue(new Error('API Error'));
-            await expect(dalleClient.createImageVariation('/path', 'model-id')).rejects.toThrow(AIConnectifyError);
+            await expect(dalleClient.createImageVariation()).rejects.toThrow(AIConnectifyError);
+            await expect(dalleClient.createImageVariation(12345)).rejects.toThrow('Cannot process the image path');
+            await expect(dalleClient.createImageVariation('test', 12345)).rejects.toThrow('Cannot process the model ID');
         });
     });
 });
