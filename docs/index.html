@@ -43,15 +43,15 @@
 
 
     <section>
-        <article><p><a href="https://github.com/brianelizondo/ai-connectify"><img src="./docs/images/ai_connectify_logo.png" alt="AI Connectify Logo"></a></p>
+        <article><p><a href="https://github.com/brianelizondo/ai-connectify"><img src="images/ai_connectify_logo.png" alt="AI Connectify Logo"></a></p>
 <h1>AI-Connectify</h1>
-<p>AI-Connectify is a Beta JavaScript library for connecting to various AI services at the same time, including Tensor Flow Node, ChatGPT and DALL-E. With AI-Connectify, you can easily access to AI services to perform a variety of tasks, including natural language processing, image processing, and more.</p>
+<p><strong>AI-Connectify</strong> is a JavaScript library for connecting to various AI services at the same time, including ChatGPT, Cohere, DALL-E, Stability and TensorFlow. With AI-Connectify, you can easily access to AI services to perform a variety of tasks, including natural language processing, image processing, and more.</p>
 <p><img src="https://img.shields.io/npm/v/ai-connectify" alt="npm">
 <img src="https://img.shields.io/bundlephobia/min/ai-connectify?label=install%20size" alt="npm bundle size">
 <img src="https://img.shields.io/npm/dw/ai-connectify" alt="npm"></p>
 <h2>Table of Contents</h2>
 <ul>
-<li><a href="#ai-connectify">AI-Connectify</a>
+<li><strong><a href="#ai-connectify">AI-Connectify</a></strong>
 <ul>
 <li><a href="#table-of-contents">Table of Contents</a></li>
 <li><a href="#currently-supported-ai-services">Currently supported AI services</a></li>
@@ -60,9 +60,10 @@
 <li><a href="#examples">Examples</a>
 <ul>
 <li><a href="#start-a-new-chatgpt-instance">Start a new ChatGPT instance</a></li>
-<li><a href="#start-a-new-dall-e-instance">Start a new DALL-E instance</a></li>
-<li><a href="#start-a-new-tensorflow-node-instance">Start a new TensorFlow Node instance</a></li>
 <li><a href="#start-a-new-cohere-instance">Start a new Cohere instance</a></li>
+<li><a href="#start-a-new-dall-e-instance">Start a new DALL-E instance</a></li>
+<li><a href="#start-a-new-stability-instance">Start a new Stability instance</a></li>
+<li><a href="#start-a-new-tensorflow-instance">Start a new TensorFlow instance</a></li>
 </ul>
 </li>
 <li><a href="#credits">Credits</a></li>
@@ -74,9 +75,10 @@
 <h2>Currently supported AI services</h2>
 <ul>
 <li>ChatGPT</li>
-<li>DALL-E</li>
-<li>TensorFlow Node</li>
 <li>Cohere</li>
+<li>DALL-E</li>
+<li>Stability</li>
+<li>TensorFlow</li>
 </ul>
 <h2>Features</h2>
 <ul>
@@ -86,8 +88,8 @@
 <li>Well-documented and extensively tested codebase.</li>
 </ul>
 <h2>Installation</h2>
-<p>This is a <a href="https://nodejs.org/en/">Node.js</a> module available through the <a href="https://www.npmjs.com/">npm registry</a>.</p>
-<p>If this is a brand new project, make sure to create a <code>package.json</code> first with the <a href="https://docs.npmjs.com/creating-a-package-json-file"><code>npm init</code> command</a>.</p>
+<p>This is a <a href="https://nodejs.org/en/">Node.js</a> module available through the <a href="https://www.npmjs.com/">npm registry</a>.
+If this is a brand new project, make sure to create a <code>package.json</code> first with the <a href="https://docs.npmjs.com/creating-a-package-json-file"><code>npm init</code> command</a>.</p>
 <p>Using npm:</p>
 <pre class="prettyprint source lang-console"><code>$ npm install ai-connectify
 </code></pre>
@@ -98,176 +100,405 @@
 <pre class="prettyprint source lang-js"><code>const AIConnectify = require('ai-connectify');
 </code></pre>
 <h2>Examples</h2>
-<p>Here are some examples of how to use AI-Connectify:</p>
-<h3>Start a new ChatGPT instance</h3>
+<p>Here are some examples of how to use <strong>AI-Connectify</strong>:</p>
+<h4>Start a new ChatGPT instance</h4>
 <pre class="prettyprint source lang-js"><code>const chatGPT = new AIConnectify(&quot;ChatGPT&quot;, &quot;YOUR_OPENAI_API_KEY&quot;).connector;
 </code></pre>
+<p><strong>List of Available Methods:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>setOrganizationId</td>
+<td>Set the Organization ID to the ChatGPTClient instance</td>
+</tr>
+<tr>
+<td>setProjectId</td>
+<td>Set the Project ID to the ChatGPTClient instance</td>
+</tr>
+<tr>
+<td>getModels</td>
+<td>Lists the currently available models, and provides basic information about each one such as the owner and availability</td>
+</tr>
+<tr>
+<td>getModel</td>
+<td>Retrieves a model instance, providing basic information about the model such as the owner and permissioning</td>
+</tr>
+<tr>
+<td>delFineTunedModel</td>
+<td>Delete a fine-tuned model. You must have the Owner role in your organization to delete a model</td>
+</tr>
+<tr>
+<td>createChatCompletion</td>
+<td>Creates a model response for the given chat conversation</td>
+</tr>
+<tr>
+<td>createEmbeddings</td>
+<td>Get a vector representation of a given input that can be easily consumed by machine learning models and algorithms</td>
+</tr>
+<tr>
+<td>createModeration</td>
+<td>Given some input text, outputs if the model classifies it as potentially harmful across several categories</td>
+</tr>
+<tr>
+<td>createSpeech</td>
+<td>Generates audio from the input text</td>
+</tr>
+<tr>
+<td>createTranscription</td>
+<td>Transcribes audio into the input language</td>
+</tr>
+<tr>
+<td>createTranslation</td>
+<td>Translates audio into English</td>
+</tr>
+<tr>
+<td>getFineTuningJob</td>
+<td>Get info about a fine-tuning job</td>
+</tr>
+<tr>
+<td>getFineTuningJobs</td>
+<td>List your organization's fine-tuning jobs</td>
+</tr>
+<tr>
+<td>getFineTuningEvents</td>
+<td>Get status updates for a fine-tuning job</td>
+</tr>
+<tr>
+<td>getFineTuningCheckpoints</td>
+<td>List checkpoints for a fine-tuning job</td>
+</tr>
+<tr>
+<td>createFineTuning</td>
+<td>Creates a fine-tuning job which begins the process of creating a new model from a given dataset</td>
+</tr>
+<tr>
+<td>cancelFineTuning</td>
+<td>Immediately cancel a fine-tune job</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
 <p><strong>Note:</strong> OpenAI API Reference
 You can interact with a ChatGPT instance using like reference the parameters and returns specified in the <a href="https://platform.openai.com/docs/api-reference/completions">OpenAI API Reference</a>.</p>
 </blockquote>
-<p><strong>listModels</strong>
-Lists the currently available models and provides basic information about each one such as the owner and availability.</p>
-<pre class="prettyprint source lang-js"><code>const listModels = await chatGPT.listModels();
-console.log(listModels);
-</code></pre>
-<p><strong>retrieveModel</strong>
-Providing basic information about the model such as the owner and permissioning.</p>
-<pre class="prettyprint source lang-js"><code>const modelDetails = await chatGPT.retrieveModel(&quot;MODEL_ID&quot;);
-console.log(modelDetails);
-</code></pre>
-<p><strong>createCompletion</strong>
-Creates a completion for the provided prompt and parameters.</p>
-<pre class="prettyprint source lang-js"><code>const prompt = 'Write a short story about a robot who becomes sentient and learns how to love';
-const completion = await chatGPT.createCompletion(prompt);
-console.log(completion);
-</code></pre>
-<p><strong>createChatCompletion</strong>
-Creates a model response for the given chat conversation</p>
-<pre class="prettyprint source lang-js"><code>const messages = [{role: &quot;user&quot;, content: &quot;Hello world&quot;}];
-const chatCompletion = await chatGPT.createChatCompletion(messages);
-console.log(chatCompletion);
-</code></pre>
-<p><strong>createEdit</strong>
-Creates a new edit for the provided text, instruction, and parameters.</p>
-<pre class="prettyprint source lang-js"><code>const instruction = &quot;Fix the spelling mistakes&quot;;
-const textEdit = &quot;What day of the wek is it?&quot;;
-const textEdited = await chatGPT.createEdit(instruction, textEdit);
-console.log(textEdited);
-</code></pre>
-<h3>Start a new DALL-E instance</h3>
-<pre class="prettyprint source lang-js"><code>const dalle = new AIConnectify(&quot;DALLE&quot;, &quot;YOUR_OPENAI_API_KEY&quot;).connector;
-</code></pre>
-<blockquote>
-<p><strong>Note:</strong> OpenAI API Reference
-You can interact with a DALL-E instance using like reference the parameters and returns specified in the <a href="https://platform.openai.com/docs/api-reference/images">OpenAI API Reference</a>.</p>
-</blockquote>
-<p><strong>createImage</strong>
-Creates an image given a prompt</p>
-<pre class="prettyprint source lang-js"><code>const prompt = 'a white siamese cat';
-const newImage = await dalle.createImage(prompt);
-console.log(newImage);
-</code></pre>
-<p><strong>createImageEdit</strong>
-Creates an edited or extended image given an original image and a prompt</p>
-<pre class="prettyprint source lang-js"><code>const imagePath = '/path/to/the/imageFile';
-const prompt = 'A cute baby sea otter wearing a beret';
-const imageMaskPath = '/path/to/the/imageMaskFile';
-const imageEdit = await dalle.createImageEdit(imagePath, prompt, imageMaskPath);
-console.log(imageEdit);
-</code></pre>
-<p><strong>createImageVariation</strong>
-Creates a variation of a given image</p>
-<pre class="prettyprint source lang-js"><code>const imagePath = '/path/to/the/imageFile';
-const imageVariation = await dalle.createImageVariation(imagePath);
-console.log(imageVariation);
-</code></pre>
-<h3>Start a new TensorFlow Node instance</h3>
-<pre class="prettyprint source lang-js"><code>const tfNode = new AIConnectify(&quot;TensorFlowNode&quot;).connector;
-</code></pre>
-<blockquote>
-<p><strong>Note:</strong> TensorFlow API Reference
-You can interact with a TensorFlow Node instance using like reference the parameters and returns specified in the <a href="https://js.tensorflow.org/api/latest/">TensorFlow API Reference</a>.</p>
-</blockquote>
-<p>Tensors are the core datastructure of TensorFlow.js They are a generalization of vectors and matrices to potentially higher dimensions.</p>
-<pre class="prettyprint source lang-js"><code>// Pass an array of values to create a vector.
-const newTensor = tfNode.tensor([1, 2, 3, 4]);
-console.log(newTensor);
-
-// Creates rank-0 tf.Tensor (scalar) with the provided value
-const newScalar = tfNode.scalar(3.14);
-console.log(newScalar);
-
-// Create a buffer and set values at particular indices.
-const buffer = tfNode.buffer([2, 2]);
-buffer.set(3, 0, 0);
-buffer.set(5, 1, 0);
-// Convert the buffer back to a tensor.
-const bufferResult = buffer.toTensor();
-console.log(bufferResult);
-</code></pre>
-<p>Models are one of the primary abstractions used in TensorFlow.js Layers. Models can be trained, evaluated, and used for prediction. Models are a collection of Layers, see Model Creation for details about how Layers can be connected.</p>
-<pre class="prettyprint source lang-js"><code>// Creates a tfNode.sequential model
-const newModel = tfNode.sequential();
-newModel.add(tfNode.layers.dense({units: 32, inputShape: [50]}));
-newModel.add(tfNode.layers.dense({units: 4}));
-const inspectModel = newModel.outputs[0].shape;
-console.log(inspectModel);
-
-// Defines a model consisting of two dense layers, with 10 and 4 units, respectively
-const input = tfNode.input({shape: [5]});
-const denseLayer1 = tfNode.layers.dense({units: 10, activation: 'relu'});
-const denseLayer2 = tfNode.layers.dense({units: 4, activation: 'softmax'});
-const output = denseLayer2.apply(denseLayer1.apply(input));
-const newModel = tfNode.model({inputs: input, outputs: output});
-const predictModel = newModel.predict(tfNode.ones([2, 5]));
-</code></pre>
-<h3>Start a new Cohere instance</h3>
+<h4>Start a new Cohere instance</h4>
 <pre class="prettyprint source lang-js"><code>const cohere = new AIConnectify(&quot;Cohere&quot;, &quot;YOUR_COHERE_API_KEY&quot;).connector;
 </code></pre>
+<p><strong>List of Available Methods:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>setClientName</td>
+<td>Set the name of the project that is making the request</td>
+</tr>
+<tr>
+<td>checkApiKey</td>
+<td>Checks that the api key in the Authorization header is valid and active</td>
+</tr>
+<tr>
+<td>chat</td>
+<td>Generates a text response to a user message</td>
+</tr>
+<tr>
+<td>chatWithStreaming</td>
+<td>Generates a text response to a user message with streaming (stream of events)</td>
+</tr>
+<tr>
+<td>embed</td>
+<td>Generates an embedding list of floating point numbers that captures semantic information about the text that it represents</td>
+</tr>
+<tr>
+<td>getEmbedJobs</td>
+<td>Generates a list embed job endpoint allows users to view all embed jobs history for that specific user</td>
+</tr>
+<tr>
+<td>getEmbedJob</td>
+<td>Retrieves the details about an embed job started by the same user</td>
+</tr>
+<tr>
+<td>createEmbedJob</td>
+<td>Launches an async Embed job for a Dataset of type embed-input</td>
+</tr>
+<tr>
+<td>cancelEmbedJob</td>
+<td>Allows to cancel an active embed job</td>
+</tr>
+<tr>
+<td>rerank</td>
+<td>Takes in a query and a list of texts and produces an ordered array with each text assigned a relevance score</td>
+</tr>
+<tr>
+<td>classify</td>
+<td>Makes a prediction about which label fits the specified text inputs best</td>
+</tr>
+<tr>
+<td>getDatasets</td>
+<td>Generates a list datasets that have been created</td>
+</tr>
+<tr>
+<td>getDataset</td>
+<td>Retrieve a dataset by ID</td>
+</tr>
+<tr>
+<td>getDatasetUsage</td>
+<td>Retrieves the dataset storage usage for your Organization</td>
+</tr>
+<tr>
+<td>createDataset</td>
+<td>Create a dataset by uploading a file</td>
+</tr>
+<tr>
+<td>deleteDataset</td>
+<td>Delete a dataset by ID</td>
+</tr>
+<tr>
+<td>tokenize</td>
+<td>Generates a splits input text into smaller units called tokens using byte-pair encoding (BPE)</td>
+</tr>
+<tr>
+<td>detokenize</td>
+<td>Takes tokens using byte-pair encoding and returns their text representation</td>
+</tr>
+<tr>
+<td>getModels</td>
+<td>List of models available for use. The list contains models from Cohere as well as your fine-tuned models</td>
+</tr>
+<tr>
+<td>getModel</td>
+<td>Returns the details of a model, provided its name</td>
+</tr>
+<tr>
+<td>getConnectors</td>
+<td>Returns a list of connectors ordered by descending creation date (newer first)</td>
+</tr>
+<tr>
+<td>getConnector</td>
+<td>Retrieve a connector by ID</td>
+</tr>
+<tr>
+<td>createConnector</td>
+<td>Creates a new connector</td>
+</tr>
+<tr>
+<td>deleteConnector</td>
+<td>Delete a connector by ID</td>
+</tr>
+<tr>
+<td>getFineTunedModels</td>
+<td>Returns a list of fine-tuned models available for use</td>
+</tr>
+<tr>
+<td>getFineTunedModel</td>
+<td>Retrieve a fine-tuned model by ID</td>
+</tr>
+<tr>
+<td>getFineTunedChronology</td>
+<td>Retrieves the chronology of statuses the fine-tuned model has been through</td>
+</tr>
+<tr>
+<td>getFineTunedMetrics</td>
+<td>Retrieves metrics measured during the training of a fine-tuned model</td>
+</tr>
+<tr>
+<td>createFineTunedModel</td>
+<td>Trains and deploys a fine-tuned model</td>
+</tr>
+<tr>
+<td>updateFineTunedModel</td>
+<td>Updates a fine-tuned model by ID</td>
+</tr>
+<tr>
+<td>deleteFineTunedModel</td>
+<td>Delete a fine-tuned model by ID</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
 <p><strong>Note:</strong> Cohere API Reference
 You can interact with a Cohere instance using like reference the parameters and returns specified in the <a href="https://docs.cohere.com/reference/about">Cohere API Reference</a>.</p>
 </blockquote>
-<p><strong>generate</strong>
-Generates realistic text conditioned on a given input.</p>
-<pre class="prettyprint source lang-js"><code>const prompt = 'Please explain to me how AI works';
-const gererateText = await cohere.generate(prompt);
-console.log(gererateText);
+<h4>Start a new DALL-E instance</h4>
+<pre class="prettyprint source lang-js"><code>const dalle = new AIConnectify(&quot;DALLE&quot;, &quot;YOUR_OPENAI_API_KEY&quot;).connector;
 </code></pre>
-<p><strong>embed</strong>
-Returns text embeddings. An embedding is a list of floating point numbers that captures semantic information about the text that it represents.</p>
-<pre class="prettyprint source lang-js"><code>const texts = ['hello', 'goodbye'];
-const embedText = await cohere.embed(texts);
-console.log(embedText);
+<p><strong>List of Available Methods:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>setOrganizationId</td>
+<td>Set the Organization ID to the ChatGPTClient instance</td>
+</tr>
+<tr>
+<td>setProjectId</td>
+<td>Set the Project ID to the ChatGPTClient instance</td>
+</tr>
+<tr>
+<td>getModels</td>
+<td>Lists the currently available models, and provides basic information about each one such as the owner and availability</td>
+</tr>
+<tr>
+<td>getModel</td>
+<td>Retrieves a model instance, providing basic information about the model such as the owner and permissioning</td>
+</tr>
+<tr>
+<td>createImage</td>
+<td>Given a prompt and/or an input image, the model will generate a new image</td>
+</tr>
+<tr>
+<td>createImageEdit</td>
+<td>Creates an edited or extended image given an original image and a prompt</td>
+</tr>
+<tr>
+<td>createImageVariation</td>
+<td>Creates a variation of a given image</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note:</strong> OpenAI API Reference
+You can interact with a DALL-E instance using like reference the parameters and returns specified in the <a href="https://platform.openai.com/docs/api-reference/images">OpenAI API Reference</a>.</p>
+</blockquote>
+<h4>Start a new Stability instance</h4>
+<pre class="prettyprint source lang-js"><code>const stability = new AIConnectify(&quot;Stability&quot;, &quot;YOUR_STABILITY_API_KEY&quot;).connector;
 </code></pre>
-<p><strong>classify</strong>
-Makes a prediction about which label fits the specified text inputs best. To make a prediction, Classify uses the provided <code>examples</code> of text + label pairs as a reference.</p>
-<pre class="prettyprint source lang-js"><code>const inputs = ['Confirm your email address', 'hey i need u to send some money'];
-const examplesPairs: [
-      {text: 'Hello, open to this?', label: 'Spam'},
-      {text: 'I need help please wire me $1000 right now', label: 'Spam'},
-      {text: 'Please help me?', label: 'Spam'},
-      {text: 'Your parcel will be delivered today', label: 'Not spam'},
-      {text: 'Weekly sync notes', label: 'Not spam'},
-      {text: 'Pre-read for tomorrow', label: 'Not spam'}
-];
-const classify = await cohere.classify(inputs, examplesPairs);
-console.log(embedText);
+<p><strong>List of Available Methods:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>setClientId</td>
+<td>Set the client ID of your application</td>
+</tr>
+<tr>
+<td>setClientUserId</td>
+<td>Set an unique identifier for your end user</td>
+</tr>
+<tr>
+<td>setClientVersion</td>
+<td>Set the version of your application</td>
+</tr>
+<tr>
+<td>generateImageUltra</td>
+<td>Creates the highest quality images with unprecedented prompt understanding</td>
+</tr>
+<tr>
+<td>generateImageCore</td>
+<td>Tools for generating new images with the best quality achievable at high speed</td>
+</tr>
+<tr>
+<td>generateImageDiffusion</td>
+<td>Tools for generating new images using a Stable Diffusion 3 model</td>
+</tr>
+<tr>
+<td>upscaleConservative</td>
+<td>Tools for increasing the size of your existing images</td>
+</tr>
+<tr>
+<td>upscaleCreative</td>
+<td>Takes images between 64x64 and 1 megapixel and upscales them all the way to 4K resolution</td>
+</tr>
+<tr>
+<td>getUpscaleCreative</td>
+<td>Fetch the result of an upscale generation by ID</td>
+</tr>
+<tr>
+<td>upscaleFast</td>
+<td>Fast Upscaler service enhances image resolution by 4x using predictive and generative AI</td>
+</tr>
+<tr>
+<td>erase</td>
+<td>Removes unwanted objects, such as blemishes on portraits or items on desks, using image masks</td>
+</tr>
+<tr>
+<td>inpaint</td>
+<td>Intelligently modify images by filling in or replacing specified areas with new content based on the content of a &quot;mask&quot; image</td>
+</tr>
+<tr>
+<td>outpaint</td>
+<td>The Outpaint service inserts additional content in an image to fill in the space in any direction</td>
+</tr>
+<tr>
+<td>searchAndReplace</td>
+<td>The Search and Replace service is a specific version of inpainting that does not require a mask</td>
+</tr>
+<tr>
+<td>searchAndRecolor</td>
+<td>The Search and Recolor service provides the ability to change the color of a specific object in an image using a prompt</td>
+</tr>
+<tr>
+<td>removeBackground</td>
+<td>The Remove Background service accurately segments the foreground from an image and implements and removes the background</td>
+</tr>
+<tr>
+<td>controlSketch</td>
+<td>This service offers an ideal solution for design projects that require brainstorming and frequent iterations</td>
+</tr>
+<tr>
+<td>controlStructure</td>
+<td>This service excels in generating images by maintaining the structure of an input image</td>
+</tr>
+<tr>
+<td>constrolStyle</td>
+<td>This service extracts stylistic elements from an input image (control image) and uses it to guide the creation of an output image based on the prompt</td>
+</tr>
+<tr>
+<td>videoStableFast</td>
+<td>Stable Fast 3D generates high-quality 3D assets from a single 2D input image</td>
+</tr>
+<tr>
+<td>imageToVideo</td>
+<td>Generate a short video based on an initial image with Stable Video Diffusion, a latent video diffusion model</td>
+</tr>
+<tr>
+<td>getImageToVideo</td>
+<td>Fetch the result of an image-to-video generation by ID</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note:</strong> Stability API Reference
+You can interact with a Stability instance using like reference the parameters and returns specified in the <a href="https://platform.stability.ai/docs/api-reference">Stability API Reference</a>.</p>
+</blockquote>
+<h4>Start a new TensorFlow instance</h4>
+<pre class="prettyprint source lang-js"><code>const tf = new AIConnectify(&quot;TensorFlow&quot;).connector;
 </code></pre>
-<p><strong>tokenize</strong>
-Splits input text into smaller units called tokens using byte-pair encoding (BPE).</p>
-<pre class="prettyprint source lang-js"><code>const text = 'tokenize me!';
-const tokenizedText = await cohere.tokenize(text);
-console.log(tokenizedText);
-</code></pre>
-<p><strong>detokenize</strong>
-Takes tokens using byte-pair encoding and returns their text representation.</p>
-<pre class="prettyprint source lang-js"><code>const tokens = [10104, 12221, 1315, 34, 1420, 69];
-const detokenizedText = await cohere.detokenize(tokens);
-console.log(detokenizedText);
-</code></pre>
-<p><strong>detectLanguage</strong>
-Identifies which language each of the provided texts is written in.</p>
-<pre class="prettyprint source lang-js"><code>const texts = [&quot;Hello how are you?&quot;, &quot;Hola, como estas?&quot;, &quot;Bonjour, comment allez-vous?&quot;];
-const detectedLanguage = await cohere.detectLanguage(texts);
-console.log(detectedLanguage);
-</code></pre>
-<p><strong>sumarize</strong>
-Generates a summary in English for a given text.</p>
-<pre class="prettyprint source lang-js"><code>const textExample = 'Ice cream is a sweetened frozen food typically eaten as a snack or dessert. It may be made from milk or cream and is flavoured with a sweetener, either sugar or an alternative, and a spice, such as cocoa or vanilla, or with fruit such as strawberries or peaches. It can also be made by whisking a flavored cream base and liquid nitrogen together. Food coloring is sometimes added, in addition to stabilizers. The mixture is cooled below the freezing point of water and stirred to incorporate air spaces and to prevent detectable ice crystals from forming. The result is a smooth, semi-solid foam that is solid at very low temperature (below 2 °C or 35 °F).';
-
-const summarizedText = await cohere.summarize(textExample);
-console.log(summarizedText);
-</code></pre>
+<blockquote>
+<p><strong>Note:</strong> TensorFlow API Reference
+You can interact with a TensorFlow instance using like reference the parameters and returns specified in the <a href="https://js.tensorflow.org/api/latest/">TensorFlow API Reference</a>.</p>
+</blockquote>
 <h2>Credits</h2>
-<p>The original author of AI-Connectify is <a href="https://github.com/brianelizondo">Brian Elizondo</a></p>
+<p>The original author of <strong>AI-Connectify</strong> is <a href="https://github.com/brianelizondo">Brian Elizondo</a></p>
 <h2>Contributing</h2>
-<p>Welcome to AI-Connectify! This is my first library, and I'm excited to see it grow and improve with the help of the community. I'm grateful for any contributions you might have to offer, whether it's reporting an issue, submitting a pull request, or just giving some feedback.</p>
-<p>Please don't hesitate to reach out if you have any questions, comments, or concerns. I'm open to suggestions and eager to collaborate with other developers to make AI-Connectify even better. Thank you for your support!</p>
+<p>Welcome to <strong>AI-Connectify</strong>! This is my first library, and I'm excited to see it grow and improve with the help of the community. I'm grateful for any contributions you might have to offer, whether it's reporting an issue, submitting a pull request, or just giving some feedback.</p>
+<p>Please don't hesitate to reach out if you have any questions, comments, or concerns. I'm open to suggestions and eager to collaborate with other developers to make <strong>AI-Connectify</strong> even better. Thank you for your support!</p>
 <p><a href="https://github.com/brianelizondo/ai-connectify/graphs/contributors">List of all contributors</a></p>
 <h2>License</h2>
-<p>AI-Connectify is released under the <a href="LICENSE">MIT</a> License.</p></article>
+<p><strong>AI-Connectify</strong> is an open-source library released under the <a href="LICENSE">MIT</a> License.
+This means you are free to use, modify, and distribute the software for personal and commercial purposes, as long as you retain the original copyright and license notice.
+No fees are charged for using this library. The library is provided as-is, without any warranty, and there is no financial gain or charge for its use.
+For more details, refer to the <a href="LICENSE">MIT</a> file.</p></article>
     </section>
 
 
@@ -278,13 +509,13 @@ console.log(summarizedText);
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AIConnectify.html">AIConnectify</a></li><li><a href="module-lib_connectors_AI_ChatGPT.html">lib/connectors/AI/ChatGPT</a></li><li><a href="module-lib_connectors_AI_Cohere.html">lib/connectors/AI/Cohere</a></li><li><a href="module-lib_connectors_AI_DALLE.html">lib/connectors/AI/DALLE</a></li><li><a href="module-lib_connectors_AI_TensorFlowNode.html">lib/connectors/AI/TensorFlowNode</a></li><li><a href="module-lib_connectors_AIConnectifyFactory.html">lib/connectors/AIConnectifyFactory</a></li></ul><h3>Classes</h3><ul><li><a href="AIConnectifyError.html">AIConnectifyError</a></li><li><a href="module-AIConnectify-AIConnectify.html">AIConnectify</a></li><li><a href="module-lib_connectors_AI_ChatGPT-ChatGPT.html">ChatGPT</a></li><li><a href="module-lib_connectors_AI_Cohere-Cohere.html">Cohere</a></li><li><a href="module-lib_connectors_AI_DALLE-DALLE.html">DALLE</a></li><li><a href="module-lib_connectors_AI_TensorFlowNode-TensorFlowNode.html">TensorFlowNode</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AIConnectify.html">AIConnectify</a></li><li><a href="module-AIConnectifyFactory.html">AIConnectifyFactory</a></li><li><a href="module-lib_connectors_AI_ChatGPT_ChatGPT.html">lib/connectors/AI/ChatGPT/ChatGPT</a></li><li><a href="module-lib_connectors_AI_ChatGPT_ChatGPTClient.html">lib/connectors/AI/ChatGPT/ChatGPTClient</a></li><li><a href="module-lib_connectors_AI_Cohere_Cohere.html">lib/connectors/AI/Cohere/Cohere</a></li><li><a href="module-lib_connectors_AI_Cohere_CohereClient.html">lib/connectors/AI/Cohere/CohereClient</a></li><li><a href="module-lib_connectors_AI_DALLE_DALLE.html">lib/connectors/AI/DALLE/DALLE</a></li><li><a href="module-lib_connectors_AI_DALLE_DALLEClient.html">lib/connectors/AI/DALLE/DALLEClient</a></li><li><a href="module-lib_connectors_AI_Stability_Stability.html">lib/connectors/AI/Stability/Stability</a></li><li><a href="module-lib_connectors_AI_Stability_StabilityClient.html">lib/connectors/AI/Stability/StabilityClient</a></li><li><a href="module-lib_connectors_AI_TensorFlow_TensorFlow.html">lib/connectors/AI/TensorFlow/TensorFlow</a></li><li><a href="module-lib_connectors_AI_TensorFlow_TensorFlowClient.html">lib/connectors/AI/TensorFlow/TensorFlowClient</a></li><li><a href="module-lib_connectors_AIRegistry.html">lib/connectors/AIRegistry</a></li><li><a href="module-lib_connectors_HttpClient_HttpClient.html">lib/connectors/HttpClient/HttpClient</a></li></ul><h3>Classes</h3><ul><li><a href="global.html#AIConnectifyError">AIConnectifyError</a></li><li><a href="ValidationHelpers.html">ValidationHelpers</a></li><li><a href="module-AIConnectify-AIConnectify.html">AIConnectify</a></li><li><a href="module-lib_connectors_AI_ChatGPT_ChatGPTClient-ChatGPTClient.html">ChatGPTClient</a></li><li><a href="module-lib_connectors_AI_ChatGPT_ChatGPT-ChatGPT.html">ChatGPT</a></li><li><a href="module-lib_connectors_AI_Cohere_CohereClient-CohereClient.html">CohereClient</a></li><li><a href="module-lib_connectors_AI_Cohere_Cohere-Cohere.html">Cohere</a></li><li><a href="module-lib_connectors_AI_DALLE_DALLEClient-DALLEClient.html">DALLEClient</a></li><li><a href="module-lib_connectors_AI_DALLE_DALLE-DALL-E.html">DALL-E</a></li><li><a href="module-lib_connectors_AI_DALLE_DALLE-DALLE.html">DALLE</a></li><li><a href="module-lib_connectors_AI_Stability_StabilityClient-StabilityClient.html">StabilityClient</a></li><li><a href="module-lib_connectors_AI_Stability_Stability-Stability.html">Stability</a></li><li><a href="module-lib_connectors_AI_TensorFlow_TensorFlowClient-TensorFlowClient.html">TensorFlowClient</a></li><li><a href="module-lib_connectors_AI_TensorFlow_TensorFlow-TensorFlow.html">TensorFlow</a></li><li><a href="module-lib_connectors_AIRegistry-AIRegistry.html">AIRegistry</a></li><li><a href="module-lib_connectors_HttpClient_HttpClient-HttpClient.html">HttpClient</a></li></ul><h3>Global</h3><ul><li><a href="global.html#generateRandomID">generateRandomID</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Aug 22 2023 19:58:18 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sat Oct 05 2024 14:38:28 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

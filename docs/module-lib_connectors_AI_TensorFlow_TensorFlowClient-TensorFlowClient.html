@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: lib/connectors/AIConnectifyFactory.js</title>
+    <title>JSDoc: Class: TensorFlowClient</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,57 +17,270 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: lib/connectors/AIConnectifyFactory.js</h1>
+    <h1 class="page-title">Class: TensorFlowClient</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/*
-* AI-Connectify
-* Copyright(c) 2023 Brian Elizondo
-* MIT Licensed
-*/
-'use strict';
-
-/**
-* Module and dependencies
-* @module AIConnectifyFactory
-*/
-const ValidationHelpers = require('../helpers/validationHelpers');
-const AIRegistry = require('./AIRegistry');
-
-/**
-* Creates an instance of the AI connector for the specified AI
-* This function retrieves the AI class and API key requirement from the AIRegistry,
-* validates the API key if needed, and returns a new instance of the AI class.
-*
-* @function createAIInstance
-* @param {string} ai - The name of the AI to use (e.g. TensorFlowNode, ChatGPT, DALLE, or Cohere)
-* @param {string} [apiKey=null] - The API key required for some AIs. It can be null if the AI does not need an API key
-* @returns {object} An instance of the AI connector
-* @throws {AIConnectifyError} Throws an error if the API key is required but not provided
-*/
-function createAIInstance(ai, apiKey = null) { 
-    // Get the AI object class/config from the registry
-    const instanceAIRegistry = new AIRegistry();
-    const AIConstructor = instanceAIRegistry.getAI(ai);
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="module-lib_connectors_AI_TensorFlow_TensorFlowClient.html">lib/connectors/AI/TensorFlow/TensorFlowClient</a>~</span>TensorFlowClient<span class="signature">()</span><span class="type-signature"></span></h2>
+        
     
-    // Check if API key is required and validate it
-    if(AIConstructor.apiKeyRequired){
-        ValidationHelpers.validateKeyString(apiKey, `API key is required for ${ai} service`);
-    }
+</header>
 
-    // Return a new AI instance, passing the API key (if applicable) to the AI class constructor
-    return new AIConstructor.aiInstance(apiKey);
-}
+<article>
+    <div class="container-overview">
+    
+        
 
-module.exports = { createAIInstance };</code></pre>
-        </article>
-    </section>
+    
+
+    
+    <h4 class="name" id="TensorFlowClient"><span class="type-signature"></span>new TensorFlowClient<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Represents a service for interacting with the TensorFlow API
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lib_connectors_AI_TensorFlow_TensorFlowClient.js.html">lib/connectors/AI/TensorFlow/TensorFlowClient.js</a>, <a href="lib_connectors_AI_TensorFlow_TensorFlowClient.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="module-lib_connectors_AI_TensorFlow_TensorFlowClient.html">lib/connectors/AI/TensorFlow/TensorFlowClient</a>~</span>TensorFlowClient<span class="signature">()</span><span class="type-signature"></span></h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+
+    
+    <h4 class="name" id="TensorFlowClient"><span class="type-signature"></span>new TensorFlowClient<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Create a TensorFlow service instance
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lib_connectors_AI_TensorFlow_TensorFlowClient.js.html">lib/connectors/AI/TensorFlow/TensorFlowClient.js</a>, <a href="lib_connectors_AI_TensorFlow_TensorFlowClient.js.html#line23">line 23</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

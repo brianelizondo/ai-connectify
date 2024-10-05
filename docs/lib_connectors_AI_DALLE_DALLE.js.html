@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: lib/connectors/AI/DALLE/DALLE.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: lib/connectors/AI/DALLE/DALLE.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*
+* AI-Connectify
+* Copyright(c) 2023 Brian Elizondo
+* MIT Licensed
+*/
+'use strict';
+
+/**
+* Module and dependencies
+* @module 
+*/
+const DALLEClient = require('./DALLEClient');
+const ValidationHelpers = require('../../../helpers/validationHelpers');
+
+/**
+* Represents a DALL-E AI instance
+* Given a prompt and/or an input image, the model will generate a new image
+* @class DALL-E
+*/
+class DALLE {
+    /**
+    * Create a DALLE instance
+    * @constructor
+    * @param {string} apiKey - The API key for OpenAI
+    * @throws {AIConnectifyError} - Will throw an error if the API key is invalid
+    */
+    constructor(apiKey) {
+        ValidationHelpers.validateKeyString(apiKey, 'API key is required for initializing DALL-E instance');
+        
+        // Initialize DALLEClient with API key
+        this.client = new DALLEClient(apiKey);
+    }
+
+
+    /** 
+    * Set the Organization ID to the ChatGPTClient instance
+    * @param {string} organizationID - The organization ID for OpenAI instance
+    * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
+    */
+    setOrganizationId(organizationID){
+        this.client.setOrganizationId(organizationID);
+    }
+    /** 
+    * Set the Project ID to the ChatGPTClient instance
+    * @param {string} projectID - The Project ID for OpenAI instance
+    * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
+    */
+    setProjectId(projectID){
+        this.client.setProjectId(projectID);
+    }
+
+
+    /** MODELS METHODS **/
+    /**
+    * Lists the currently available models, and provides basic information about each one such as the owner and availability
+    * @async
+    * @returns {Promise&lt;Array>} - A Promise that resolves the generated request
+    * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
+    */
+    async getModels(){
+        return this.client.getModels();
+    }
+
+    /**
+    * Retrieves a model instance, providing basic information about the model such as the owner and permissioning
+    * @async
+    * @param {string} modelID - The ID of the model to use for this request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
+    * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
+    */
+    async getModel(modelID) {
+        return this.client.getModel(modelID);
+    }
+
+
+    /** IMAGES METHODS */
+    /**
+    * Given a prompt and/or an input image, the model will generate a new image
+    * @async
+    * @param {string} prompt - A text description of the desired image(s)
+    * @param {string} [modelID="dall-e-2"] - (Optional) The ID of the model to use
+    * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
+    * @returns {Promise&lt;Array>} - A Promise that resolves the generated request
+    * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
+    */
+    async createImage(prompt, modelID="dall-e-2", newConfig={}){
+        return this.client.createImage(prompt, modelID, newConfig);
+    }
+    
+    /**
+    * Creates an edited or extended image given an original image and a prompt
+    * @async
+    * @param {string} imagePath - The image PNG file (path - not file name) to edit
+    * @param {string} prompt - A text description of the desired image(s)
+    * @param {string} [modelID="dall-e-2"] - (Optional) The ID of the model to use
+    * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
+    * @returns {Promise&lt;Array>} - A Promise that resolves the generated request
+    * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
+    */
+    async createImageEdit(imagePath, prompt, modelID="dall-e-2", newConfig={}){
+        return this.client.createImageEdit(imagePath, prompt, modelID, newConfig);
+    }
+
+    /**
+    * Creates a variation of a given image
+    * @async
+    * @param {string} imagePath - The image PNG file (path - not file name) to use as the basis for the variation(s)
+    * @param {string} [modelID="dall-e-2"] - (Optional) The ID of the model to use
+    * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
+    * @returns {Promise&lt;Array>} - A Promise that resolves the generated request
+    * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
+    */
+    async createImageVariation(imagePath, modelID="dall-e-2", newConfig={}){
+        return this.client.createImageVariation(imagePath, modelID, newConfig);
+    }
+}
+
+module.exports = DALLE;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AIConnectify.html">AIConnectify</a></li><li><a href="module-AIConnectifyFactory.html">AIConnectifyFactory</a></li><li><a href="module-lib_connectors_AI_ChatGPT_ChatGPT.html">lib/connectors/AI/ChatGPT/ChatGPT</a></li><li><a href="module-lib_connectors_AI_ChatGPT_ChatGPTClient.html">lib/connectors/AI/ChatGPT/ChatGPTClient</a></li><li><a href="module-lib_connectors_AI_Cohere_Cohere.html">lib/connectors/AI/Cohere/Cohere</a></li><li><a href="module-lib_connectors_AI_Cohere_CohereClient.html">lib/connectors/AI/Cohere/CohereClient</a></li><li><a href="module-lib_connectors_AI_DALLE_DALLE.html">lib/connectors/AI/DALLE/DALLE</a></li><li><a href="module-lib_connectors_AI_DALLE_DALLEClient.html">lib/connectors/AI/DALLE/DALLEClient</a></li><li><a href="module-lib_connectors_AI_Stability_Stability.html">lib/connectors/AI/Stability/Stability</a></li><li><a href="module-lib_connectors_AI_Stability_StabilityClient.html">lib/connectors/AI/Stability/StabilityClient</a></li><li><a href="module-lib_connectors_AI_TensorFlow_TensorFlow.html">lib/connectors/AI/TensorFlow/TensorFlow</a></li><li><a href="module-lib_connectors_AI_TensorFlow_TensorFlowClient.html">lib/connectors/AI/TensorFlow/TensorFlowClient</a></li><li><a href="module-lib_connectors_AIRegistry.html">lib/connectors/AIRegistry</a></li><li><a href="module-lib_connectors_HttpClient_HttpClient.html">lib/connectors/HttpClient/HttpClient</a></li></ul><h3>Classes</h3><ul><li><a href="global.html#AIConnectifyError">AIConnectifyError</a></li><li><a href="ValidationHelpers.html">ValidationHelpers</a></li><li><a href="module-AIConnectify-AIConnectify.html">AIConnectify</a></li><li><a href="module-lib_connectors_AI_ChatGPT_ChatGPTClient-ChatGPTClient.html">ChatGPTClient</a></li><li><a href="module-lib_connectors_AI_ChatGPT_ChatGPT-ChatGPT.html">ChatGPT</a></li><li><a href="module-lib_connectors_AI_Cohere_CohereClient-CohereClient.html">CohereClient</a></li><li><a href="module-lib_connectors_AI_Cohere_Cohere-Cohere.html">Cohere</a></li><li><a href="module-lib_connectors_AI_DALLE_DALLEClient-DALLEClient.html">DALLEClient</a></li><li><a href="module-lib_connectors_AI_DALLE_DALLE-DALL-E.html">DALL-E</a></li><li><a href="module-lib_connectors_AI_DALLE_DALLE-DALLE.html">DALLE</a></li><li><a href="module-lib_connectors_AI_Stability_StabilityClient-StabilityClient.html">StabilityClient</a></li><li><a href="module-lib_connectors_AI_Stability_Stability-Stability.html">Stability</a></li><li><a href="module-lib_connectors_AI_TensorFlow_TensorFlowClient-TensorFlowClient.html">TensorFlowClient</a></li><li><a href="module-lib_connectors_AI_TensorFlow_TensorFlow-TensorFlow.html">TensorFlow</a></li><li><a href="module-lib_connectors_AIRegistry-AIRegistry.html">AIRegistry</a></li><li><a href="module-lib_connectors_HttpClient_HttpClient-HttpClient.html">HttpClient</a></li></ul><h3>Global</h3><ul><li><a href="global.html#generateRandomID">generateRandomID</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sat Oct 05 2024 14:38:28 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

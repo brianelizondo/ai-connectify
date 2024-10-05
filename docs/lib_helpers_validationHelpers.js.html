@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: lib/connectors/AIConnectifyFactory.js</title>
+    <title>JSDoc: Source: lib/helpers/validationHelpers.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: lib/connectors/AIConnectifyFactory.js</h1>
+    <h1 class="page-title">Source: lib/helpers/validationHelpers.js</h1>
 
     
 
@@ -35,37 +35,87 @@
 
 /**
 * Module and dependencies
-* @module AIConnectifyFactory
 */
-const ValidationHelpers = require('../helpers/validationHelpers');
-const AIRegistry = require('./AIRegistry');
+const AIConnectifyError = require('../AIConnectifyError');
 
 /**
-* Creates an instance of the AI connector for the specified AI
-* This function retrieves the AI class and API key requirement from the AIRegistry,
-* validates the API key if needed, and returns a new instance of the AI class.
-*
-* @function createAIInstance
-* @param {string} ai - The name of the AI to use (e.g. TensorFlowNode, ChatGPT, DALLE, or Cohere)
-* @param {string} [apiKey=null] - The API key required for some AIs. It can be null if the AI does not need an API key
-* @returns {object} An instance of the AI connector
-* @throws {AIConnectifyError} Throws an error if the API key is required but not provided
+* Represents a ValidationHelpers instance
+* A collection of utility methods for input validation
+* @class ValidationHelpers
 */
-function createAIInstance(ai, apiKey = null) { 
-    // Get the AI object class/config from the registry
-    const instanceAIRegistry = new AIRegistry();
-    const AIConstructor = instanceAIRegistry.getAI(ai);
-    
-    // Check if API key is required and validate it
-    if(AIConstructor.apiKeyRequired){
-        ValidationHelpers.validateKeyString(apiKey, `API key is required for ${ai} service`);
+class ValidationHelpers {
+    /**
+    * Validates a string input to ensure it is not empty or whitespace-only
+    * @static
+    * @param {string} inputString - The input string to validate
+    * @param {string} errorMessage - The error message to throw if validation fails
+    * @throws {AIConnectifyError} - Throws an error if validation fails
+    */
+    static validateStringInput(inputString, errorMessage) {
+        if(!inputString || typeof inputString !== 'string' || !inputString.trim()) {
+            throw new AIConnectifyError(errorMessage);
+        }
     }
 
-    // Return a new AI instance, passing the API key (if applicable) to the AI class constructor
-    return new AIConstructor.aiInstance(apiKey);
+    /**
+    * Validates a number input to ensure it is not empty or NaN
+    * @static
+    * @param {number} inputNumber - The input number to validate
+    * @param {string} errorMessage - The error message to throw if validation fails
+    * @throws {AIConnectifyError} - Throws an error if validation fails
+    */
+    static validateNumberInput(inputNumber, errorMessage) {
+        if(!inputNumber || typeof inputNumber !== 'number' || !Number.isFinite(inputNumber)) {
+            throw new AIConnectifyError(errorMessage);
+        }
+    }
+
+    /**
+    * Validates an array input to ensure it is not empty and is an actual array
+    * @static
+    * @param {Array} inputArray - The input array to validate
+    * @param {string} errorMessage - The error message to throw if validation fails
+    * @throws {AIConnectifyError} - Throws an error if validation fails
+    */
+    static validateArrayInput(inputArray, errorMessage){
+        if (!inputArray || inputArray.length == 0){
+            throw new AIConnectifyError(errorMessage);
+        }else if (!Array.isArray(inputArray)){
+            throw new AIConnectifyError('This is not an array');
+        }
+    }
+
+    /** 
+    * Validates an string to ensure it is a valid Key format
+    * @static
+    * @param {string} keyString - The key string to validate
+    * @param {string} errorMessage - The error message to throw if validation fails
+    * @throws {AIConnectifyError} - Throws an error if validation fails
+    */
+    static validateKeyString(keyString, errorMessage) {
+        this.validateStringInput(keyString, errorMessage);
+
+        const regex = /^[A-Za-z0-9-_.+=]{16,256}$/;
+        if(!regex.test(keyString)){
+            throw new AIConnectifyError(errorMessage);
+        }
+    }
+
+    /** 
+    * Validates if the value is boolean
+    * @static
+    * @param {string} value - The value to validate
+    * @param {string} errorMessage - The error message to throw if validation fails
+    * @throws {AIConnectifyError} - Throws an error if validation fails
+    */
+    static validateBooleanInput(value, errorMessage) {
+        if(typeof value !== 'boolean'){
+            throw new AIConnectifyError(errorMessage);
+        }
+    }
 }
 
-module.exports = { createAIInstance };</code></pre>
+module.exports = ValidationHelpers;</code></pre>
         </article>
     </section>
 

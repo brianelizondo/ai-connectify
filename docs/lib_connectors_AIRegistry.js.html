@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: lib/connectors/AIConnectifyFactory.js</title>
+    <title>JSDoc: Source: lib/connectors/AIRegistry.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: lib/connectors/AIConnectifyFactory.js</h1>
+    <h1 class="page-title">Source: lib/connectors/AIRegistry.js</h1>
 
     
 
@@ -35,37 +35,92 @@
 
 /**
 * Module and dependencies
-* @module AIConnectifyFactory
+* @module 
 */
-const ValidationHelpers = require('../helpers/validationHelpers');
-const AIRegistry = require('./AIRegistry');
+const fs = require('fs');
+const path = require('path');
+const AIConnectifyError = require('../AIConnectifyError');
 
 /**
-* Creates an instance of the AI connector for the specified AI
-* This function retrieves the AI class and API key requirement from the AIRegistry,
-* validates the API key if needed, and returns a new instance of the AI class.
-*
-* @function createAIInstance
-* @param {string} ai - The name of the AI to use (e.g. TensorFlowNode, ChatGPT, DALLE, or Cohere)
-* @param {string} [apiKey=null] - The API key required for some AIs. It can be null if the AI does not need an API key
-* @returns {object} An instance of the AI connector
-* @throws {AIConnectifyError} Throws an error if the API key is required but not provided
+* AIRegistry class
+* This class dynamically loads AI connectors from the 'AI' directory and registers them
+* It provides methods to register AIs and retrieve registered AIs
+* @class AIRegistry
 */
-function createAIInstance(ai, apiKey = null) { 
-    // Get the AI object class/config from the registry
-    const instanceAIRegistry = new AIRegistry();
-    const AIConstructor = instanceAIRegistry.getAI(ai);
-    
-    // Check if API key is required and validate it
-    if(AIConstructor.apiKeyRequired){
-        ValidationHelpers.validateKeyString(apiKey, `API key is required for ${ai} service`);
+class AIRegistry {
+    constructor() {
+        this.registeredAIs = {};
+        this._loadAIs();
     }
 
-    // Return a new AI instance, passing the API key (if applicable) to the AI class constructor
-    return new AIConstructor.aiInstance(apiKey);
+    /**
+    * Register an AI class with its name and whether it requires an API key
+    * @param {string} aiName - The name of the AI
+    * @param {class} AIClass - The class representing the AI service
+    * @param {boolean} apiKeyRequired - Whether this AI requires an API key
+    */
+    _registerAI(aiName, AIClass, apiKeyRequired){
+        this.registeredAIs[aiName] = {
+            aiInstance: AIClass,
+            apiKeyRequired: apiKeyRequired
+        };
+    }
+
+    /**
+    * Loads and registers all AI modules from the AI directory
+    * This method dynamically reads subdirectories in the 'AI' folder, where each subdirectory represents an AI service
+    * For each AI, it attempts to load the main class file and the config file
+    */
+    _loadAIs(){
+        // Set the AI connectors directory to find all AI services
+        const aiConnectorsDirectory = path.resolve(__dirname, 'AI');
+
+        // Ensure the AI directory exists
+        if (!fs.existsSync(aiConnectorsDirectory)) {
+            throw new AIConnectifyError('AI connectors directory not found');
+        }
+        
+        // Read all subdirectories in the AI directory
+        fs.readdirSync(aiConnectorsDirectory, { withFileTypes: true }).forEach(directory => {
+            const aiName = directory.name;
+            const aiDirectoryPath = `${aiConnectorsDirectory}/${aiName}`;
+
+            if(directory.isDirectory() &amp;&amp; fs.existsSync(aiDirectoryPath)){
+                try {
+                    // Require the AI class file and its config
+                    const aiClass = require(`${aiDirectoryPath}/${aiName}`);
+                    const { aiConfig } = require(`${aiDirectoryPath}/config`);
+
+                    // Check if apiKeyRequired exists in config
+                    if (!aiConfig || typeof aiConfig.apiKeyRequired !== 'boolean') {
+                        throw new AIConnectifyError(`Invalid or missing config for ${aiName} service`);
+                    }
+
+                    // Register the AI with its class and apiKeyRequired flag
+                    this._registerAI(aiName, aiClass, aiConfig.apiKeyRequired);
+                } catch (error) {
+                    throw new AIConnectifyError(`Failed to load AI module ${aiName}: ${error.message}`);
+                }
+            }
+        });
+    }
+
+    /**
+    * Retrieves the registered AI class and its API key requirement.
+    * @param {string} aiName - The name of the AI to retrieve.
+    * @returns {object} - The AI class and its API key requirement status.
+    * @throws {AIConnectifyError} - Throws an error if the AI is not registered.
+    */
+    getAI(aiName){
+        const ai = this.registeredAIs[aiName];
+        if(!ai) {
+            throw new AIConnectifyError(`AI service ${aiName} is not registered`);
+        }
+        return ai;
+    }
 }
 
-module.exports = { createAIInstance };</code></pre>
+module.exports = AIRegistry;</code></pre>
         </article>
     </section>
 

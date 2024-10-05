@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: lib/connectors/AIConnectifyFactory.js</title>
+    <title>JSDoc: Source: lib/connectors/AI/TensorFlow/TensorFlow.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: lib/connectors/AIConnectifyFactory.js</h1>
+    <h1 class="page-title">Source: lib/connectors/AI/TensorFlow/TensorFlow.js</h1>
 
     
 
@@ -35,37 +35,42 @@
 
 /**
 * Module and dependencies
-* @module AIConnectifyFactory
+* @module 
 */
-const ValidationHelpers = require('../helpers/validationHelpers');
-const AIRegistry = require('./AIRegistry');
+const TensorFlowClient = require('./TensorFlowClient');
 
 /**
-* Creates an instance of the AI connector for the specified AI
-* This function retrieves the AI class and API key requirement from the AIRegistry,
-* validates the API key if needed, and returns a new instance of the AI class.
-*
-* @function createAIInstance
-* @param {string} ai - The name of the AI to use (e.g. TensorFlowNode, ChatGPT, DALLE, or Cohere)
-* @param {string} [apiKey=null] - The API key required for some AIs. It can be null if the AI does not need an API key
-* @returns {object} An instance of the AI connector
-* @throws {AIConnectifyError} Throws an error if the API key is required but not provided
+* Represents a TensorFlow AI instance
+* @class TensorFlow
 */
-function createAIInstance(ai, apiKey = null) { 
-    // Get the AI object class/config from the registry
-    const instanceAIRegistry = new AIRegistry();
-    const AIConstructor = instanceAIRegistry.getAI(ai);
-    
-    // Check if API key is required and validate it
-    if(AIConstructor.apiKeyRequired){
-        ValidationHelpers.validateKeyString(apiKey, `API key is required for ${ai} service`);
+class TensorFlow {
+    /**
+    * Create a TensorFlow AI instance
+    * @constructor
+    */
+    constructor() {
+        // Initialize TensorFlowClient
+        // Bind all methods from TensorFlowClient to main class instance
+        this._bindMethods();
     }
 
-    // Return a new AI instance, passing the API key (if applicable) to the AI class constructor
-    return new AIConstructor.aiInstance(apiKey);
+    /**
+    * Binds all methods of TensorFlowClient to the current instance so that 
+    * they can be called directly on the instance without referencing this.tf
+    */
+    _bindMethods() {
+        const clientInstance = new TensorFlowClient().tf;
+        // Iterate over all properties of this.tf
+        for (const methodName of Object.keys(clientInstance)) {
+            // If it's a function, bind it to the current instance
+            if (typeof clientInstance[methodName] === 'function') {
+                this[methodName] = clientInstance[methodName].bind(clientInstance);
+            }
+        }
+    }
 }
 
-module.exports = { createAIInstance };</code></pre>
+module.exports = TensorFlow;</code></pre>
         </article>
     </section>
 

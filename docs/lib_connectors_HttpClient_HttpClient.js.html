@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: lib/connectors/AIConnectifyFactory.js</title>
+    <title>JSDoc: Source: lib/connectors/HttpClient/HttpClient.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: lib/connectors/AIConnectifyFactory.js</h1>
+    <h1 class="page-title">Source: lib/connectors/HttpClient/HttpClient.js</h1>
 
     
 
@@ -35,37 +35,103 @@
 
 /**
 * Module and dependencies
-* @module AIConnectifyFactory
+* @module
 */
-const ValidationHelpers = require('../helpers/validationHelpers');
-const AIRegistry = require('./AIRegistry');
+const axios = require('axios');
+const AIConnectifyError = require('../../AIConnectifyError');
 
 /**
-* Creates an instance of the AI connector for the specified AI
-* This function retrieves the AI class and API key requirement from the AIRegistry,
-* validates the API key if needed, and returns a new instance of the AI class.
-*
-* @function createAIInstance
-* @param {string} ai - The name of the AI to use (e.g. TensorFlowNode, ChatGPT, DALLE, or Cohere)
-* @param {string} [apiKey=null] - The API key required for some AIs. It can be null if the AI does not need an API key
-* @returns {object} An instance of the AI connector
-* @throws {AIConnectifyError} Throws an error if the API key is required but not provided
+* Represents an HTTP client for making API requests using Axios.
+* This client is designed to make HTTP requests to a specified base URL
+* and includes error handling specific to AI-Connectify.
+* 
+* @class HttpClient
 */
-function createAIInstance(ai, apiKey = null) { 
-    // Get the AI object class/config from the registry
-    const instanceAIRegistry = new AIRegistry();
-    const AIConstructor = instanceAIRegistry.getAI(ai);
-    
-    // Check if API key is required and validate it
-    if(AIConstructor.apiKeyRequired){
-        ValidationHelpers.validateKeyString(apiKey, `API key is required for ${ai} service`);
+class HttpClient {
+    /**
+    * Create a new HttpClient instance.
+    * Initializes the Axios client with a base URL and optional default headers.
+    * 
+    * @constructor
+    * @param {string} baseURL - The base URL of the API for making requests.
+    * @param {Object} [defaultHeaders={}] - Default headers to include in every request made by this client.
+    * @param {number} [timeout=10000] - Optional timeout for each request in milliseconds (default is 10 seconds).
+    */
+    constructor(baseURL, defaultHeaders = {}, timeout=10000){
+        this.client = axios.create({
+            baseURL,
+            timeout,
+            headers: defaultHeaders
+        });
     }
 
-    // Return a new AI instance, passing the API key (if applicable) to the AI class constructor
-    return new AIConstructor.aiInstance(apiKey);
+
+    /**
+    * Throw a formatted AIConnectifyError with the request method and error message.
+    * @param {string} requestMethod - The HTTP method used (e.g., 'GET', 'POST').
+    * @param {Object} error - The error object caught during the request.
+    * @throws {AIConnectifyError} - Throws an error with a message detailing the HTTP method and error description.
+    */
+    throwError(requestMethod, error){
+        const errorMsg = error.response ? error.response.data.error.message : error.message;
+        throw new AIConnectifyError(`HTTP ${requestMethod} error => ${errorMsg}`);
+    }
+
+
+    /**
+    * Send an HTTP GET request to the specified endpoint with optional query parameters.
+    * @async
+    * @param {string} endpoint - The API endpoint to which the GET request will be sent (relative to the baseURL).
+    * @param {Object} [params={}] - Optional query parameters to include in the request URL.
+    * @returns {Promise&lt;Object>} - Resolves with the response data from the API.
+    * @throws {AIConnectifyError} - Throws an error if the request fails, including the error message from the server if available.
+    */
+    async get(endpoint, params = {}){
+        try {
+            const response = await this.client.get(endpoint, { params });
+            return response.data;
+        } catch(error) {
+            this.throwError('GET', error);
+        }
+    }
+
+
+    /**
+    * Send an HTTP POST request to the specified endpoint with a JSON body.
+    * @async
+    * @param {string} endpoint - The API endpoint to which the POST request will be sent (relative to the baseURL).
+    * @param {Object} body - The JSON body to send in the POST request.
+    * @returns {Promise&lt;Object>} - Resolves with the response data from the API.
+    * @throws {AIConnectifyError} - Throws an error if the request fails, including the error message from the server if available.
+    */
+    async post(endpoint, body) {
+        try {
+            const response = await this.client.post(endpoint, body);
+            return response.data;
+        } catch(error) {
+            this.throwError('POST', error);
+        }
+    }
+
+    
+    /**
+    * Send an HTTP DELETE request to the specified endpoint
+    * @async
+    * @param {string} endpoint - The API endpoint to which the POST request will be sent (relative to the baseURL).
+    * @returns {Promise&lt;Object>} - Resolves with the response data from the API.
+    * @throws {AIConnectifyError} - Throws an error if the request fails, including the error message from the server if available.
+    */
+    async delete(endpoint) {
+        try {
+            const response = await this.client.delete(endpoint);
+            return response.data;
+        } catch(error) {
+            this.throwError('DELETE', error);
+        }
+    }
 }
 
-module.exports = { createAIInstance };</code></pre>
+module.exports = HttpClient;</code></pre>
         </article>
     </section>
 
