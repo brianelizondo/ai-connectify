@@ -1,5 +1,6 @@
 __test__
 jsdoc.json
+jest.config.js
 docs/
 .env
 .vscode
