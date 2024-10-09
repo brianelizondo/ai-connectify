@@ -16,13 +16,18 @@
     "stability",
     "tensorflow"
   ],
+  "license": "MIT",
+  "author": "Brian Elizondo <brian_elizondo@msn.com> (https://github.com/brianelizondo)",
+  "main": "index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "lib/**/*",
+    "dist/**/*" 
+  ],
   "homepage": "https://github.com/brianelizondo/ai-connectify#readme",
   "bugs": {
     "url": "https://github.com/brianelizondo/ai-connectify/issues"
   },
-  "license": "MIT",
-  "author": "Brian Elizondo <brian_elizondo@msn.com> (https://github.com/brianelizondo)",
-  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/brianelizondo/ai-connectify.git"

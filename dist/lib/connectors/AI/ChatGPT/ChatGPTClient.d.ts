@@ -1,66 +1,47 @@
-/*
-* AI-Connectify
-* Copyright(c) 2023 Brian Elizondo
-* MIT Licensed
-*/
-'use strict';
-
+export = ChatGPTClient;
 /**
-* Module and dependencies
-* @module 
+* Represents a service for interacting with the ChatGPT API
+* @class ChatGPTClient
 */
-const ChatGPTClient = require('./ChatGPTClient');
-const ValidationHelpers = require('../../../helpers/validationHelpers');
-
-/**
-* Represents a ChatGPT AI instance
-* Handles interaction with the OpenAI API for chat, completions, edits, and model information
-* @class ChatGPT
-*/
-class ChatGPT {
+declare class ChatGPTClient {
     /**
-    * Create a ChatGPT instance
+    * Create a ChatGPT service instance
     * @constructor
     * @param {string} apiKey - The API key for OpenAI
-    * @throws {AIConnectifyError} - Will throw an error if the API key is invalid
     */
-    constructor(apiKey) {
-        ValidationHelpers.validateKeyString(apiKey, 'API key is required for initializing ChatGPT instance');
-        
-        // Initialize ChatGPTClient with API key
-        this.client = new ChatGPTClient(apiKey);
-    }
-
-
-    /** 
+    constructor(apiKey: string);
+    aiName: string;
+    aiApiKey: string;
+    organizationIDs: {};
+    httpRequest: HttpClient;
+    /**
+    * Create a new HttpClient instance using the class constructor params
+    */
+    createHttpClient(): HttpClient;
+    /**
     * Set the Organization ID to the ChatGPTClient instance
     * @param {string} organizationID - The organization ID for OpenAI instance
-    * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    setOrganizationId(organizationID){
-        this.client.setOrganizationId(organizationID);
-    }
-    /** 
+    setOrganizationId(organizationID: string): void;
+    /**
     * Set the Project ID to the ChatGPTClient instance
-    * @param {string} projectID - The Project ID for OpenAI instance
-    * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
+    * @param {string} projectID - The project ID for OpenAI instance
     */
-    setProjectId(projectID){
-        this.client.setProjectId(projectID);
-    }
-
-
-    /** MODELS METHODS **/
+    setProjectId(projectID: string): void;
+    /**
+    * Throw a formatted AIConnectifyError with the AI service and error message
+    * @param {Object} error - The error object caught during the request
+    * @throws {AIConnectifyError} - Throws an error with a message detailing the AI service and error description
+    */
+    throwError(error: Object): void;
+    /** MODELS METHODS
     /**
     * Lists the currently available models, and provides basic information about each one such as the owner and availability
     * @async
     * @returns {Promise<Array>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    async getModels(){
-        return this.client.getModels();
-    }
-
+    getModels(): Promise<any[]>;
     /**
     * Retrieves a model instance, providing basic information about the model such as the owner and permissioning
     * @async
@@ -68,10 +49,7 @@ class ChatGPT {
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    async getModel(modelID) {
-        return this.client.getModel(modelID);
-    }
-
+    getModel(modelID: string): Promise<Object>;
     /**
     * Delete a fine-tuned model. You must have the Owner role in your organization to delete a model
     * @async
@@ -79,12 +57,7 @@ class ChatGPT {
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    async deleteFineTunedModel(modelID) {
-        return this.client.deleteFineTunedModel(modelID);
-    }
-
-
-
+    delFineTunedModel(modelID: string): Promise<Object>;
     /** CHAT METHODS **/
     /**
     * Creates a model response for the given chat conversation
@@ -95,11 +68,7 @@ class ChatGPT {
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during chat completion generation
     */
-    async createChatCompletion(messagesArray, modelID="gpt-3.5-turbo", newConfig={}) {
-        return this.client.createChatCompletion(messagesArray, modelID, newConfig);
-    }
-
-
+    createChatCompletion(messagesArray: any[], modelID?: string | undefined, newConfig?: Object | undefined): Promise<Object>;
     /** EMBEDDINGS METHODS **/
     /**
     * Get a vector representation of a given input that can be easily consumed by machine learning models and algorithms
@@ -110,11 +79,7 @@ class ChatGPT {
     * @returns {Promise<Array>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during generation
     */
-    async createEmbeddings(input, modelID="text-embedding-ada-002", newConfig={}) {
-        return this.client.createEmbeddings(input, modelID, newConfig);
-    }
-
-
+    createEmbeddings(input: string | any[], modelID?: string | undefined, newConfig?: Object | undefined): Promise<any[]>;
     /** MODERATIONS METHODS **/
     /**
     * Given some input text, outputs if the model classifies it as potentially harmful across several categories
@@ -124,13 +89,9 @@ class ChatGPT {
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during generation
     */
-    async createModeration(input, modelID="text-moderation-latest") {
-        return this.client.createModeration(input, modelID);
-    }
-
-
+    createModeration(input: string, modelID?: string | undefined): Promise<Object>;
     /** AUDIO METHODS **/
-    /** 
+    /**
     * Generates audio from the input text
     * @async
     * @param {string} input - The text to generate audio for
@@ -142,10 +103,7 @@ class ChatGPT {
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during generation
     */
-    async createSpeech(input, destinationFolder, modelID="tts-1", response_format="mp3", voice="alloy", newConfig={}) {
-        return this.client.createSpeech(input, destinationFolder, modelID, response_format, voice, newConfig);
-    }
-
+    createSpeech(input: string, destinationFolder: string, modelID?: string | undefined, response_format?: string | undefined, voice?: string | undefined, newConfig?: Object | undefined): Promise<Object>;
     /**
     * Transcribes audio into the input language
     * @async
@@ -155,10 +113,7 @@ class ChatGPT {
     * @returns {Promise<String>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during generation
     */
-    async createTranscription(filePath, modelID="whisper-1", newConfig={}) {
-        return this.client.createTranscription(filePath, modelID, newConfig);
-    }
-
+    createTranscription(filePath: string, modelID?: string | undefined, newConfig?: Object | undefined): Promise<string>;
     /**
     * Translates audio into English
     * @async
@@ -168,23 +123,16 @@ class ChatGPT {
     * @returns {Promise<String>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during generation
     */
-    async createTranslation(filePath, modelID="whisper-1", newConfig={}) {
-        return this.client.createTranslation(filePath, modelID, newConfig);
-    }
-
-
+    createTranslation(filePath: string, modelID?: string | undefined, newConfig?: Object | undefined): Promise<string>;
     /** FINE-TUNING METHODS **/
-    /** 
+    /**
     * Get info about a fine-tuning job
     * @async
     * @param {string} fine_tuning_job_id - The ID of the fine-tuning job
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    async getFineTuningJob(fine_tuning_job_id){
-        return this.client.getFineTuningJob(fine_tuning_job_id);
-    }
-
+    getFineTuningJob(fine_tuning_job_id: string): Promise<Object>;
     /**
     * List your organization's fine-tuning jobs
     * @async
@@ -192,10 +140,7 @@ class ChatGPT {
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    async getFineTuningJobs(newConfig={}){
-        return this.client.getFineTuningJobs(newConfig);
-    }
-
+    getFineTuningJobs(newConfig?: Object | undefined): Promise<Object>;
     /**
     * Get status updates for a fine-tuning job
     * @async
@@ -204,10 +149,7 @@ class ChatGPT {
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    async getFineTuningEvents(fine_tuning_job_id, newConfig={}){
-        return this.client.getFineTuningEvents(fine_tuning_job_id, newConfig);
-    }
-
+    getFineTuningEvents(fine_tuning_job_id: string, newConfig?: Object | undefined): Promise<Object>;
     /**
     * List checkpoints for a fine-tuning job
     * @async
@@ -216,10 +158,7 @@ class ChatGPT {
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    async getFineTuningCheckpoints(fine_tuning_job_id, newConfig={}){
-        return this.client.getFineTuningCheckpoints(fine_tuning_job_id, newConfig);
-    }
-
+    getFineTuningCheckpoints(fine_tuning_job_id: string, newConfig?: Object | undefined): Promise<Object>;
     /**
     * Creates a fine-tuning job which begins the process of creating a new model from a given dataset
     * @async
@@ -229,10 +168,7 @@ class ChatGPT {
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during generation
     */
-    async createFineTuning(training_file_id, modelID="gpt-4o-mini", newConfig={}) {
-        return this.client.createFineTuning(training_file_id, modelID, newConfig);
-    }
-
+    createFineTuning(training_file_id: string, modelID?: string | undefined, newConfig?: Object | undefined): Promise<Object>;
     /**
     * Immediately cancel a fine-tune job
     * @async
@@ -240,9 +176,6 @@ class ChatGPT {
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    async cancelFineTuning(fine_tuning_job_id){
-        return this.client.cancelFineTuning(fine_tuning_job_id);
-    }
+    cancelFineTuning(fine_tuning_job_id: string): Promise<Object>;
 }
-
-module.exports = ChatGPT;
+import HttpClient = require("../../HttpClient/HttpClient");
