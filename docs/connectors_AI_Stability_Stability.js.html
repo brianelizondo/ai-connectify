@@ -1,4 +1,32 @@
-/*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: connectors/AI/Stability/Stability.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: connectors/AI/Stability/Stability.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*
 * AI-Connectify
 * Copyright(c) 2023 Brian Elizondo
 * MIT Licensed
@@ -65,7 +93,7 @@ class Stability {
     * @param {string} destinationFolder - Folder path to save the image generated
     * @param {string} [output_format="png"] - (Optional) The output format for the response
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async generateImageUltra(prompt, destinationFolder, output_format="png", newConfig={}){
@@ -79,7 +107,7 @@ class Stability {
     * @param {string} destinationFolder - Folder path to save the image generated
     * @param {string} [output_format="png"] - (Optional) The output format for the response
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async generateImageCore(prompt, destinationFolder, output_format="png", newConfig={}){
@@ -97,7 +125,7 @@ class Stability {
     * @param {number} [mode="text-to-image"] - (Optional) Controls whether this is a text-to-image or image-to-image generation
     * @param {string} [output_format="png"] - (Optional) The output format for the response
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async generateImageDiffusion(prompt, pathImage, destinationFolder, strength, modelID="sd3-large",mode="text-to-image", output_format="png", newConfig={}){
@@ -114,7 +142,7 @@ class Stability {
     * @param {string} destinationFolder - Folder path to save the image generated
     * @param {string} [output_format="png"] - (Optional) The output format for the response
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async upscaleConservative(prompt, pathImage, destinationFolder, output_format="png", newConfig={}){
@@ -128,7 +156,7 @@ class Stability {
     * @param {string} pathImage - The image (path - no the file name) you wish to upscale
     * @param {string} [output_format="png"] - (Optional) The output format for the response
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async upscaleCreative(prompt, pathImage, output_format="png", newConfig={}){
@@ -142,7 +170,7 @@ class Stability {
     * @param {string} destinationFolder - Folder path to save the image generated
     * @param {string} [output_format="png"] - (Optional) The output format for the response
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async getUpscaleCreative(upscaleId, destinationFolder, output_format="png", newConfig={}){
@@ -155,7 +183,7 @@ class Stability {
     * @param {string} pathImage - The image (path - no the file name) you wish to upscale
     * @param {string} destinationFolder - Folder path to save the image generated
     * @param {string} [output_format="png"] - (Optional) The output format for the response
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async upscaleFast(pathImage, destinationFolder, output_format="png"){
@@ -171,7 +199,7 @@ class Stability {
     * @param {string} destinationFolder - Folder path to save the image generated
     * @param {string} [output_format="png"] - (Optional) The output format for the response
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async erase(pathImage, destinationFolder, output_format="png", newConfig={}){
@@ -186,7 +214,7 @@ class Stability {
     * @param {string} destinationFolder - Folder path to save the image generated
     * @param {string} [output_format="png"] - (Optional) The output format for the response
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async inpaint(prompt, pathImage, destinationFolder, output_format="png", newConfig={}){
@@ -201,7 +229,7 @@ class Stability {
     * @param {string} [directions={ left:0, right:0, up:0, down:0 }] - (Optional) Along with at least one outpaint direction
     * @param {string} [output_format="png"] - (Optional) The output format for the response
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async outpaint(pathImage, destinationFolder, directions={ left:0, right:0, up:0, down:0 }, output_format="png", newConfig={}){
@@ -217,7 +245,7 @@ class Stability {
     * @param {string} destinationFolder - Folder path to save the image generated
     * @param {string} [output_format="png"] - (Optional) The output format for the response
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async searchAndReplace(prompt, search_prompt, pathImage, destinationFolder, output_format="png", newConfig={}){
@@ -233,7 +261,7 @@ class Stability {
     * @param {string} destinationFolder - Folder path to save the image generated
     * @param {string} [output_format="png"] - (Optional) The output format for the response
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async searchAndRecolor(prompt, select_prompt, pathImage, destinationFolder, output_format="png", newConfig={}){
@@ -246,7 +274,7 @@ class Stability {
     * @param {string} pathImage - The image (path - no the file name) whose background you wish to remove
     * @param {string} destinationFolder - Folder path to save the image generated
     * @param {string} [output_format="png"] - (Optional) The output format for the response
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async removeBackground(pathImage, destinationFolder, output_format="png"){
@@ -263,7 +291,7 @@ class Stability {
     * @param {string} destinationFolder - Folder path to save the image generated
     * @param {string} [output_format="png"] - (Optional) The output format for the response
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async controlSketch(prompt, pathImage, destinationFolder, output_format="png", newConfig={}){
@@ -278,7 +306,7 @@ class Stability {
     * @param {string} destinationFolder - Folder path to save the image generated
     * @param {string} [output_format="png"] - (Optional) The output format for the response
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async controlStructure(prompt, pathImage, destinationFolder, output_format="png", newConfig={}){
@@ -293,7 +321,7 @@ class Stability {
     * @param {string} destinationFolder - Folder path to save the image generated
     * @param {string} [output_format="png"] - (Optional) The output format for the response
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async constrolStyle(prompt, pathImage, destinationFolder, output_format="png", newConfig={}){
@@ -308,7 +336,7 @@ class Stability {
     * @param {string} pathImage - The image (path - no the file name) to generate a 3D model from
     * @param {string} destinationFolder - Folder path to save the video generated
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async videoStableFast(pathImage, destinationFolder, newConfig={}){
@@ -323,7 +351,7 @@ class Stability {
     * @param {string} [cfg_scale=1.8] - (Optional) How strongly the video sticks to the original image
     * @param {string} [motion_bucket_id=127] - (Optional) Lower values generally result in less motion in the output video
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async imageToVideo(pathImage, destinationFolder, cfg_scale=1.8, motion_bucket_id=127, newConfig={}){
@@ -335,7 +363,7 @@ class Stability {
     * @async
     * @param {string} videoId - The id of a generation
     * @param {string} destinationFolder - Folder path to save the video generated
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async getImageToVideo(videoId, destinationFolder){
@@ -343,4 +371,48 @@ class Stability {
     }
 }
 
-module.exports = Stability;
+module.exports = Stability;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2>
+    <h3>Modules</h3>
+        <ul>
+            <li><a href="module-AIConnectifyFactory.html">AIConnectifyFactory</a></li>
+        </ul>
+    <h3>Classes</h3>
+        <ul>
+            <li><a href="AIConnectify.html">AIConnectify</a></li>
+            <li><a href="global.html#AIConnectifyError">AIConnectifyError</a></li>
+            <li><a href="AIRegistry.html">AIRegistry</a></li>
+            <li><a href="ChatGPT.html">ChatGPT</a></li>
+            <li><a href="module-ChatGPTClient-ChatGPTClient.html">ChatGPTClient</a></li>
+            <li><a href="Cohere.html">Cohere</a></li>
+            <li><a href="module-CohereClient-CohereClient.html">CohereClient</a></li>
+            <li><a href="DALLE.html">DALLE</a></li>
+            <li><a href="module-DALLEClient-DALLEClient.html">DALLEClient</a></li>
+            <li><a href="HelperFunctions.html">HelperFunctions</a></li>
+            <li><a href="HttpClient.html">HttpClient</a></li>
+            <li><a href="Stability.html">Stability</a></li>
+            <li><a href="module-StabilityClient-StabilityClient.html">StabilityClient</a></li>
+            <li><a href="TensorFlow.html">TensorFlow</a></li>
+            <li><a href="module-TensorFlowClient-TensorFlowClient.html">TensorFlowClient</a></li>
+        </ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sun Oct 13 2024 14:40:07 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

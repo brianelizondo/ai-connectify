@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: AIConnectifyFactory</title>
+    <title>JSDoc: Class: AIConnectify</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: AIConnectifyFactory</h1>
+    <h1 class="page-title">Class: AIConnectify</h1>
 
     
 
@@ -28,8 +28,9 @@
 
 <header>
     
+        <h2><span class="attribs"><span class="type-signature"></span></span>AIConnectify<span class="signature">(ai, apiKey<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h2>
         
-            
+            <div class="class-description">The main AI-Connectify class for creating instances of different AI connectors</div>
         
     
 </header>
@@ -38,113 +39,13 @@
     <div class="container-overview">
     
         
-            <div class="description">Module and dependencies</div>
-        
 
-        
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
+    
+    <h2>Constructor</h2>
     
 
     
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AIConnectifyFactory.js.html">connectors/AIConnectifyFactory.js</a>, <a href="connectors_AIConnectifyFactory.js.html#line8">line 8</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="~createAIInstance"><span class="type-signature">(inner) </span>createAIInstance<span class="signature">(ai, apiKey<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="AIConnectify"><span class="type-signature"></span>new AIConnectify<span class="signature">(ai, apiKey<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
     
 
     
@@ -152,9 +53,7 @@
 
 
 <div class="description">
-    Creates an instance of the AI connector for the specified AI
-This function retrieves the AI class and API key requirement from the AIRegistry,
-validates the API key if needed, and returns a new instance of the AI class.
+    Creates an instance of AIConnectify
 </div>
 
 
@@ -222,7 +121,7 @@ validates the API key if needed, and returns a new instance of the AI class.
                 </td>
             
 
-            <td class="description last">The name of the AI to use (e.g. TensorFlowNode, ChatGPT, DALLE, or Cohere)</td>
+            <td class="description last">The name of the AI connector to use (e.g. 'TensorFlowNode', 'ChatGPT', 'DALLE')</td>
         </tr>
 
     
@@ -236,6 +135,9 @@ validates the API key if needed, and returns a new instance of the AI class.
             
                 
 <span class="param-type">string</span>
+|
+
+<span class="param-type">null</span>
 
 
             
@@ -261,7 +163,7 @@ validates the API key if needed, and returns a new instance of the AI class.
                 </td>
             
 
-            <td class="description last">The API key required for some AIs. It can be null if the AI does not need an API key</td>
+            <td class="description last">The API key to use (if required by the AI connector)</td>
         </tr>
 
     
@@ -302,7 +204,7 @@ validates the API key if needed, and returns a new instance of the AI class.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AIConnectifyFactory.js.html">connectors/AIConnectifyFactory.js</a>, <a href="connectors_AIConnectifyFactory.js.html#line15">line 15</a>
+        <a href="ai-connectify.js.html">ai-connectify.js</a>, <a href="ai-connectify.js.html#line18">line 18</a>
     </li></ul></dd>
     
 
@@ -332,7 +234,7 @@ validates the API key if needed, and returns a new instance of the AI class.
 <dl>
     <dt>
         <div class="param-desc">
-        Throws an error if the API key is required but not provided
+        - If the ai parameter is not provided
         </div>
     </dt>
     <dd></dd>
@@ -356,11 +258,211 @@ validates the API key if needed, and returns a new instance of the AI class.
     
 
 
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="call"><span class="type-signature">(async) </span>call<span class="signature">(methodName, &hellip;args)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Proxy method to call functions from the connector instance
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>methodName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The method to call on the connector</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The arguments to pass to the method</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ai-connectify.js.html">ai-connectify.js</a>, <a href="ai-connectify.js.html#line44">line 44</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <h5>Returns:</h5>
 
         
 <div class="param-desc">
-    An instance of the AI connector
+    - The result of the method call
 </div>
 
 
@@ -371,7 +473,7 @@ validates the API key if needed, and returns a new instance of the AI class.
     </dt>
     <dd>
         
-<span class="param-type">object</span>
+<span class="param-type">Promise</span>
 
 
     </dd>

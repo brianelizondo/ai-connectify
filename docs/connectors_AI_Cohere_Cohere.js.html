@@ -1,4 +1,32 @@
-/*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: connectors/AI/Cohere/Cohere.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: connectors/AI/Cohere/Cohere.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*
 * AI-Connectify
 * Copyright(c) 2023 Brian Elizondo
 * MIT Licensed
@@ -50,7 +78,7 @@ class Cohere {
     * @param {Array} messages - Array of text input for the model to respond to
     * @param {string} [modelID="command-r-plus-08-2024"] - (Optional) The ID of the model to use
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async chat(messages, modelID="command-r-plus-08-2024", newConfig={}) {
@@ -63,7 +91,7 @@ class Cohere {
     * @param {Array} messages - Array of text input for the model to respond to
     * @param {string} [modelID="command-r-plus-08-2024"] - (Optional) The ID of the model to use
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async chatWithStreaming(messages, modelID="command-r-plus-08-2024", newConfig={}) {
@@ -78,7 +106,7 @@ class Cohere {
     * @param {string} texts - An array of strings for the model to embed
     * @param {string} [modelID="embed-english-v2.0"] - (Optional) The ID of the model to use
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async embed(texts, modelID="embed-english-v2.0", newConfig={}) {
@@ -88,7 +116,7 @@ class Cohere {
     /**
     * Generates a list embed job endpoint allows users to view all embed jobs history for that specific user
     * @async
-    * @returns {Promise<Array>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Array>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async getEmbedJobs() {
@@ -99,7 +127,7 @@ class Cohere {
     * Retrieves the details about an embed job started by the same user
     * @async
     * @param {string} embed_job_id - The ID of the embed job to retrieve
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async getEmbedJob(embed_job_id) {
@@ -113,7 +141,7 @@ class Cohere {
     * @param {string} [modelID="embed-english-light-v3.0"] - (Optional) The ID of the model to use
     * @param {string} [input_type="classification"] - (Optional) Specifies the type of input passed to the model
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async createEmbedJob(dataset_id, modelID="embed-english-light-v3.0", input_type="classification", newConfig={}) {
@@ -124,7 +152,7 @@ class Cohere {
     * Allows to cancel an active embed job
     * @async
     * @param {string} embed_job_id - The ID of the embed job to cancel
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async cancelEmbedJob(embed_job_id) {
@@ -140,7 +168,7 @@ class Cohere {
     * @param {Array} documents - Array of document objects or strings to rerank
     * @param {string} [modelID="rerank-english-v3.0"] - (Optional) The ID of the model to use
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async rerank(query, documents, modelID="rerank-english-v3.0", newConfig={}) {
@@ -157,7 +185,7 @@ class Cohere {
     * @param {Array} [examples=[]] - (Optional) An array of examples to provide context to the model. Each example is a text string and its associated label/class
     * @param {string} [modelID="embed-english-light-v2.0"] - (Optional) The ID of the model to use
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async classify(inputs, examples=[], modelID="embed-english-light-v2.0", newConfig={}) {
@@ -170,7 +198,7 @@ class Cohere {
     * Generates a list datasets that have been created
     * @async
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Array>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Array>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async getDatasets(newConfig={}) {
@@ -181,7 +209,7 @@ class Cohere {
     * Retrieve a dataset by ID
     * @async
     * @param {string} dataset_id - The ID of the dataset to retrieve
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async getDataset(dataset_id) {
@@ -191,7 +219,7 @@ class Cohere {
     /**
     * Retrieves the dataset storage usage for your Organization
     * @async
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async getDatasetUsage() {
@@ -205,7 +233,7 @@ class Cohere {
     * @param {string} filePath - File to create the dataset
     * @param {string} [type="embed-input"] - (Optional) The dataset type, which is used to validate the data
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async createDataset(name, filePath, type="embed-input", newConfig={}) {
@@ -216,7 +244,7 @@ class Cohere {
     * Delete a dataset by ID
     * @async
     * @param {string} dataset_id - The ID of the dataset to delete
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async deleteDataset(dataset_id) {
@@ -230,7 +258,7 @@ class Cohere {
     * @async
     * @param {string} text The string to be tokenized
     * @param {string} [modelID="command"] - (Optional) The ID of the model to use
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async tokenize(text, modelID="command") {
@@ -242,7 +270,7 @@ class Cohere {
     * @async
     * @param {Array} tokens The string to be tokenized
     * @param {string} [modelID="command"] - (Optional) The ID of the model to use
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async detokenize(tokens, modelID="command") {
@@ -255,7 +283,7 @@ class Cohere {
     * List of models available for use. The list contains models from Cohere as well as your fine-tuned models
     * @async
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async getModels(newConfig={}){
@@ -266,7 +294,7 @@ class Cohere {
     * Returns the details of a model, provided its name
     * @async
     * @param {string} modelID - The ID of the model to retrieve
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async getModel(modelID) {
@@ -279,7 +307,7 @@ class Cohere {
     * Returns a list of connectors ordered by descending creation date (newer first)
     * @async
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Array>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Array>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async getConnectors(newConfig={}) {
@@ -290,7 +318,7 @@ class Cohere {
     * Retrieve a connector by ID
     * @async
     * @param {string} connector_id - The ID of the connector to retrieve.
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async getConnector(connector_id) {
@@ -303,7 +331,7 @@ class Cohere {
     * @param {string} name - A human-readable name for the connector
     * @param {string} url - The URL of the connector that will be used to search for documents
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async createConnector(name, url, newConfig={}) {
@@ -315,7 +343,7 @@ class Cohere {
     * @async
     * @param {string} connector_id - The ID of the connector to update
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async updateConnector(connector_id, newConfig={}) {
@@ -326,7 +354,7 @@ class Cohere {
     * Delete a connector by ID
     * @async
     * @param {string} connector_id - The ID of the dataset to delete
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async deleteConnector(connector_id) {
@@ -339,7 +367,7 @@ class Cohere {
     * Returns a list of fine-tuned models available for use
     * @async
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async getFineTunedModels(newConfig={}) {
@@ -350,7 +378,7 @@ class Cohere {
     * Retrieve a fine-tuned model by ID
     * @async
     * @param {string} finetuned_model_id - The fine-tuned model ID
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async getFineTunedModel(finetuned_model_id) {
@@ -362,7 +390,7 @@ class Cohere {
     * @async
     * @param {string} finetuned_model_id - The parent fine-tuned model ID
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async getFineTunedChronology(finetuned_model_id, newConfig={}) {
@@ -374,7 +402,7 @@ class Cohere {
     * @async
     * @param {string} finetuned_model_id - The parent fine-tuned model ID
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async getFineTunedMetrics(finetuned_model_id, newConfig={}) {
@@ -387,7 +415,7 @@ class Cohere {
     * @param {string} name - Fine-tuned model name
     * @param {Object} settings - Fine-tuned model settings such as dataset, hyperparameters…
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async createFineTunedModel(name, settings, newConfig={}) {
@@ -401,7 +429,7 @@ class Cohere {
     * @param {string} name - Fine-tuned model name
     * @param {Object} settings - Fine-tuned model settings such as dataset, hyperparameters…
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async updateFineTunedModel(finetuned_model_id, name, settings, newConfig={}) {
@@ -412,7 +440,7 @@ class Cohere {
     * Delete a fine-tuned model by ID
     * @async
     * @param {string} finetuned_model_id - The ID of the fine-tuned model
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async deleteFineTunedModel(finetuned_model_id) {
@@ -420,4 +448,48 @@ class Cohere {
     }    
 }
 
-module.exports = Cohere;
+module.exports = Cohere;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2>
+    <h3>Modules</h3>
+        <ul>
+            <li><a href="module-AIConnectifyFactory.html">AIConnectifyFactory</a></li>
+        </ul>
+    <h3>Classes</h3>
+        <ul>
+            <li><a href="AIConnectify.html">AIConnectify</a></li>
+            <li><a href="global.html#AIConnectifyError">AIConnectifyError</a></li>
+            <li><a href="AIRegistry.html">AIRegistry</a></li>
+            <li><a href="ChatGPT.html">ChatGPT</a></li>
+            <li><a href="module-ChatGPTClient-ChatGPTClient.html">ChatGPTClient</a></li>
+            <li><a href="Cohere.html">Cohere</a></li>
+            <li><a href="module-CohereClient-CohereClient.html">CohereClient</a></li>
+            <li><a href="DALLE.html">DALLE</a></li>
+            <li><a href="module-DALLEClient-DALLEClient.html">DALLEClient</a></li>
+            <li><a href="HelperFunctions.html">HelperFunctions</a></li>
+            <li><a href="HttpClient.html">HttpClient</a></li>
+            <li><a href="Stability.html">Stability</a></li>
+            <li><a href="module-StabilityClient-StabilityClient.html">StabilityClient</a></li>
+            <li><a href="TensorFlow.html">TensorFlow</a></li>
+            <li><a href="module-TensorFlowClient-TensorFlowClient.html">TensorFlowClient</a></li>
+        </ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sun Oct 13 2024 14:40:07 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

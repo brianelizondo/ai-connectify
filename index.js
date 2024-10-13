@@ -7,7 +7,8 @@
 
 /**
 * AI-Connectify is a library that allows users to interact with various AI models using different APIs.
-* @module AIConnectify
+* @module 
+* @exports AIConnectify
 */
 const AIConnectify = require('./lib/ai-connectify');
 

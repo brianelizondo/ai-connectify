@@ -1,6 +1,6 @@
 {
   "name": "ai-connectify",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "A simple library for connecting to and interacting with various AI services at the same time",
   "keywords": [
     "ai",

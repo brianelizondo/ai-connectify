@@ -1,4 +1,32 @@
-/*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: connectors/AI/ChatGPT/ChatGPT.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: connectors/AI/ChatGPT/ChatGPT.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*
 * AI-Connectify
 * Copyright(c) 2023 Brian Elizondo
 * MIT Licensed
@@ -54,7 +82,7 @@ class ChatGPT {
     /**
     * Lists the currently available models, and provides basic information about each one such as the owner and availability
     * @async
-    * @returns {Promise<Array>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Array>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async getModels(){
@@ -65,7 +93,7 @@ class ChatGPT {
     * Retrieves a model instance, providing basic information about the model such as the owner and permissioning
     * @async
     * @param {string} modelID - The ID of the model to use for this request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async getModel(modelID) {
@@ -76,7 +104,7 @@ class ChatGPT {
     * Delete a fine-tuned model. You must have the Owner role in your organization to delete a model
     * @async
     * @param {string} modelID - The ID of the model to delete
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async deleteFineTunedModel(modelID) {
@@ -92,7 +120,7 @@ class ChatGPT {
     * @param {Array} messagesArray - A list of messages describing the conversation so far
     * @param {string} [modelID="gpt-3.5-turbo"] - (Optional) The ID of the model to use
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during chat completion generation
     */
     async createChatCompletion(messagesArray, modelID="gpt-3.5-turbo", newConfig={}) {
@@ -107,7 +135,7 @@ class ChatGPT {
     * @param {string|Array} input - Input text to embed, encoded as a string or array of tokens
     * @param {string} [modelID="text-embedding-ada-002"] - (Optional) The ID of the model to use
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Array>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Array>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during generation
     */
     async createEmbeddings(input, modelID="text-embedding-ada-002", newConfig={}) {
@@ -121,7 +149,7 @@ class ChatGPT {
     * @async
     * @param {string} input - The input text to classify
     * @param {string} [modelID="text-moderation-latest"] - (Optional) The ID of the model to use
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during generation
     */
     async createModeration(input, modelID="text-moderation-latest") {
@@ -139,7 +167,7 @@ class ChatGPT {
     * @param {string} [response_format="mp3"] - (Optional) The format to audio in
     * @param {string} [voice="alloy"] - (Optional) The voice to use when generating the audio
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during generation
     */
     async createSpeech(input, destinationFolder, modelID="tts-1", response_format="mp3", voice="alloy", newConfig={}) {
@@ -152,7 +180,7 @@ class ChatGPT {
     * @param {string} filePath - The audio file object (path - not file name) to transcribe
     * @param {string} [modelID="whisper-1"] - (Optional) The ID of the model to use
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<String>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;String>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during generation
     */
     async createTranscription(filePath, modelID="whisper-1", newConfig={}) {
@@ -165,7 +193,7 @@ class ChatGPT {
     * @param {string} filePath - The audio file object (path - not file name) to transcribe
     * @param {string} [modelID="whisper-1"] - (Optional) The ID of the model to use
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<String>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;String>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during generation
     */
     async createTranslation(filePath, modelID="whisper-1", newConfig={}) {
@@ -178,7 +206,7 @@ class ChatGPT {
     * Get info about a fine-tuning job
     * @async
     * @param {string} fine_tuning_job_id - The ID of the fine-tuning job
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async getFineTuningJob(fine_tuning_job_id){
@@ -189,7 +217,7 @@ class ChatGPT {
     * List your organization's fine-tuning jobs
     * @async
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async getFineTuningJobs(newConfig={}){
@@ -201,7 +229,7 @@ class ChatGPT {
     * @async
     * @param {string} fine_tuning_job_id - The ID of the fine-tuning job to get events for
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async getFineTuningEvents(fine_tuning_job_id, newConfig={}){
@@ -213,7 +241,7 @@ class ChatGPT {
     * @async
     * @param {string} fine_tuning_job_id - The ID of the fine-tuning job to get checkpoints for
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async getFineTuningCheckpoints(fine_tuning_job_id, newConfig={}){
@@ -226,7 +254,7 @@ class ChatGPT {
     * @param {string} training_file_id - The ID of an uploaded file that contains training data
     * @param {string} [modelID="gpt-4o-mini"] - (Optional) The ID of the model to use
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during generation
     */
     async createFineTuning(training_file_id, modelID="gpt-4o-mini", newConfig={}) {
@@ -237,7 +265,7 @@ class ChatGPT {
     * Immediately cancel a fine-tune job
     * @async
     * @param {string} fine_tuning_job_id - The ID of the fine-tuning job to cancel
-    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
     async cancelFineTuning(fine_tuning_job_id){
@@ -245,4 +273,48 @@ class ChatGPT {
     }
 }
 
-module.exports = ChatGPT;
+module.exports = ChatGPT;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2>
+    <h3>Modules</h3>
+        <ul>
+            <li><a href="module-AIConnectifyFactory.html">AIConnectifyFactory</a></li>
+        </ul>
+    <h3>Classes</h3>
+        <ul>
+            <li><a href="AIConnectify.html">AIConnectify</a></li>
+            <li><a href="global.html#AIConnectifyError">AIConnectifyError</a></li>
+            <li><a href="AIRegistry.html">AIRegistry</a></li>
+            <li><a href="ChatGPT.html">ChatGPT</a></li>
+            <li><a href="module-ChatGPTClient-ChatGPTClient.html">ChatGPTClient</a></li>
+            <li><a href="Cohere.html">Cohere</a></li>
+            <li><a href="module-CohereClient-CohereClient.html">CohereClient</a></li>
+            <li><a href="DALLE.html">DALLE</a></li>
+            <li><a href="module-DALLEClient-DALLEClient.html">DALLEClient</a></li>
+            <li><a href="HelperFunctions.html">HelperFunctions</a></li>
+            <li><a href="HttpClient.html">HttpClient</a></li>
+            <li><a href="Stability.html">Stability</a></li>
+            <li><a href="module-StabilityClient-StabilityClient.html">StabilityClient</a></li>
+            <li><a href="TensorFlow.html">TensorFlow</a></li>
+            <li><a href="module-TensorFlowClient-TensorFlowClient.html">TensorFlowClient</a></li>
+        </ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sun Oct 13 2024 14:40:07 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
