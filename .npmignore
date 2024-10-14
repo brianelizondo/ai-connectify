@@ -1,7 +1,8 @@
-__test__
+__test__/
 jsdoc.json
 jest.config.js
 docs/
+dist/
 .env
 .vscode
 .gitattributes
