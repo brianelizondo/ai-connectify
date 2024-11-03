@@ -118,18 +118,17 @@ class Stability {
     * Tools for generating new images using a Stable Diffusion 3 model
     * @async
     * @param {string} prompt - What you wish to see in the output image
-    * @param {string} pathImage - The  image (path - no the file name)  to use as the starting point for the generation
     * @param {string} destinationFolder - Folder path to save the image generated
     * @param {number} strength - Controls how much influence the image parameter has on the generated image
-    * @param {string} [modelID="sd3-large"] - (Optional) The ID of the model to use
+    * @param {string} [modelID="sd3.5-medium"] - (Optional) The ID of the model to use
     * @param {number} [mode="text-to-image"] - (Optional) Controls whether this is a text-to-image or image-to-image generation
     * @param {string} [output_format="png"] - (Optional) The output format for the response
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
     * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    async generateImageDiffusion(prompt, pathImage, destinationFolder, strength, modelID="sd3-large",mode="text-to-image", output_format="png", newConfig={}){
-        return this.client.generateImageDiffusion(prompt, pathImage, destinationFolder, strength, modelID, mode, output_format, newConfig);
+    async generateImageDiffusion(prompt, destinationFolder, strength, modelID="sd3.5-medium", mode="text-to-image", output_format="png", newConfig={}){
+        return this.client.generateImageDiffusion(prompt, destinationFolder, strength, modelID, mode, output_format, newConfig);
     }
 
 
@@ -168,13 +167,11 @@ class Stability {
     * @async
     * @param {string} upscaleId - The id of a generation, typically used for async generations
     * @param {string} destinationFolder - Folder path to save the image generated
-    * @param {string} [output_format="png"] - (Optional) The output format for the response
-    * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
     * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    async getUpscaleCreative(upscaleId, destinationFolder, output_format="png", newConfig={}){
-        return this.client.getUpscaleCreative(upscaleId, destinationFolder, output_format, newConfig);
+    async getUpscaleCreative(upscaleId, destinationFolder){
+        return this.client.getUpscaleCreative(upscaleId, destinationFolder);
     }
 
     /**
@@ -226,14 +223,13 @@ class Stability {
     * @async
     * @param {string} pathImage - The image (path - no the file name) you wish to outpaint
     * @param {string} destinationFolder - Folder path to save the image generated
-    * @param {string} [directions={ left:0, right:0, up:0, down:0 }] - (Optional) Along with at least one outpaint direction
     * @param {string} [output_format="png"] - (Optional) The output format for the response
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
     * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    async outpaint(pathImage, destinationFolder, directions={ left:0, right:0, up:0, down:0 }, output_format="png", newConfig={}){
-        return this.client.outpaint(pathImage, destinationFolder, directions, output_format, newConfig);
+    async outpaint(pathImage, destinationFolder, output_format="png", newConfig={}){
+        return this.client.outpaint(pathImage, destinationFolder, output_format, newConfig);
     }
 
     /**
@@ -347,15 +343,14 @@ class Stability {
     * Generate a short video based on an initial image with Stable Video Diffusion, a latent video diffusion model
     * @async
     * @param {string} pathImage - The source image (path - no the file name) used in the video generation process
-    * @param {string} destinationFolder - Folder path to save the video generated
     * @param {string} [cfg_scale=1.8] - (Optional) How strongly the video sticks to the original image
     * @param {string} [motion_bucket_id=127] - (Optional) Lower values generally result in less motion in the output video
-    * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
+    * @param {Object} [seed=0] - (Optional) A specific value that is used to guide the 'randomness' of the generation
     * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    async imageToVideo(pathImage, destinationFolder, cfg_scale=1.8, motion_bucket_id=127, newConfig={}){
-        return this.client.imageToVideo(pathImage, destinationFolder, cfg_scale, motion_bucket_id, newConfig);
+    async imageToVideo(pathImage, cfg_scale=1.8, motion_bucket_id=127, seed=0){
+        return this.client.imageToVideo(pathImage, cfg_scale, motion_bucket_id, seed);
     }
 
     /**
@@ -381,35 +376,53 @@ module.exports = Stability;</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2>
+    <h2>
+        <a href="index.html">Home</a>
+    </h2>
     <h3>Modules</h3>
-        <ul>
-            <li><a href="module-AIConnectifyFactory.html">AIConnectifyFactory</a></li>
-        </ul>
+    <ul>
+        <li><a href="module-AIConnectifyFactory.html">AIConnectifyFactory</a></li>
+    </ul>
+    
     <h3>Classes</h3>
-        <ul>
-            <li><a href="AIConnectify.html">AIConnectify</a></li>
-            <li><a href="global.html#AIConnectifyError">AIConnectifyError</a></li>
-            <li><a href="AIRegistry.html">AIRegistry</a></li>
-            <li><a href="ChatGPT.html">ChatGPT</a></li>
-            <li><a href="module-ChatGPTClient-ChatGPTClient.html">ChatGPTClient</a></li>
-            <li><a href="Cohere.html">Cohere</a></li>
-            <li><a href="module-CohereClient-CohereClient.html">CohereClient</a></li>
-            <li><a href="DALLE.html">DALLE</a></li>
-            <li><a href="module-DALLEClient-DALLEClient.html">DALLEClient</a></li>
-            <li><a href="HelperFunctions.html">HelperFunctions</a></li>
-            <li><a href="HttpClient.html">HttpClient</a></li>
-            <li><a href="Stability.html">Stability</a></li>
-            <li><a href="module-StabilityClient-StabilityClient.html">StabilityClient</a></li>
-            <li><a href="TensorFlow.html">TensorFlow</a></li>
-            <li><a href="module-TensorFlowClient-TensorFlowClient.html">TensorFlowClient</a></li>
-        </ul>
+    <ul>
+        <li><a href="AIConnectify.html">AIConnectify</a></li>
+        <li><a href="global.html#AIConnectifyError">AIConnectifyError</a></li>
+        <li><a href="AIRegistry.html">AIRegistry</a></li>
+        <li><a href="HttpClient.html">HttpClient</a></li>
+    </ul>
+
+    <h3>AI Classes</h3>
+    <ul>
+        <li><a href="ChatGPT.html">ChatGPT</a></li>
+        <li><a href="module-ChatGPTClient-ChatGPTClient.html">ChatGPTClient</a></li>
+        <li><a href="Claude.html">Claude</a></li>
+        <li><a href="module-ClaudeClient-ClaudeClient.html">ClaudeClient</a></li>
+        <li><a href="Cohere.html">Cohere</a></li>
+        <li><a href="module-CohereClient-CohereClient.html">CohereClient</a></li>
+        <li><a href="DALLE.html">DALLE</a></li>
+        <li><a href="module-DALLEClient-DALLEClient.html">DALLEClient</a></li>
+        <li><a href="HelperFunctions.html">HelperFunctions</a></li>
+        <li><a href="Mistral.html">Mistral</a></li>
+        <li><a href="module-MistralClient-MistralClient.html">MistralClient</a></li>
+        <li><a href="Stability.html">Stability</a></li>
+        <li><a href="module-StabilityClient-StabilityClient.html">StabilityClient</a></li>
+        <li><a href="TensorFlow.html">TensorFlow</a></li>
+        <li><a href="module-TensorFlowClient-TensorFlowClient.html">TensorFlowClient</a></li>
+    </ul>
+    
+    <h3>Global</h3>
+    <ul>
+        <li><a href="global.html#axios">axios</a></li>
+        <li><a href="global.html#connector">connector</a></li>
+        <li><a href="global.html#fs">fs</a></li>
+    </ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sun Oct 13 2024 14:40:07 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sun Nov 03 2024 14:32:28 GMT-0500 (Eastern Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

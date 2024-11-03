@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: DALLE</title>
+    <title>JSDoc: Class: Claude</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: DALLE</h1>
+    <h1 class="page-title">Class: Claude</h1>
 
     
 
@@ -28,10 +28,10 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>DALLE<span class="signature">(apiKey)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Claude<span class="signature">(apiKey)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">Represents a DALL-E AI instance
-Given a prompt and/or an input image, the model will generate a new image</div>
+            <div class="class-description">Represents a Claude AI instance
+Handles interaction with the Claude API for chat, completions, edits, and model information</div>
         
     
 </header>
@@ -46,7 +46,7 @@ Given a prompt and/or an input image, the model will generate a new image</div>
     
 
     
-    <h4 class="name" id="DALLE"><span class="type-signature"></span>new DALLE<span class="signature">(apiKey)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Claude"><span class="type-signature"></span>new Claude<span class="signature">(apiKey)</span><span class="type-signature"></span></h4>
     
 
     
@@ -54,7 +54,7 @@ Given a prompt and/or an input image, the model will generate a new image</div>
 
 
 <div class="description">
-    Create a DALLE instance
+    Create a Claude instance
 </div>
 
 
@@ -106,7 +106,7 @@ Given a prompt and/or an input image, the model will generate a new image</div>
 
             
 
-            <td class="description last">The API key for OpenAI</td>
+            <td class="description last">The API key for Claude</td>
         </tr>
 
     
@@ -147,7 +147,7 @@ Given a prompt and/or an input image, the model will generate a new image</div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_DALLE_DALLE.js.html">connectors/AI/DALLE/DALLE.js</a>, <a href="connectors_AI_DALLE_DALLE.js.html#line20">line 20</a>
+        <a href="connectors_AI_Claude_Claude.js.html">connectors/AI/Claude/Claude.js</a>, <a href="connectors_AI_Claude_Claude.js.html#line20">line 20</a>
     </li></ul></dd>
     
 
@@ -232,7 +232,7 @@ Given a prompt and/or an input image, the model will generate a new image</div>
     
 
     
-    <h4 class="name" id="createImage"><span class="type-signature">(async) </span>createImage<span class="signature">(prompt, modelID<span class="signature-attributes">opt</span>, newConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Array>}</span></h4>
+    <h4 class="name" id="cancelMessageBatch"><span class="type-signature">(async) </span>cancelMessageBatch<span class="signature">(messageBatchID)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
     
 
     
@@ -240,7 +240,7 @@ Given a prompt and/or an input image, the model will generate a new image</div>
 
 
 <div class="description">
-    Given a prompt and/or an input image, the model will generate a new image
+    (Beta) Batches may be canceled any time before processing ends
 </div>
 
 
@@ -264,11 +264,7 @@ Given a prompt and/or an input image, the model will generate a new image</div>
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
-        
-        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -280,113 +276,23 @@ Given a prompt and/or an input image, the model will generate a new image</div>
 
         <tr>
             
-                <td class="name"><code>prompt</code></td>
+                <td class="name"><code>messageBatchID</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">String</span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
 
             
-                <td class="default">
-                
-                </td>
-            
 
-            <td class="description last">A text description of the desired image(s)</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>modelID</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    "dall-e-2"
-                
-                </td>
-            
-
-            <td class="description last">(Optional) The ID of the model to use</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>newConfig</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    {}
-                
-                </td>
-            
-
-            <td class="description last">(Optional) Additional parameters to customize the request</td>
+            <td class="description last">ID of the Message Batch</td>
         </tr>
 
     
@@ -427,7 +333,7 @@ Given a prompt and/or an input image, the model will generate a new image</div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_DALLE_DALLE.js.html">connectors/AI/DALLE/DALLE.js</a>, <a href="connectors_AI_DALLE_DALLE.js.html#line86">line 86</a>
+        <a href="connectors_AI_Claude_Claude.js.html">connectors/AI/Claude/Claude.js</a>, <a href="connectors_AI_Claude_Claude.js.html#line126">line 126</a>
     </li></ul></dd>
     
 
@@ -457,794 +363,7 @@ Given a prompt and/or an input image, the model will generate a new image</div>
 <dl>
     <dt>
         <div class="param-desc">
-        - Will throw an error if an error occurs during the request
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
-
-
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    - A Promise that resolves the generated request
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise.&lt;Array></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="createImageEdit"><span class="type-signature">(async) </span>createImageEdit<span class="signature">(imagePath, prompt, modelID<span class="signature-attributes">opt</span>, newConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Array>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Creates an edited or extended image given an original image and a prompt
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>imagePath</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">The image PNG file (path - not file name) to edit</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>prompt</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">A text description of the desired image(s)</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>modelID</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    "dall-e-2"
-                
-                </td>
-            
-
-            <td class="description last">(Optional) The ID of the model to use</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>newConfig</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    {}
-                
-                </td>
-            
-
-            <td class="description last">(Optional) Additional parameters to customize the request</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_DALLE_DALLE.js.html">connectors/AI/DALLE/DALLE.js</a>, <a href="connectors_AI_DALLE_DALLE.js.html#line100">line 100</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        - Will throw an error if an error occurs during the request
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
-
-
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    - A Promise that resolves the generated request
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise.&lt;Array></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="createImageVariation"><span class="type-signature">(async) </span>createImageVariation<span class="signature">(imagePath, modelID<span class="signature-attributes">opt</span>, newConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Array>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Creates a variation of a given image
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>imagePath</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">The image PNG file (path - not file name) to use as the basis for the variation(s)</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>modelID</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    "dall-e-2"
-                
-                </td>
-            
-
-            <td class="description last">(Optional) The ID of the model to use</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>newConfig</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    {}
-                
-                </td>
-            
-
-            <td class="description last">(Optional) Additional parameters to customize the request</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_DALLE_DALLE.js.html">connectors/AI/DALLE/DALLE.js</a>, <a href="connectors_AI_DALLE_DALLE.js.html#line113">line 113</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        - Will throw an error if an error occurs during the request
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
-
-
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    - A Promise that resolves the generated request
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise.&lt;Array></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="getModel"><span class="type-signature">(async) </span>getModel<span class="signature">(modelID)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Retrieves a model instance, providing basic information about the model such as the owner and permissioning
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>modelID</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The ID of the model to use for this request</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_DALLE_DALLE.js.html">connectors/AI/DALLE/DALLE.js</a>, <a href="connectors_AI_DALLE_DALLE.js.html#line71">line 71</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        - Will throw an error if an error occurs during the request
+        - Will throw an error if an error occurs during chat completion generation
         </div>
     </dt>
     <dd></dd>
@@ -1301,7 +420,7 @@ Given a prompt and/or an input image, the model will generate a new image</div>
     
 
     
-    <h4 class="name" id="getModels"><span class="type-signature">(async) </span>getModels<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;Array>}</span></h4>
+    <h4 class="name" id="createMessage"><span class="type-signature">(async) </span>createMessage<span class="signature">(messagesArray, modelID<span class="signature-attributes">opt</span>, maxTokens<span class="signature-attributes">opt</span>, newConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
     
 
     
@@ -1309,7 +428,7 @@ Given a prompt and/or an input image, the model will generate a new image</div>
 
 
 <div class="description">
-    Lists the currently available models, and provides basic information about each one such as the owner and availability
+    Send a structured list of input messages with text
 </div>
 
 
@@ -1318,6 +437,188 @@ Given a prompt and/or an input image, the model will generate a new image</div>
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>messagesArray</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">A list of messages describing the conversation so far</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>modelID</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    "claude-3-5-sonnet-20240620"
+                
+                </td>
+            
+
+            <td class="description last">(Optional) The ID of the model to use</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>maxTokens</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    1024
+                
+                </td>
+            
+
+            <td class="description last">(Optional) The maximum number of tokens to generate before stopping</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>newConfig</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    {}
+                
+                </td>
+            
+
+            <td class="description last">(Optional) Additional parameters to customize the request</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -1353,7 +654,7 @@ Given a prompt and/or an input image, the model will generate a new image</div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_DALLE_DALLE.js.html">connectors/AI/DALLE/DALLE.js</a>, <a href="connectors_AI_DALLE_DALLE.js.html#line60">line 60</a>
+        <a href="connectors_AI_Claude_Claude.js.html">connectors/AI/Claude/Claude.js</a>, <a href="connectors_AI_Claude_Claude.js.html#line55">line 55</a>
     </li></ul></dd>
     
 
@@ -1383,7 +684,7 @@ Given a prompt and/or an input image, the model will generate a new image</div>
 <dl>
     <dt>
         <div class="param-desc">
-        - Will throw an error if an error occurs during the request
+        - Will throw an error if an error occurs during chat completion generation
         </div>
     </dt>
     <dd></dd>
@@ -1422,7 +723,7 @@ Given a prompt and/or an input image, the model will generate a new image</div>
     </dt>
     <dd>
         
-<span class="param-type">Promise.&lt;Array></span>
+<span class="param-type">Promise.&lt;Object></span>
 
 
     </dd>
@@ -1440,7 +741,7 @@ Given a prompt and/or an input image, the model will generate a new image</div>
     
 
     
-    <h4 class="name" id="setOrganizationId"><span class="type-signature"></span>setOrganizationId<span class="signature">(organizationID)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="createMessageBatch"><span class="type-signature">(async) </span>createMessageBatch<span class="signature">(requests)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
     
 
     
@@ -1448,7 +749,7 @@ Given a prompt and/or an input image, the model will generate a new image</div>
 
 
 <div class="description">
-    Set the Organization ID to the ChatGPTClient instance
+    (Beta) The Message Batches API can be used to process multiple Messages API requests at once
 </div>
 
 
@@ -1484,13 +785,13 @@ Given a prompt and/or an input image, the model will generate a new image</div>
 
         <tr>
             
-                <td class="name"><code>organizationID</code></td>
+                <td class="name"><code>requests</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">Array</span>
 
 
             
@@ -1500,7 +801,7 @@ Given a prompt and/or an input image, the model will generate a new image</div>
 
             
 
-            <td class="description last">The organization ID for OpenAI instance</td>
+            <td class="description last">List of requests for prompt completion. Each is an individual request to create a Message</td>
         </tr>
 
     
@@ -1541,7 +842,7 @@ Given a prompt and/or an input image, the model will generate a new image</div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_DALLE_DALLE.js.html">connectors/AI/DALLE/DALLE.js</a>, <a href="connectors_AI_DALLE_DALLE.js.html#line40">line 40</a>
+        <a href="connectors_AI_Claude_Claude.js.html">connectors/AI/Claude/Claude.js</a>, <a href="connectors_AI_Claude_Claude.js.html#line82">line 82</a>
     </li></ul></dd>
     
 
@@ -1571,7 +872,7 @@ Given a prompt and/or an input image, the model will generate a new image</div>
 <dl>
     <dt>
         <div class="param-desc">
-        - Will throw an error if an error occurs during the request
+        - Will throw an error if an error occurs during chat completion generation
         </div>
     </dt>
     <dd></dd>
@@ -1595,6 +896,28 @@ Given a prompt and/or an input image, the model will generate a new image</div>
     
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - A Promise that resolves the generated request
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Object></span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -1606,7 +929,7 @@ Given a prompt and/or an input image, the model will generate a new image</div>
     
 
     
-    <h4 class="name" id="setProjectId"><span class="type-signature"></span>setProjectId<span class="signature">(projectID)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="createMessageStream"><span class="type-signature">(async) </span>createMessageStream<span class="signature">(messagesArray, modelID<span class="signature-attributes">opt</span>, maxTokens<span class="signature-attributes">opt</span>, newConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
     
 
     
@@ -1614,7 +937,7 @@ Given a prompt and/or an input image, the model will generate a new image</div>
 
 
 <div class="description">
-    Set the Project ID to the ChatGPTClient instance
+    Send a structured list of input messages with text (Streaming)
 </div>
 
 
@@ -1638,7 +961,11 @@ Given a prompt and/or an input image, the model will generate a new image</div>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -1650,23 +977,152 @@ Given a prompt and/or an input image, the model will generate a new image</div>
 
         <tr>
             
-                <td class="name"><code>projectID</code></td>
+                <td class="name"><code>messagesArray</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">Array</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last">The Project ID for OpenAI instance</td>
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">A list of messages describing the conversation so far</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>modelID</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    "claude-3-5-sonnet-20240620"
+                
+                </td>
+            
+
+            <td class="description last">(Optional) The ID of the model to use</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>maxTokens</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    1024
+                
+                </td>
+            
+
+            <td class="description last">(Optional) The maximum number of tokens to generate before stopping</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>newConfig</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    {}
+                
+                </td>
+            
+
+            <td class="description last">(Optional) Additional parameters to customize the request</td>
         </tr>
 
     
@@ -1707,7 +1163,779 @@ Given a prompt and/or an input image, the model will generate a new image</div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_DALLE_DALLE.js.html">connectors/AI/DALLE/DALLE.js</a>, <a href="connectors_AI_DALLE_DALLE.js.html#line48">line 48</a>
+        <a href="connectors_AI_Claude_Claude.js.html">connectors/AI/Claude/Claude.js</a>, <a href="connectors_AI_Claude_Claude.js.html#line69">line 69</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        - Will throw an error if an error occurs during chat completion generation
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - A Promise that resolves the generated request
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Object></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="getMessageBatch"><span class="type-signature">(async) </span>getMessageBatch<span class="signature">(messageBatchID)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    (Beta) This endpoint is idempotent and can be used to poll for Message Batch completion
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>messageBatchID</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">ID of the Message Batch</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="connectors_AI_Claude_Claude.js.html">connectors/AI/Claude/Claude.js</a>, <a href="connectors_AI_Claude_Claude.js.html#line93">line 93</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        - Will throw an error if an error occurs during chat completion generation
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - A Promise that resolves the generated request
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Object></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="getMessageBatchList"><span class="type-signature">(async) </span>getMessageBatchList<span class="signature">(newConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    (Beta) List all Message Batches within a Workspace
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>newConfig</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    {}
+                
+                </td>
+            
+
+            <td class="description last">(Optional) Additional parameters to customize the request</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="connectors_AI_Claude_Claude.js.html">connectors/AI/Claude/Claude.js</a>, <a href="connectors_AI_Claude_Claude.js.html#line115">line 115</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        - Will throw an error if an error occurs during chat completion generation
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - A Promise that resolves the generated request
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Object></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="getMessageBatchResults"><span class="type-signature">(async) </span>getMessageBatchResults<span class="signature">(messageBatchID)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    (Beta) Streams the results of a Message Batch as a .jsonl file
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>messageBatchID</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">ID of the Message Batch</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="connectors_AI_Claude_Claude.js.html">connectors/AI/Claude/Claude.js</a>, <a href="connectors_AI_Claude_Claude.js.html#line104">line 104</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        - Will throw an error if an error occurs during chat completion generation
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - A Promise that resolves the generated request
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Object></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="setAnthropicVersion"><span class="type-signature"></span>setAnthropicVersion<span class="signature">(version)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Set the anthropic-version request header
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>version</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The anthropic-version request header</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="connectors_AI_Claude_Claude.js.html">connectors/AI/Claude/Claude.js</a>, <a href="connectors_AI_Claude_Claude.js.html#line39">line 39</a>
     </li></ul></dd>
     
 

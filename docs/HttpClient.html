@@ -672,6 +672,220 @@ Initializes the Axios client with a base URL and optional default headers.
     
 
     
+    <h4 class="name" id="getFull"><span class="type-signature">(async) </span>getFull<span class="signature">(endpoint, params<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Send an HTTP GET request to the specified endpoint with optional query parameters (data complete)
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>endpoint</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The API endpoint to which the GET request will be sent (relative to the baseURL).</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    {}
+                
+                </td>
+            
+
+            <td class="description last">Optional query parameters to include in the request URL.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="connectors_HttpClient_HttpClient.js.html">connectors/HttpClient/HttpClient.js</a>, <a href="connectors_HttpClient_HttpClient.js.html#line115">line 115</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - Resolves with the response data from the API.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Object></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="patch"><span class="type-signature">(async) </span>patch<span class="signature">(endpoint, headers<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
     
 
@@ -1560,35 +1774,53 @@ Initializes the Axios client with a base URL and optional default headers.
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2>
+    <h2>
+        <a href="index.html">Home</a>
+    </h2>
     <h3>Modules</h3>
-        <ul>
-            <li><a href="module-AIConnectifyFactory.html">AIConnectifyFactory</a></li>
-        </ul>
+    <ul>
+        <li><a href="module-AIConnectifyFactory.html">AIConnectifyFactory</a></li>
+    </ul>
+    
     <h3>Classes</h3>
-        <ul>
-            <li><a href="AIConnectify.html">AIConnectify</a></li>
-            <li><a href="global.html#AIConnectifyError">AIConnectifyError</a></li>
-            <li><a href="AIRegistry.html">AIRegistry</a></li>
-            <li><a href="ChatGPT.html">ChatGPT</a></li>
-            <li><a href="module-ChatGPTClient-ChatGPTClient.html">ChatGPTClient</a></li>
-            <li><a href="Cohere.html">Cohere</a></li>
-            <li><a href="module-CohereClient-CohereClient.html">CohereClient</a></li>
-            <li><a href="DALLE.html">DALLE</a></li>
-            <li><a href="module-DALLEClient-DALLEClient.html">DALLEClient</a></li>
-            <li><a href="HelperFunctions.html">HelperFunctions</a></li>
-            <li><a href="HttpClient.html">HttpClient</a></li>
-            <li><a href="Stability.html">Stability</a></li>
-            <li><a href="module-StabilityClient-StabilityClient.html">StabilityClient</a></li>
-            <li><a href="TensorFlow.html">TensorFlow</a></li>
-            <li><a href="module-TensorFlowClient-TensorFlowClient.html">TensorFlowClient</a></li>
-        </ul>
+    <ul>
+        <li><a href="AIConnectify.html">AIConnectify</a></li>
+        <li><a href="global.html#AIConnectifyError">AIConnectifyError</a></li>
+        <li><a href="AIRegistry.html">AIRegistry</a></li>
+        <li><a href="HttpClient.html">HttpClient</a></li>
+    </ul>
+
+    <h3>AI Classes</h3>
+    <ul>
+        <li><a href="ChatGPT.html">ChatGPT</a></li>
+        <li><a href="module-ChatGPTClient-ChatGPTClient.html">ChatGPTClient</a></li>
+        <li><a href="Claude.html">Claude</a></li>
+        <li><a href="module-ClaudeClient-ClaudeClient.html">ClaudeClient</a></li>
+        <li><a href="Cohere.html">Cohere</a></li>
+        <li><a href="module-CohereClient-CohereClient.html">CohereClient</a></li>
+        <li><a href="DALLE.html">DALLE</a></li>
+        <li><a href="module-DALLEClient-DALLEClient.html">DALLEClient</a></li>
+        <li><a href="HelperFunctions.html">HelperFunctions</a></li>
+        <li><a href="Mistral.html">Mistral</a></li>
+        <li><a href="module-MistralClient-MistralClient.html">MistralClient</a></li>
+        <li><a href="Stability.html">Stability</a></li>
+        <li><a href="module-StabilityClient-StabilityClient.html">StabilityClient</a></li>
+        <li><a href="TensorFlow.html">TensorFlow</a></li>
+        <li><a href="module-TensorFlowClient-TensorFlowClient.html">TensorFlowClient</a></li>
+    </ul>
+    
+    <h3>Global</h3>
+    <ul>
+        <li><a href="global.html#axios">axios</a></li>
+        <li><a href="global.html#connector">connector</a></li>
+        <li><a href="global.html#fs">fs</a></li>
+    </ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sun Oct 13 2024 14:40:07 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sun Nov 03 2024 14:32:28 GMT-0500 (Eastern Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: AIConnectifyError.js</title>
+    <title>JSDoc: Source: connectors/AI/Mistral/MistralClient.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: AIConnectifyError.js</h1>
+    <h1 class="page-title">Source: connectors/AI/Mistral/MistralClient.js</h1>
 
     
 
@@ -34,24 +34,76 @@
 'use strict';
 
 /**
-* Create an Error with the specified message, config, error code, request and response
-* Represents an error that occurred in AIConnectify
-* @class AIConnectifyError
-* @extends Error
+* @module MistralClient
 */
-class AIConnectifyError extends Error {
+/**
+* Module and dependencies
+*/
+const fs = require('fs');
+const path = require('path');
+const HelperFunctions = require('../../../helpers/HelperFunctions');
+const HttpClient = require('../../HttpClient/HttpClient');
+
+/**
+* Represents a service for interacting with the Mistral API
+* @class
+*/
+class MistralClient {
     /**
-    * Create an Error with the specified message
+    * Create a Mistral service instance
     * @constructor
-    * @param {string} message - The error message
+    * @param {string} apiKey - The API key for OpenAI
     */
-    constructor(message) {
-        super(message);
-        this.name = 'AIConnectifyError';
+    constructor(apiKey) {
+        this.aiName = 'Mistral';
+        this.aiApiKey = apiKey;
+        this.httpRequest = this._createHttpClient();
+        this._loadMethods();
+    }
+
+    /**
+    * Loads all available methods from the 'methods' directory
+    * and assigns them to the current instance
+    * @private
+    */
+    _loadMethods() {
+        const methodsPath = path.join(__dirname, 'methods'); 
+        const methodFiles = fs.readdirSync(methodsPath);
+
+        methodFiles.forEach((file) => {
+            const methodName = path.basename(file, '.js');
+            const method = require(path.join(methodsPath, file));
+
+            this[methodName] = async (...args) => {
+                return method(this.httpRequest, this.throwError.bind(this), ...args);
+            };
+        });
+    }
+
+    /** 
+    * Create a new HttpClient instance using the class constructor params
+    * @private
+    * @returns {HttpClient} A new HttpClient instance
+    */
+    _createHttpClient(){
+        return new HttpClient('https://api.mistral.ai/v1', { Authorization: `Bearer ${this.aiApiKey}` });
+    }
+
+    /**
+    * Throw a formatted AIConnectifyError with the AI service and error message
+    * @private
+    * @param {Object} error - The error object caught during the request
+    * @throws {AIConnectifyError} - Throws an error with a message detailing the AI service and error description
+    */
+    throwError(error){
+        const errorMsg = error.response 
+            ? `${this.aiName.toUpperCase()} ERROR => ${error.status} - ${error.response.data.detail}` 
+            : `Unexpected request error - ${error}`;;
+        this.httpRequest.throwError(errorMsg);
     }
 }
-  
-module.exports = AIConnectifyError;</code></pre>
+
+module.exports = MistralClient;</code></pre>
         </article>
     </section>
 

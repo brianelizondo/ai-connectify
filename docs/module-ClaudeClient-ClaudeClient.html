@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: AIConnectifyFactory</title>
+    <title>JSDoc: Class: ClaudeClient</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: AIConnectifyFactory</h1>
+    <h1 class="page-title">Class: ClaudeClient</h1>
 
     
 
@@ -28,8 +28,10 @@
 
 <header>
     
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="module-ClaudeClient.html">ClaudeClient</a>~</span>ClaudeClient<span class="signature">(apiKey)</span><span class="type-signature"></span></h2>
         
-            
+            <div class="class-description">Represents a service for interacting with the Claude API</div>
         
     
 </header>
@@ -38,113 +40,13 @@
     <div class="container-overview">
     
         
-            <div class="description">Module and dependencies</div>
-        
 
-        
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
+    
+    <h2>Constructor</h2>
     
 
     
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AIConnectifyFactory.js.html">connectors/AIConnectifyFactory.js</a>, <a href="connectors_AIConnectifyFactory.js.html#line8">line 8</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="~createAIInstance"><span class="type-signature">(inner) </span>createAIInstance<span class="signature">(ai, apiKey<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="ClaudeClient"><span class="type-signature"></span>new ClaudeClient<span class="signature">(apiKey)</span><span class="type-signature"></span></h4>
     
 
     
@@ -152,9 +54,7 @@
 
 
 <div class="description">
-    Creates an instance of the AI connector for the specified AI
-This function retrieves the AI class and API key requirement from the AIRegistry,
-validates the API key if needed, and returns a new instance of the AI class.
+    Create a Claude service instance
 </div>
 
 
@@ -178,11 +78,7 @@ validates the API key if needed, and returns a new instance of the AI class.
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
-        
-        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -190,41 +86,6 @@ validates the API key if needed, and returns a new instance of the AI class.
     </thead>
 
     <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>ai</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">The name of the AI to use (e.g. TensorFlowNode, ChatGPT, DALLE, or Cohere)</td>
-        </tr>
-
     
 
         <tr>
@@ -242,26 +103,10 @@ validates the API key if needed, and returns a new instance of the AI class.
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
 
             
-                <td class="default">
-                
-                    null
-                
-                </td>
-            
 
-            <td class="description last">The API key required for some AIs. It can be null if the AI does not need an API key</td>
+            <td class="description last">The API key for OpenAI</td>
         </tr>
 
     
@@ -302,7 +147,164 @@ validates the API key if needed, and returns a new instance of the AI class.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AIConnectifyFactory.js.html">connectors/AIConnectifyFactory.js</a>, <a href="connectors_AIConnectifyFactory.js.html#line15">line 15</a>
+        <a href="connectors_AI_Claude_ClaudeClient.js.html">connectors/AI/Claude/ClaudeClient.js</a>, <a href="connectors_AI_Claude_ClaudeClient.js.html#line23">line 23</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="setAnthropicVersion"><span class="type-signature"></span>setAnthropicVersion<span class="signature">(version)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Set the anthropic-version request header
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>version</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The anthropic-version request header</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="connectors_AI_Claude_ClaudeClient.js.html">connectors/AI/Claude/ClaudeClient.js</a>, <a href="connectors_AI_Claude_ClaudeClient.js.html#line73">line 73</a>
     </li></ul></dd>
     
 
@@ -332,7 +334,7 @@ validates the API key if needed, and returns a new instance of the AI class.
 <dl>
     <dt>
         <div class="param-desc">
-        Throws an error if the API key is required but not provided
+        - Will throw an error if an error occurs during the request
         </div>
     </dt>
     <dd></dd>
@@ -356,28 +358,6 @@ validates the API key if needed, and returns a new instance of the AI class.
     
 
 
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    An instance of the AI connector
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-    </dd>
-</dl>
-
-    
 
 
 

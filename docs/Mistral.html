@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: ChatGPT</title>
+    <title>JSDoc: Class: Mistral</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: ChatGPT</h1>
+    <h1 class="page-title">Class: Mistral</h1>
 
     
 
@@ -28,10 +28,10 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>ChatGPT<span class="signature">(apiKey)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Mistral<span class="signature">(apiKey)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">Represents a ChatGPT AI instance
-Handles interaction with the OpenAI API for chat, completions, edits, and model information</div>
+            <div class="class-description">Represents a Mistral AI instance
+Handles interaction with the Mistral API for multilingual, code generation, maths, and advanced reasoning capabilities.</div>
         
     
 </header>
@@ -46,7 +46,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
     
 
     
-    <h4 class="name" id="ChatGPT"><span class="type-signature"></span>new ChatGPT<span class="signature">(apiKey)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Mistral"><span class="type-signature"></span>new Mistral<span class="signature">(apiKey)</span><span class="type-signature"></span></h4>
     
 
     
@@ -54,7 +54,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
 
 
 <div class="description">
-    Create a ChatGPT instance
+    Create a Mistral instance
 </div>
 
 
@@ -147,7 +147,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_ChatGPT_ChatGPT.js.html">connectors/AI/ChatGPT/ChatGPT.js</a>, <a href="connectors_AI_ChatGPT_ChatGPT.js.html#line20">line 20</a>
+        <a href="connectors_AI_Mistral_Mistral.js.html">connectors/AI/Mistral/Mistral.js</a>, <a href="connectors_AI_Mistral_Mistral.js.html#line15">line 15</a>
     </li></ul></dd>
     
 
@@ -232,6 +232,472 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
     
 
     
+    <h4 class="name" id="agentsCompletion"><span class="type-signature">(async) </span>agentsCompletion<span class="signature">(messagesArray, agentID, newConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Agents API
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>messagesArray</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The prompt(s) to generate completions for, encoded as a list of dict with role and content</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>agentID</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The ID of the agent to use for this completion</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>newConfig</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    {}
+                
+                </td>
+            
+
+            <td class="description last">(Optional) Additional parameters to customize the request</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="connectors_AI_Mistral_Mistral.js.html">connectors/AI/Mistral/Mistral.js</a>, <a href="connectors_AI_Mistral_Mistral.js.html#line92">line 92</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        - Will throw an error if an error occurs during chat completion generation
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - A Promise that resolves the generated request
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Object></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="archiveFineTuningModel"><span class="type-signature">(async) </span>archiveFineTuningModel<span class="signature">(fine_tuning_model_id)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Archive a fine-tuned model
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fine_tuning_model_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The ID of the job to archive</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="connectors_AI_Mistral_Mistral.js.html">connectors/AI/Mistral/Mistral.js</a>, <a href="connectors_AI_Mistral_Mistral.js.html#line191">line 191</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        - Will throw an error if an error occurs during the request
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - A Promise that resolves the generated request
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Object></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="cancelFineTuningJob"><span class="type-signature">(async) </span>cancelFineTuningJob<span class="signature">(fine_tuning_job_id)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
     
 
@@ -240,7 +706,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
 
 
 <div class="description">
-    Immediately cancel a fine-tune job
+    Request the cancellation of a fine tuning job
 </div>
 
 
@@ -333,7 +799,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_ChatGPT_ChatGPT.js.html">connectors/AI/ChatGPT/ChatGPT.js</a>, <a href="connectors_AI_ChatGPT_ChatGPT.js.html#line243">line 243</a>
+        <a href="connectors_AI_Mistral_Mistral.js.html">connectors/AI/Mistral/Mistral.js</a>, <a href="connectors_AI_Mistral_Mistral.js.html#line166">line 166</a>
     </li></ul></dd>
     
 
@@ -428,7 +894,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
 
 
 <div class="description">
-    Creates a model response for the given chat conversation
+    Chat Completion API
 </div>
 
 
@@ -496,7 +962,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
                 </td>
             
 
-            <td class="description last">A list of messages describing the conversation so far</td>
+            <td class="description last">The prompt(s) to generate completions for, encoded as a list of dict with role and content</td>
         </tr>
 
     
@@ -530,7 +996,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
             
                 <td class="default">
                 
-                    "gpt-4o-mini"
+                    "mistral-small-latest"
                 
                 </td>
             
@@ -615,7 +1081,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_ChatGPT_ChatGPT.js.html">connectors/AI/ChatGPT/ChatGPT.js</a>, <a href="connectors_AI_ChatGPT_ChatGPT.js.html#line98">line 98</a>
+        <a href="connectors_AI_Mistral_Mistral.js.html">connectors/AI/Mistral/Mistral.js</a>, <a href="connectors_AI_Mistral_Mistral.js.html#line62">line 62</a>
     </li></ul></dd>
     
 
@@ -702,292 +1168,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
     
 
     
-    <h4 class="name" id="createEmbeddings"><span class="type-signature">(async) </span>createEmbeddings<span class="signature">(input, modelID<span class="signature-attributes">opt</span>, newConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Array>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Get a vector representation of a given input that can be easily consumed by machine learning models and algorithms
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>input</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">Array</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">Input text to embed, encoded as a string or array of tokens</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>modelID</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    "text-embedding-ada-002"
-                
-                </td>
-            
-
-            <td class="description last">(Optional) The ID of the model to use</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>newConfig</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    {}
-                
-                </td>
-            
-
-            <td class="description last">(Optional) Additional parameters to customize the request</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_ChatGPT_ChatGPT.js.html">connectors/AI/ChatGPT/ChatGPT.js</a>, <a href="connectors_AI_ChatGPT_ChatGPT.js.html#line113">line 113</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        - Will throw an error if an error occurs during generation
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
-
-
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    - A Promise that resolves the generated request
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise.&lt;Array></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="createFineTuningJob"><span class="type-signature">(async) </span>createFineTuningJob<span class="signature">(training_file_id, modelID<span class="signature-attributes">opt</span>, newConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
+    <h4 class="name" id="createFineTuningJob"><span class="type-signature">(async) </span>createFineTuningJob<span class="signature">(hyperparameters, modelID<span class="signature-attributes">opt</span>, newConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
     
 
     
@@ -1035,13 +1216,13 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
 
         <tr>
             
-                <td class="name"><code>training_file_id</code></td>
+                <td class="name"><code>hyperparameters</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">Object</span>
 
 
             
@@ -1063,7 +1244,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
                 </td>
             
 
-            <td class="description last">The ID of an uploaded file that contains training data</td>
+            <td class="description last">The fine-tuning hyperparameter settings used in a fine-tune job</td>
         </tr>
 
     
@@ -1097,7 +1278,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
             
                 <td class="default">
                 
-                    "gpt-4o-mini"
+                    "mistral-small-latest"
                 
                 </td>
             
@@ -1182,7 +1363,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_ChatGPT_ChatGPT.js.html">connectors/AI/ChatGPT/ChatGPT.js</a>, <a href="connectors_AI_ChatGPT_ChatGPT.js.html#line232">line 232</a>
+        <a href="connectors_AI_Mistral_Mistral.js.html">connectors/AI/Mistral/Mistral.js</a>, <a href="connectors_AI_Mistral_Mistral.js.html#line144">line 144</a>
     </li></ul></dd>
     
 
@@ -1269,7 +1450,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
     
 
     
-    <h4 class="name" id="createModeration"><span class="type-signature">(async) </span>createModeration<span class="signature">(input, modelID<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
+    <h4 class="name" id="deleteFineTuningModel"><span class="type-signature">(async) </span>deleteFineTuningModel<span class="signature">(fine_tuning_model_id)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
     
 
     
@@ -1277,1212 +1458,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
 
 
 <div class="description">
-    Given some input text, outputs if the model classifies it as potentially harmful across several categories
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>input</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">Array</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">Input (or inputs) to classify</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>modelID</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    "omni-moderation-latest"
-                
-                </td>
-            
-
-            <td class="description last">(Optional) The ID of the model to use</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_ChatGPT_ChatGPT.js.html">connectors/AI/ChatGPT/ChatGPT.js</a>, <a href="connectors_AI_ChatGPT_ChatGPT.js.html#line127">line 127</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        - Will throw an error if an error occurs during generation
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
-
-
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    - A Promise that resolves the generated request
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise.&lt;Object></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="createSpeech"><span class="type-signature">(async) </span>createSpeech<span class="signature">(input, destinationFolder, modelID<span class="signature-attributes">opt</span>, voice<span class="signature-attributes">opt</span>, response_format<span class="signature-attributes">opt</span>, newConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Generates audio from the input text
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>input</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">The text to generate audio for. The maximum length is 4096 characters</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>destinationFolder</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">Folder path to save the file generated</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>modelID</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    "tts-1"
-                
-                </td>
-            
-
-            <td class="description last">(Optional) The ID of the model to use</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>voice</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    "alloy"
-                
-                </td>
-            
-
-            <td class="description last">(Optional) The voice to use when generating the audio</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>response_format</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    "mp3"
-                
-                </td>
-            
-
-            <td class="description last">(Optional) The format to audio in</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>newConfig</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    {}
-                
-                </td>
-            
-
-            <td class="description last">(Optional) Additional parameters to customize the request</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_ChatGPT_ChatGPT.js.html">connectors/AI/ChatGPT/ChatGPT.js</a>, <a href="connectors_AI_ChatGPT_ChatGPT.js.html#line145">line 145</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        - Will throw an error if an error occurs during generation
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
-
-
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    - A Promise that resolves the generated request
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise.&lt;Object></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="createTranscription"><span class="type-signature">(async) </span>createTranscription<span class="signature">(filePath, modelID<span class="signature-attributes">opt</span>, newConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;String>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Transcribes audio into the input language
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>filePath</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">The audio file object (path - not file name) to transcribe</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>modelID</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    "whisper-1"
-                
-                </td>
-            
-
-            <td class="description last">(Optional) The ID of the model to use</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>newConfig</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    {}
-                
-                </td>
-            
-
-            <td class="description last">(Optional) Additional parameters to customize the request</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_ChatGPT_ChatGPT.js.html">connectors/AI/ChatGPT/ChatGPT.js</a>, <a href="connectors_AI_ChatGPT_ChatGPT.js.html#line158">line 158</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        - Will throw an error if an error occurs during generation
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
-
-
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    - A Promise that resolves the generated request
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise.&lt;String></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="createTranslation"><span class="type-signature">(async) </span>createTranslation<span class="signature">(filePath, modelID<span class="signature-attributes">opt</span>, newConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;String>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Translates audio into English
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>filePath</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">The audio file object (path - not file name) to transcribe</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>modelID</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    "whisper-1"
-                
-                </td>
-            
-
-            <td class="description last">(Optional) The ID of the model to use</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>newConfig</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    {}
-                
-                </td>
-            
-
-            <td class="description last">(Optional) Additional parameters to customize the request</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_ChatGPT_ChatGPT.js.html">connectors/AI/ChatGPT/ChatGPT.js</a>, <a href="connectors_AI_ChatGPT_ChatGPT.js.html#line171">line 171</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        - Will throw an error if an error occurs during generation
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
-
-
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    - A Promise that resolves the generated request
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise.&lt;String></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="deleteFineTunedModel"><span class="type-signature">(async) </span>deleteFineTunedModel<span class="signature">(modelID)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Delete a fine-tuned model. You must have the Owner role in your organization to delete a model
+    Delete a fine-tuned model
 </div>
 
 
@@ -2518,7 +1494,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
 
         <tr>
             
-                <td class="name"><code>modelID</code></td>
+                <td class="name"><code>fine_tuning_model_id</code></td>
             
 
             <td class="type">
@@ -2575,7 +1551,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_ChatGPT_ChatGPT.js.html">connectors/AI/ChatGPT/ChatGPT.js</a>, <a href="connectors_AI_ChatGPT_ChatGPT.js.html#line82">line 82</a>
+        <a href="connectors_AI_Mistral_Mistral.js.html">connectors/AI/Mistral/Mistral.js</a>, <a href="connectors_AI_Mistral_Mistral.js.html#line213">line 213</a>
     </li></ul></dd>
     
 
@@ -2606,6 +1582,569 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
     <dt>
         <div class="param-desc">
         - Will throw an error if an error occurs during the request
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - A Promise that resolves the generated request
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Object></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="embeddings"><span class="type-signature">(async) </span>embeddings<span class="signature">(input, modelID, newConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Embeddings API
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>input</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Input (string) or Array of Input (strings) (Input)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>modelID</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The ID of the model to use</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>newConfig</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    {}
+                
+                </td>
+            
+
+            <td class="description last">(Optional) Additional parameters to customize the request</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="connectors_AI_Mistral_Mistral.js.html">connectors/AI/Mistral/Mistral.js</a>, <a href="connectors_AI_Mistral_Mistral.js.html#line107">line 107</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        - Will throw an error if an error occurs during chat completion generation
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - A Promise that resolves the generated request
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Object></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="fimCompletion"><span class="type-signature">(async) </span>fimCompletion<span class="signature">(prompt, modelID<span class="signature-attributes">opt</span>, newConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Fill-in-the-middle API
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>prompt</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The text/code to complete</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>modelID</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    "codestral-2405"
+                
+                </td>
+            
+
+            <td class="description last">(Optional) The ID of the model to use</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>newConfig</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    {}
+                
+                </td>
+            
+
+            <td class="description last">(Optional) Additional parameters to customize the request</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="connectors_AI_Mistral_Mistral.js.html">connectors/AI/Mistral/Mistral.js</a>, <a href="connectors_AI_Mistral_Mistral.js.html#line77">line 77</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        - Will throw an error if an error occurs during chat completion generation
         </div>
     </dt>
     <dd></dd>
@@ -2670,7 +2209,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
 
 
 <div class="description">
-    Get info about a fine-tuning job
+    Get a fine-tuned job details by its UUID
 </div>
 
 
@@ -2722,7 +2261,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
 
             
 
-            <td class="description last">The ID of the fine-tuning job</td>
+            <td class="description last">The ID of the job to analyse</td>
         </tr>
 
     
@@ -2763,493 +2302,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_ChatGPT_ChatGPT.js.html">connectors/AI/ChatGPT/ChatGPT.js</a>, <a href="connectors_AI_ChatGPT_ChatGPT.js.html#line184">line 184</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        - Will throw an error if an error occurs during the request
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
-
-
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    - A Promise that resolves the generated request
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise.&lt;Object></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="getFineTuningJobCheckpoints"><span class="type-signature">(async) </span>getFineTuningJobCheckpoints<span class="signature">(fine_tuning_job_id, newConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    List checkpoints for a fine-tuning job
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>fine_tuning_job_id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">The ID of the fine-tuning job to get checkpoints for</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>newConfig</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    {}
-                
-                </td>
-            
-
-            <td class="description last">(Optional) Additional parameters to customize the request</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_ChatGPT_ChatGPT.js.html">connectors/AI/ChatGPT/ChatGPT.js</a>, <a href="connectors_AI_ChatGPT_ChatGPT.js.html#line219">line 219</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        - Will throw an error if an error occurs during the request
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
-
-
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    - A Promise that resolves the generated request
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise.&lt;Object></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="getFineTuningJobEvents"><span class="type-signature">(async) </span>getFineTuningJobEvents<span class="signature">(fine_tuning_job_id, newConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Get status updates for a fine-tuning job
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>fine_tuning_job_id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">The ID of the fine-tuning job to get events for</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>newConfig</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    {}
-                
-                </td>
-            
-
-            <td class="description last">(Optional) Additional parameters to customize the request</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_ChatGPT_ChatGPT.js.html">connectors/AI/ChatGPT/ChatGPT.js</a>, <a href="connectors_AI_ChatGPT_ChatGPT.js.html#line207">line 207</a>
+        <a href="connectors_AI_Mistral_Mistral.js.html">connectors/AI/Mistral/Mistral.js</a>, <a href="connectors_AI_Mistral_Mistral.js.html#line131">line 131</a>
     </li></ul></dd>
     
 
@@ -3344,7 +2397,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
 
 
 <div class="description">
-    List your organization's fine-tuning jobs
+    Get a list of fine-tuning jobs for your organization and user
 </div>
 
 
@@ -3457,7 +2510,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_ChatGPT_ChatGPT.js.html">connectors/AI/ChatGPT/ChatGPT.js</a>, <a href="connectors_AI_ChatGPT_ChatGPT.js.html#line195">line 195</a>
+        <a href="connectors_AI_Mistral_Mistral.js.html">connectors/AI/Mistral/Mistral.js</a>, <a href="connectors_AI_Mistral_Mistral.js.html#line120">line 120</a>
     </li></ul></dd>
     
 
@@ -3552,7 +2605,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
 
 
 <div class="description">
-    Retrieves a model instance, providing basic information about the model such as the owner and permissioning
+    Retrieve a model information
 </div>
 
 
@@ -3645,7 +2698,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_ChatGPT_ChatGPT.js.html">connectors/AI/ChatGPT/ChatGPT.js</a>, <a href="connectors_AI_ChatGPT_ChatGPT.js.html#line71">line 71</a>
+        <a href="connectors_AI_Mistral_Mistral.js.html">connectors/AI/Mistral/Mistral.js</a>, <a href="connectors_AI_Mistral_Mistral.js.html#line47">line 47</a>
     </li></ul></dd>
     
 
@@ -3740,7 +2793,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
 
 
 <div class="description">
-    Lists the currently available models, and provides basic information about each one such as the owner and availability
+    List all models available to the user
 </div>
 
 
@@ -3784,7 +2837,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_ChatGPT_ChatGPT.js.html">connectors/AI/ChatGPT/ChatGPT.js</a>, <a href="connectors_AI_ChatGPT_ChatGPT.js.html#line60">line 60</a>
+        <a href="connectors_AI_Mistral_Mistral.js.html">connectors/AI/Mistral/Mistral.js</a>, <a href="connectors_AI_Mistral_Mistral.js.html#line36">line 36</a>
     </li></ul></dd>
     
 
@@ -3871,7 +2924,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
     
 
     
-    <h4 class="name" id="setOrganizationId"><span class="type-signature"></span>setOrganizationId<span class="signature">(organizationID)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="startFineTuningJob"><span class="type-signature">(async) </span>startFineTuningJob<span class="signature">(fine_tuning_job_id)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
     
 
     
@@ -3879,7 +2932,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
 
 
 <div class="description">
-    Set the Organization ID to the ChatGPTClient instance
+    Request the start of a validated fine tuning job
 </div>
 
 
@@ -3915,7 +2968,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
 
         <tr>
             
-                <td class="name"><code>organizationID</code></td>
+                <td class="name"><code>fine_tuning_job_id</code></td>
             
 
             <td class="type">
@@ -3931,7 +2984,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
 
             
 
-            <td class="description last">The organization ID for OpenAI instance</td>
+            <td class="description last">The ID of the job to analyse</td>
         </tr>
 
     
@@ -3972,7 +3025,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_ChatGPT_ChatGPT.js.html">connectors/AI/ChatGPT/ChatGPT.js</a>, <a href="connectors_AI_ChatGPT_ChatGPT.js.html#line40">line 40</a>
+        <a href="connectors_AI_Mistral_Mistral.js.html">connectors/AI/Mistral/Mistral.js</a>, <a href="connectors_AI_Mistral_Mistral.js.html#line155">line 155</a>
     </li></ul></dd>
     
 
@@ -4026,6 +3079,28 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
     
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - A Promise that resolves the generated request
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Object></span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -4037,7 +3112,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
     
 
     
-    <h4 class="name" id="setProjectId"><span class="type-signature"></span>setProjectId<span class="signature">(projectID)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="unarchiveFineTuningModel"><span class="type-signature">(async) </span>unarchiveFineTuningModel<span class="signature">(fine_tuning_model_id)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
     
 
     
@@ -4045,7 +3120,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
 
 
 <div class="description">
-    Set the Project ID to the ChatGPTClient instance
+    Unarchive a fine-tuned model
 </div>
 
 
@@ -4081,7 +3156,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
 
         <tr>
             
-                <td class="name"><code>projectID</code></td>
+                <td class="name"><code>fine_tuning_model_id</code></td>
             
 
             <td class="type">
@@ -4097,7 +3172,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
 
             
 
-            <td class="description last">The Project ID for OpenAI instance</td>
+            <td class="description last">The ID of the job to unarchive</td>
         </tr>
 
     
@@ -4138,7 +3213,7 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="connectors_AI_ChatGPT_ChatGPT.js.html">connectors/AI/ChatGPT/ChatGPT.js</a>, <a href="connectors_AI_ChatGPT_ChatGPT.js.html#line48">line 48</a>
+        <a href="connectors_AI_Mistral_Mistral.js.html">connectors/AI/Mistral/Mistral.js</a>, <a href="connectors_AI_Mistral_Mistral.js.html#line202">line 202</a>
     </li></ul></dd>
     
 
@@ -4192,6 +3267,271 @@ Handles interaction with the OpenAI API for chat, completions, edits, and model 
     
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - A Promise that resolves the generated request
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Object></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="updateFineTuningModel"><span class="type-signature">(async) </span>updateFineTuningModel<span class="signature">(fine_tuning_model_id, newConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Update a model name or description
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fine_tuning_model_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The ID of the model to update</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>newConfig</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    {}
+                
+                </td>
+            
+
+            <td class="description last">(Optional) Name and description to update the model</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="connectors_AI_Mistral_Mistral.js.html">connectors/AI/Mistral/Mistral.js</a>, <a href="connectors_AI_Mistral_Mistral.js.html#line180">line 180</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        - Will throw an error if an error occurs during the request
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type"><a href="global.html#AIConnectifyError">AIConnectifyError</a></span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - A Promise that resolves the generated request
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Object></span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 

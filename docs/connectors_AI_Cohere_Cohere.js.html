@@ -103,14 +103,15 @@ class Cohere {
     /**
     * Generates an embedding list of floating point numbers that captures semantic information about the text that it represents
     * @async
-    * @param {string} texts - An array of strings for the model to embed
-    * @param {string} [modelID="embed-english-v2.0"] - (Optional) The ID of the model to use
+    * @param {string} input_type - Specifies the type of input passed to the model
+    * @param {Array} embedding_types - Specifies the types of embeddings you want to get back
+    * @param {string} [modelID="embed-english-v3.0"] - (Optional) The ID of the model to use
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
     * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    async embed(texts, modelID="embed-english-v2.0", newConfig={}) {
-        return this.client.embed(texts, modelID, newConfig);
+    async embed(input_type, embedding_types, modelID="embed-english-v3.0", newConfig={}) {
+        return this.client.embed(input_type, embedding_types, modelID, newConfig);
     }
 
     /**
@@ -138,13 +139,13 @@ class Cohere {
     * Launches an async Embed job for a Dataset of type embed-input
     * @async
     * @param {string} dataset_id - ID of a Dataset. The Dataset must be of type embed-input
-    * @param {string} [modelID="embed-english-light-v3.0"] - (Optional) The ID of the model to use
+    * @param {string} [modelID="embed-english-v3.0"] - (Optional) The ID of the model to use
     * @param {string} [input_type="classification"] - (Optional) Specifies the type of input passed to the model
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
     * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    async createEmbedJob(dataset_id, modelID="embed-english-light-v3.0", input_type="classification", newConfig={}) {
+    async createEmbedJob(dataset_id, modelID="embed-english-v3.0", input_type="classification", newConfig={}) {
         return this.client.createEmbedJob(dataset_id, modelID, input_type, newConfig);
     }
 
@@ -183,12 +184,12 @@ class Cohere {
     * @async
     * @param {Array} inputs - A list of up to 96 texts to be classified
     * @param {Array} [examples=[]] - (Optional) An array of examples to provide context to the model. Each example is a text string and its associated label/class
-    * @param {string} [modelID="embed-english-light-v2.0"] - (Optional) The ID of the model to use
+    * @param {string} [modelID="embed-english-v2.0"] - (Optional) The ID of the model to use
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
     * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    async classify(inputs, examples=[], modelID="embed-english-light-v2.0", newConfig={}) {
+    async classify(inputs, examples=[], modelID="embed-english-v2.0", newConfig={}) {
         return this.client.classify(inputs, examples, modelID, newConfig);
     }
 
@@ -231,12 +232,12 @@ class Cohere {
     * @async
     * @param {string} name - The name of the uploaded dataset
     * @param {string} filePath - File to create the dataset
-    * @param {string} [type="embed-input"] - (Optional) The dataset type, which is used to validate the data
+    * @param {string} type - The dataset type, which is used to validate the data
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
     * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    async createDataset(name, filePath, type="embed-input", newConfig={}) {
+    async createDataset(name, filePath, type, newConfig={}) {
         return this.client.createDataset(name, filePath, type, newConfig);
     }
 
@@ -257,11 +258,11 @@ class Cohere {
     * Generates a splits input text into smaller units called tokens using byte-pair encoding (BPE)
     * @async
     * @param {string} text The string to be tokenized
-    * @param {string} [modelID="command"] - (Optional) The ID of the model to use
+    * @param {string} [modelID="command-r-plus-08-2024"] - (Optional) The ID of the model to use
     * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    async tokenize(text, modelID="command") {
+    async tokenize(text, modelID="command-r-plus-08-2024") {
         return this.client.tokenize(text, modelID);
     }
 
@@ -269,11 +270,11 @@ class Cohere {
     * Takes tokens using byte-pair encoding and returns their text representation
     * @async
     * @param {Array} tokens The string to be tokenized
-    * @param {string} [modelID="command"] - (Optional) The ID of the model to use
+    * @param {string} [modelID="command-r-plus-08-2024"] - (Optional) The ID of the model to use
     * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    async detokenize(tokens, modelID="command") {
+    async detokenize(tokens, modelID="command-r-plus-08-2024") {
         return this.client.detokenize(tokens, modelID);
     }
 
@@ -351,9 +352,21 @@ class Cohere {
     }
 
     /**
+    * Authorize with oAuth a connector by ID
+    * @async
+    * @param {string} connector_id - The ID of the connector to authorize
+    * @param {string} [afterTokenRedirectUrl=false] - (Optional) The URL to redirect to after the connector has been authorized
+    * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
+    * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
+    */
+    async authorizeConnector(connector_id, afterTokenRedirectUrl=false) {
+        return this.client.authorizeConnector(connector_id, afterTokenRedirectUrl);
+    }
+
+    /**
     * Delete a connector by ID
     * @async
-    * @param {string} connector_id - The ID of the dataset to delete
+    * @param {string} connector_id - The ID of the connector to delete
     * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
@@ -393,8 +406,8 @@ class Cohere {
     * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    async getFineTunedChronology(finetuned_model_id, newConfig={}) {
-        return this.client.getFineTunedChronology(finetuned_model_id, newConfig);
+    async getFineTunedModelChronology(finetuned_model_id, newConfig={}) {
+        return this.client.getFineTunedModelChronology(finetuned_model_id, newConfig);
     }
 
     /**
@@ -405,8 +418,8 @@ class Cohere {
     * @returns {Promise&lt;Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    async getFineTunedMetrics(finetuned_model_id, newConfig={}) {
-        return this.client.getFineTunedMetrics(finetuned_model_id, newConfig);
+    async getFineTunedModelMetrics(finetuned_model_id, newConfig={}) {
+        return this.client.getFineTunedModelMetrics(finetuned_model_id, newConfig);
     }
 
     /**
@@ -458,35 +471,53 @@ module.exports = Cohere;</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2>
+    <h2>
+        <a href="index.html">Home</a>
+    </h2>
     <h3>Modules</h3>
-        <ul>
-            <li><a href="module-AIConnectifyFactory.html">AIConnectifyFactory</a></li>
-        </ul>
+    <ul>
+        <li><a href="module-AIConnectifyFactory.html">AIConnectifyFactory</a></li>
+    </ul>
+    
     <h3>Classes</h3>
-        <ul>
-            <li><a href="AIConnectify.html">AIConnectify</a></li>
-            <li><a href="global.html#AIConnectifyError">AIConnectifyError</a></li>
-            <li><a href="AIRegistry.html">AIRegistry</a></li>
-            <li><a href="ChatGPT.html">ChatGPT</a></li>
-            <li><a href="module-ChatGPTClient-ChatGPTClient.html">ChatGPTClient</a></li>
-            <li><a href="Cohere.html">Cohere</a></li>
-            <li><a href="module-CohereClient-CohereClient.html">CohereClient</a></li>
-            <li><a href="DALLE.html">DALLE</a></li>
-            <li><a href="module-DALLEClient-DALLEClient.html">DALLEClient</a></li>
-            <li><a href="HelperFunctions.html">HelperFunctions</a></li>
-            <li><a href="HttpClient.html">HttpClient</a></li>
-            <li><a href="Stability.html">Stability</a></li>
-            <li><a href="module-StabilityClient-StabilityClient.html">StabilityClient</a></li>
-            <li><a href="TensorFlow.html">TensorFlow</a></li>
-            <li><a href="module-TensorFlowClient-TensorFlowClient.html">TensorFlowClient</a></li>
-        </ul>
+    <ul>
+        <li><a href="AIConnectify.html">AIConnectify</a></li>
+        <li><a href="global.html#AIConnectifyError">AIConnectifyError</a></li>
+        <li><a href="AIRegistry.html">AIRegistry</a></li>
+        <li><a href="HttpClient.html">HttpClient</a></li>
+    </ul>
+
+    <h3>AI Classes</h3>
+    <ul>
+        <li><a href="ChatGPT.html">ChatGPT</a></li>
+        <li><a href="module-ChatGPTClient-ChatGPTClient.html">ChatGPTClient</a></li>
+        <li><a href="Claude.html">Claude</a></li>
+        <li><a href="module-ClaudeClient-ClaudeClient.html">ClaudeClient</a></li>
+        <li><a href="Cohere.html">Cohere</a></li>
+        <li><a href="module-CohereClient-CohereClient.html">CohereClient</a></li>
+        <li><a href="DALLE.html">DALLE</a></li>
+        <li><a href="module-DALLEClient-DALLEClient.html">DALLEClient</a></li>
+        <li><a href="HelperFunctions.html">HelperFunctions</a></li>
+        <li><a href="Mistral.html">Mistral</a></li>
+        <li><a href="module-MistralClient-MistralClient.html">MistralClient</a></li>
+        <li><a href="Stability.html">Stability</a></li>
+        <li><a href="module-StabilityClient-StabilityClient.html">StabilityClient</a></li>
+        <li><a href="TensorFlow.html">TensorFlow</a></li>
+        <li><a href="module-TensorFlowClient-TensorFlowClient.html">TensorFlowClient</a></li>
+    </ul>
+    
+    <h3>Global</h3>
+    <ul>
+        <li><a href="global.html#axios">axios</a></li>
+        <li><a href="global.html#connector">connector</a></li>
+        <li><a href="global.html#fs">fs</a></li>
+    </ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sun Oct 13 2024 14:40:07 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sun Nov 03 2024 14:32:28 GMT-0500 (Eastern Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

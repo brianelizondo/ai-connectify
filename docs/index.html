@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>AI-Connectify Documentation</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -43,9 +43,9 @@
 
 
     <section>
-        <article><p><a href="https://github.com/brianelizondo/ai-connectify"><img src="images/ai_connectify_logo.png" alt="AI Connectify Logo"></a></p>
+        <article><p><a href="https://github.com/brianelizondo/ai-connectify"><img src="images/ai_connectify_logo.png" alt="AI-Connectify Logo"></a></p>
 <h1>AI-Connectify</h1>
-<p><strong>AI-Connectify</strong> is a JavaScript library for connecting to various AI services at the same time, including ChatGPT, Cohere, DALL-E, Stability and TensorFlow. With AI-Connectify, you can easily access to AI services to perform a variety of tasks, including natural language processing, image processing, and more.</p>
+<p><strong>AI-Connectify</strong> is a JavaScript library for connecting to various AI services at the same time. With AI-Connectify, you can easily access to AI services to perform a variety of tasks, including natural language processing, image processing, and more.</p>
 <p><img src="https://img.shields.io/npm/v/ai-connectify" alt="npm">
 <img src="https://img.shields.io/bundlephobia/min/ai-connectify?label=install%20size" alt="npm bundle size">
 <img src="https://img.shields.io/npm/dw/ai-connectify" alt="npm"></p>
@@ -54,16 +54,17 @@
 <li><strong><a href="#ai-connectify">AI-Connectify</a></strong>
 <ul>
 <li><a href="#table-of-contents">Table of Contents</a></li>
-<li><a href="#currently-supported-ai-services">Currently supported AI services</a></li>
 <li><a href="#features">Features</a></li>
 <li><a href="#installation">Installation</a></li>
-<li><a href="#examples">Examples</a>
+<li><a href="#currently-supported-ai-services">Currently supported AI services</a>
 <ul>
-<li><a href="#start-a-new-chatgpt-instance">Start a new ChatGPT instance</a></li>
-<li><a href="#start-a-new-cohere-instance">Start a new Cohere instance</a></li>
-<li><a href="#start-a-new-dall-e-instance">Start a new DALL-E instance</a></li>
-<li><a href="#start-a-new-stability-instance">Start a new Stability instance</a></li>
-<li><a href="#start-a-new-tensorflow-instance">Start a new TensorFlow instance</a></li>
+<li><a href="#start-a-new-chatgpt-instance">ChatGPT instance</a></li>
+<li><a href="#start-a-new-claude-instance">Claude instance</a></li>
+<li><a href="#start-a-new-cohere-instance">Cohere instance</a></li>
+<li><a href="#start-a-new-dall-e-instance">DALL-E instance</a></li>
+<li><a href="#start-a-new-mistral-instance">Mistral instance</a></li>
+<li><a href="#start-a-new-stability-instance">Stability instance</a></li>
+<li><a href="#start-a-new-tensorflow-instance">TensorFlow instance</a></li>
 </ul>
 </li>
 <li><a href="#credits">Credits</a></li>
@@ -71,14 +72,6 @@
 <li><a href="#license">License</a></li>
 </ul>
 </li>
-</ul>
-<h2>Currently supported AI services</h2>
-<ul>
-<li>ChatGPT</li>
-<li>Cohere</li>
-<li>DALL-E</li>
-<li>Stability</li>
-<li>TensorFlow</li>
 </ul>
 <h2>Features</h2>
 <ul>
@@ -99,9 +92,9 @@ If this is a brand new project, make sure to create a <code>package.json</code> 
 <p>Once the package is installed, you can import the library using <code>import</code> or <code>require</code> approach:</p>
 <pre class="prettyprint source lang-js"><code>const AIConnectify = require('ai-connectify');
 </code></pre>
-<h2>Examples</h2>
+<h2>Currently supported AI services</h2>
 <p>Here are some examples of how to use <strong>AI-Connectify</strong>:</p>
-<h4>Start a new ChatGPT instance</h4>
+<h3>Start a new ChatGPT instance</h3>
 <pre class="prettyprint source lang-js"><code>const chatGPT = new AIConnectify(&quot;ChatGPT&quot;, &quot;YOUR_OPENAI_API_KEY&quot;).connector;
 </code></pre>
 <p><strong>List of Available Methods:</strong></p>
@@ -122,16 +115,8 @@ If this is a brand new project, make sure to create a <code>package.json</code> 
 <td>Set the Project ID to the ChatGPTClient instance</td>
 </tr>
 <tr>
-<td>getModels</td>
-<td>Lists the currently available models, and provides basic information about each one such as the owner and availability</td>
-</tr>
-<tr>
-<td>getModel</td>
-<td>Retrieves a model instance, providing basic information about the model such as the owner and permissioning</td>
-</tr>
-<tr>
-<td>delFineTunedModel</td>
-<td>Delete a fine-tuned model. You must have the Owner role in your organization to delete a model</td>
+<td>cancelFineTuningJob</td>
+<td>Immediately cancel a fine-tune job</td>
 </tr>
 <tr>
 <td>createChatCompletion</td>
@@ -140,6 +125,10 @@ If this is a brand new project, make sure to create a <code>package.json</code> 
 <tr>
 <td>createEmbeddings</td>
 <td>Get a vector representation of a given input that can be easily consumed by machine learning models and algorithms</td>
+</tr>
+<tr>
+<td>createFineTuningJob</td>
+<td>Creates a fine-tuning job which begins the process of creating a new model from a given dataset</td>
 </tr>
 <tr>
 <td>createModeration</td>
@@ -158,36 +147,90 @@ If this is a brand new project, make sure to create a <code>package.json</code> 
 <td>Translates audio into English</td>
 </tr>
 <tr>
+<td>deleteFineTunedModel</td>
+<td>Delete a fine-tuned model. You must have the Owner role in your organization to delete a model</td>
+</tr>
+<tr>
 <td>getFineTuningJob</td>
 <td>Get info about a fine-tuning job</td>
+</tr>
+<tr>
+<td>getFineTuningJobCheckpoints</td>
+<td>List checkpoints for a fine-tuning job</td>
+</tr>
+<tr>
+<td>getFineTuningJobEvents</td>
+<td>Get status updates for a fine-tuning job</td>
 </tr>
 <tr>
 <td>getFineTuningJobs</td>
 <td>List your organization's fine-tuning jobs</td>
 </tr>
 <tr>
-<td>getFineTuningEvents</td>
-<td>Get status updates for a fine-tuning job</td>
+<td>getModel</td>
+<td>Retrieves a model instance, providing basic information about the model such as the owner and permissioning</td>
 </tr>
 <tr>
-<td>getFineTuningCheckpoints</td>
-<td>List checkpoints for a fine-tuning job</td>
-</tr>
-<tr>
-<td>createFineTuning</td>
-<td>Creates a fine-tuning job which begins the process of creating a new model from a given dataset</td>
-</tr>
-<tr>
-<td>cancelFineTuning</td>
-<td>Immediately cancel a fine-tune job</td>
+<td>getModels</td>
+<td>Lists the currently available models, and provides basic information about each one such as the owner and availability</td>
 </tr>
 </tbody>
 </table>
 <blockquote>
 <p><strong>Note:</strong> OpenAI API Reference
-You can interact with a ChatGPT instance using like reference the parameters and returns specified in the <a href="https://platform.openai.com/docs/api-reference/completions">OpenAI API Reference</a>.</p>
+You can interact with a ChatGPT instance using like reference the parameters and returns specified in the <a href="https://platform.openai.com/docs/api-reference/introduction">OpenAI API Reference</a>.</p>
 </blockquote>
-<h4>Start a new Cohere instance</h4>
+<h3>Start a new Claude instance</h3>
+<pre class="prettyprint source lang-js"><code>const claude = new AIConnectify(&quot;Claude&quot;, &quot;YOUR_CLAUDE_API_KEY&quot;).connector;
+</code></pre>
+<p><strong>List of Available Methods:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>setAnthropicVersion</td>
+<td>Set the anthropic-version request header</td>
+</tr>
+<tr>
+<td>cancelMessageBatch</td>
+<td>(Beta) Batches may be canceled any time before processing ends</td>
+</tr>
+<tr>
+<td>createMessage</td>
+<td>Send a structured list of input messages with text and/or image content</td>
+</tr>
+<tr>
+<td>createMessageBatch</td>
+<td>(Beta) The Message Batches API can be used to process multiple Messages API requests at once</td>
+</tr>
+<tr>
+<td>createMessageStream</td>
+<td>Send a structured list of input messages with text and/or image content</td>
+</tr>
+<tr>
+<td>getMessageBatch</td>
+<td>(Beta) The Message Batches API can be used to process multiple Messages API requests at once</td>
+</tr>
+<tr>
+<td>getMessageBatchList</td>
+<td>(Beta) List all Message Batches within a Workspace</td>
+</tr>
+<tr>
+<td>getMessageBatchResults</td>
+<td>(Beta) Streams the results of a Message Batch as a .jsonl file</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note:</strong> Anthropic Claude API Reference
+You can interact with a Claude instance using like reference the parameters and returns specified in the <a href="https://docs.anthropic.com/en/api/getting-started">Anthropic Claude API Reference</a>.</p>
+</blockquote>
+<h3>Start a new Cohere instance</h3>
 <pre class="prettyprint source lang-js"><code>const cohere = new AIConnectify(&quot;Cohere&quot;, &quot;YOUR_COHERE_API_KEY&quot;).connector;
 </code></pre>
 <p><strong>List of Available Methods:</strong></p>
@@ -204,8 +247,12 @@ You can interact with a ChatGPT instance using like reference the parameters and
 <td>Set the name of the project that is making the request</td>
 </tr>
 <tr>
-<td>checkApiKey</td>
-<td>Checks that the api key in the Authorization header is valid and active</td>
+<td>authorizeConnector</td>
+<td>Authorize with oAuth a connector by ID</td>
+</tr>
+<tr>
+<td>cancelEmbedJob</td>
+<td>Allows to cancel an active embed job</td>
 </tr>
 <tr>
 <td>chat</td>
@@ -216,112 +263,116 @@ You can interact with a ChatGPT instance using like reference the parameters and
 <td>Generates a text response to a user message with streaming (stream of events)</td>
 </tr>
 <tr>
-<td>embed</td>
-<td>Generates an embedding list of floating point numbers that captures semantic information about the text that it represents</td>
-</tr>
-<tr>
-<td>getEmbedJobs</td>
-<td>Generates a list embed job endpoint allows users to view all embed jobs history for that specific user</td>
-</tr>
-<tr>
-<td>getEmbedJob</td>
-<td>Retrieves the details about an embed job started by the same user</td>
-</tr>
-<tr>
-<td>createEmbedJob</td>
-<td>Launches an async Embed job for a Dataset of type embed-input</td>
-</tr>
-<tr>
-<td>cancelEmbedJob</td>
-<td>Allows to cancel an active embed job</td>
-</tr>
-<tr>
-<td>rerank</td>
-<td>Takes in a query and a list of texts and produces an ordered array with each text assigned a relevance score</td>
+<td>checkApiKey</td>
+<td>Checks that the api key in the Authorization header is valid and active</td>
 </tr>
 <tr>
 <td>classify</td>
 <td>Makes a prediction about which label fits the specified text inputs best</td>
 </tr>
 <tr>
-<td>getDatasets</td>
-<td>Generates a list datasets that have been created</td>
-</tr>
-<tr>
-<td>getDataset</td>
-<td>Retrieve a dataset by ID</td>
-</tr>
-<tr>
-<td>getDatasetUsage</td>
-<td>Retrieves the dataset storage usage for your Organization</td>
+<td>createConnector</td>
+<td>Creates a new connector</td>
 </tr>
 <tr>
 <td>createDataset</td>
 <td>Create a dataset by uploading a file</td>
 </tr>
 <tr>
-<td>deleteDataset</td>
-<td>Delete a dataset by ID</td>
-</tr>
-<tr>
-<td>tokenize</td>
-<td>Generates a splits input text into smaller units called tokens using byte-pair encoding (BPE)</td>
-</tr>
-<tr>
-<td>detokenize</td>
-<td>Takes tokens using byte-pair encoding and returns their text representation</td>
-</tr>
-<tr>
-<td>getModels</td>
-<td>List of models available for use. The list contains models from Cohere as well as your fine-tuned models</td>
-</tr>
-<tr>
-<td>getModel</td>
-<td>Returns the details of a model, provided its name</td>
-</tr>
-<tr>
-<td>getConnectors</td>
-<td>Returns a list of connectors ordered by descending creation date (newer first)</td>
-</tr>
-<tr>
-<td>getConnector</td>
-<td>Retrieve a connector by ID</td>
-</tr>
-<tr>
-<td>createConnector</td>
-<td>Creates a new connector</td>
-</tr>
-<tr>
-<td>deleteConnector</td>
-<td>Delete a connector by ID</td>
-</tr>
-<tr>
-<td>getFineTunedModels</td>
-<td>Returns a list of fine-tuned models available for use</td>
-</tr>
-<tr>
-<td>getFineTunedModel</td>
-<td>Retrieve a fine-tuned model by ID</td>
-</tr>
-<tr>
-<td>getFineTunedChronology</td>
-<td>Retrieves the chronology of statuses the fine-tuned model has been through</td>
-</tr>
-<tr>
-<td>getFineTunedMetrics</td>
-<td>Retrieves metrics measured during the training of a fine-tuned model</td>
+<td>createEmbedJob</td>
+<td>Launches an async Embed job for a Dataset of type embed-input</td>
 </tr>
 <tr>
 <td>createFineTunedModel</td>
 <td>Trains and deploys a fine-tuned model</td>
 </tr>
 <tr>
-<td>updateFineTunedModel</td>
-<td>Updates a fine-tuned model by ID</td>
+<td>deleteConnector</td>
+<td>Delete a connector by ID</td>
+</tr>
+<tr>
+<td>deleteDataset</td>
+<td>Delete a dataset by ID</td>
 </tr>
 <tr>
 <td>deleteFineTunedModel</td>
 <td>Delete a fine-tuned model by ID</td>
+</tr>
+<tr>
+<td>detokenize</td>
+<td>Takes tokens using byte-pair encoding and returns their text representation</td>
+</tr>
+<tr>
+<td>embed</td>
+<td>Generates an embedding list of floating point numbers that captures semantic information about the text that it represents</td>
+</tr>
+<tr>
+<td>getConnector</td>
+<td>Retrieve a connector by ID</td>
+</tr>
+<tr>
+<td>getConnectors</td>
+<td>Returns a list of connectors ordered by descending creation date (newer first)</td>
+</tr>
+<tr>
+<td>getDataset</td>
+<td>Retrieve a dataset by ID</td>
+</tr>
+<tr>
+<td>getDatasets</td>
+<td>Generates a list datasets that have been created</td>
+</tr>
+<tr>
+<td>getDatasetUsage</td>
+<td>Retrieves the dataset storage usage for your Organization</td>
+</tr>
+<tr>
+<td>getEmbedJob</td>
+<td>Retrieves the details about an embed job started by the same user</td>
+</tr>
+<tr>
+<td>getEmbedJobs</td>
+<td>Generates a list embed job endpoint allows users to view all embed jobs history for that specific user</td>
+</tr>
+<tr>
+<td>getFineTunedModel</td>
+<td>Retrieve a fine-tuned model by ID</td>
+</tr>
+<tr>
+<td>getFineTunedModelChronology</td>
+<td>Retrieves the chronology of statuses the fine-tuned model has been through</td>
+</tr>
+<tr>
+<td>getFineTunedModelMetrics</td>
+<td>Retrieves metrics measured during the training of a fine-tuned model</td>
+</tr>
+<tr>
+<td>getFineTunedModels</td>
+<td>Returns a list of fine-tuned models available for use</td>
+</tr>
+<tr>
+<td>getModel</td>
+<td>Returns the details of a model, provided its name</td>
+</tr>
+<tr>
+<td>getModels</td>
+<td>List of models available for use. The list contains models from Cohere as well as your fine-tuned models</td>
+</tr>
+<tr>
+<td>rerank</td>
+<td>Takes in a query and a list of texts and produces an ordered array with each text assigned a relevance score</td>
+</tr>
+<tr>
+<td>tokenize</td>
+<td>Generates a splits input text into smaller units called tokens using byte-pair encoding (BPE)</td>
+</tr>
+<tr>
+<td>updateConnector</td>
+<td>Update a connector by ID</td>
+</tr>
+<tr>
+<td>updateFineTunedModel</td>
+<td>Updates a fine-tuned model by ID</td>
 </tr>
 </tbody>
 </table>
@@ -329,7 +380,7 @@ You can interact with a ChatGPT instance using like reference the parameters and
 <p><strong>Note:</strong> Cohere API Reference
 You can interact with a Cohere instance using like reference the parameters and returns specified in the <a href="https://docs.cohere.com/reference/about">Cohere API Reference</a>.</p>
 </blockquote>
-<h4>Start a new DALL-E instance</h4>
+<h3>Start a new DALL-E instance</h3>
 <pre class="prettyprint source lang-js"><code>const dalle = new AIConnectify(&quot;DALLE&quot;, &quot;YOUR_OPENAI_API_KEY&quot;).connector;
 </code></pre>
 <p><strong>List of Available Methods:</strong></p>
@@ -350,12 +401,8 @@ You can interact with a Cohere instance using like reference the parameters and 
 <td>Set the Project ID to the ChatGPTClient instance</td>
 </tr>
 <tr>
-<td>getModels</td>
-<td>Lists the currently available models, and provides basic information about each one such as the owner and availability</td>
-</tr>
-<tr>
-<td>getModel</td>
-<td>Retrieves a model instance, providing basic information about the model such as the owner and permissioning</td>
+<td>createImageVariation</td>
+<td>Creates a variation of a given image</td>
 </tr>
 <tr>
 <td>createImage</td>
@@ -366,8 +413,12 @@ You can interact with a Cohere instance using like reference the parameters and 
 <td>Creates an edited or extended image given an original image and a prompt</td>
 </tr>
 <tr>
-<td>createImageVariation</td>
-<td>Creates a variation of a given image</td>
+<td>getModel</td>
+<td>Retrieves a model instance, providing basic information about the model such as the owner and permissioning</td>
+</tr>
+<tr>
+<td>getModels</td>
+<td>Lists the currently available models, and provides basic information about each one such as the owner and availability</td>
 </tr>
 </tbody>
 </table>
@@ -375,7 +426,85 @@ You can interact with a Cohere instance using like reference the parameters and 
 <p><strong>Note:</strong> OpenAI API Reference
 You can interact with a DALL-E instance using like reference the parameters and returns specified in the <a href="https://platform.openai.com/docs/api-reference/images">OpenAI API Reference</a>.</p>
 </blockquote>
-<h4>Start a new Stability instance</h4>
+<h3>Start a new Mistral instance</h3>
+<pre class="prettyprint source lang-js"><code>const mistral = new AIConnectify(&quot;Mistral&quot;, &quot;YOUR_OPENAI_API_KEY&quot;).connector;
+</code></pre>
+<p><strong>List of Available Methods:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>agentsCompletion</td>
+<td>Agents API</td>
+</tr>
+<tr>
+<td>archiveFineTuningModel</td>
+<td>Archive a fine-tuned model</td>
+</tr>
+<tr>
+<td>cancelFineTuningJob</td>
+<td>Request the cancellation of a fine tuning job</td>
+</tr>
+<tr>
+<td>createChatCompletion</td>
+<td>Chat Completion API</td>
+</tr>
+<tr>
+<td>createFineTuningJob</td>
+<td>Creates a fine-tuning job which begins the process of creating a new model from a given dataset</td>
+</tr>
+<tr>
+<td>deleteFineTuningModel</td>
+<td>Delete a fine-tuned model</td>
+</tr>
+<tr>
+<td>embeddings</td>
+<td>Embeddings API</td>
+</tr>
+<tr>
+<td>fimCompletion</td>
+<td>Fill-in-the-middle API</td>
+</tr>
+<tr>
+<td>getFineTuningJob</td>
+<td>Get a fine-tuned job details by its UUID</td>
+</tr>
+<tr>
+<td>getFineTuningJobs</td>
+<td>Get a list of fine-tuning jobs for your organization and user</td>
+</tr>
+<tr>
+<td>getModel</td>
+<td>Retrieve a model information</td>
+</tr>
+<tr>
+<td>getModels</td>
+<td>List all models available to the user</td>
+</tr>
+<tr>
+<td>startFineTuningJob</td>
+<td>Request the start of a validated fine tuning job</td>
+</tr>
+<tr>
+<td>unarchiveFineTuningModel</td>
+<td>Archive a fine-tuned model</td>
+</tr>
+<tr>
+<td>updateFineTuningModel</td>
+<td>Update a model name or description</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note:</strong> Mistral API Reference
+You can interact with a Mistral instance using like reference the parameters and returns specified in the <a href="https://docs.mistral.ai/api/">Mistral API Reference</a>.</p>
+</blockquote>
+<h3>Start a new Stability instance</h3>
 <pre class="prettyprint source lang-js"><code>const stability = new AIConnectify(&quot;Stability&quot;, &quot;YOUR_STABILITY_API_KEY&quot;).connector;
 </code></pre>
 <p><strong>List of Available Methods:</strong></p>
@@ -400,8 +529,20 @@ You can interact with a DALL-E instance using like reference the parameters and 
 <td>Set the version of your application</td>
 </tr>
 <tr>
-<td>generateImageUltra</td>
-<td>Creates the highest quality images with unprecedented prompt understanding</td>
+<td>controlSketch</td>
+<td>This service offers an ideal solution for design projects that require brainstorming and frequent iterations</td>
+</tr>
+<tr>
+<td>controlStructure</td>
+<td>This service excels in generating images by maintaining the structure of an input image</td>
+</tr>
+<tr>
+<td>controlStyle</td>
+<td>This service extracts stylistic elements from an input image (control image) and uses it to guide the creation of an output image based on the prompt</td>
+</tr>
+<tr>
+<td>erase</td>
+<td>Removes unwanted objects, such as blemishes on portraits or items on desks, using image masks</td>
 </tr>
 <tr>
 <td>generateImageCore</td>
@@ -412,24 +553,20 @@ You can interact with a DALL-E instance using like reference the parameters and 
 <td>Tools for generating new images using a Stable Diffusion 3 model</td>
 </tr>
 <tr>
-<td>upscaleConservative</td>
-<td>Tools for increasing the size of your existing images</td>
+<td>generateImageUltra</td>
+<td>Creates the highest quality images with unprecedented prompt understanding</td>
 </tr>
 <tr>
-<td>upscaleCreative</td>
-<td>Takes images between 64x64 and 1 megapixel and upscales them all the way to 4K resolution</td>
+<td>getImageToVideo</td>
+<td>Fetch the result of an image-to-video generation by ID</td>
 </tr>
 <tr>
 <td>getUpscaleCreative</td>
 <td>Fetch the result of an upscale generation by ID</td>
 </tr>
 <tr>
-<td>upscaleFast</td>
-<td>Fast Upscaler service enhances image resolution by 4x using predictive and generative AI</td>
-</tr>
-<tr>
-<td>erase</td>
-<td>Removes unwanted objects, such as blemishes on portraits or items on desks, using image masks</td>
+<td>imageToVideo</td>
+<td>Generate a short video based on an initial image with Stable Video Diffusion, a latent video diffusion model</td>
 </tr>
 <tr>
 <td>inpaint</td>
@@ -440,40 +577,32 @@ You can interact with a DALL-E instance using like reference the parameters and 
 <td>The Outpaint service inserts additional content in an image to fill in the space in any direction</td>
 </tr>
 <tr>
-<td>searchAndReplace</td>
-<td>The Search and Replace service is a specific version of inpainting that does not require a mask</td>
+<td>removeBackground</td>
+<td>The Remove Background service accurately segments the foreground from an image and implements and removes the background</td>
 </tr>
 <tr>
 <td>searchAndRecolor</td>
 <td>The Search and Recolor service provides the ability to change the color of a specific object in an image using a prompt</td>
 </tr>
 <tr>
-<td>removeBackground</td>
-<td>The Remove Background service accurately segments the foreground from an image and implements and removes the background</td>
+<td>searchAndReplace</td>
+<td>The Search and Replace service is a specific version of inpainting that does not require a mask</td>
 </tr>
 <tr>
-<td>controlSketch</td>
-<td>This service offers an ideal solution for design projects that require brainstorming and frequent iterations</td>
+<td>upscaleConservative</td>
+<td>Tools for increasing the size of your existing images</td>
 </tr>
 <tr>
-<td>controlStructure</td>
-<td>This service excels in generating images by maintaining the structure of an input image</td>
-</tr>
-<tr>
-<td>constrolStyle</td>
-<td>This service extracts stylistic elements from an input image (control image) and uses it to guide the creation of an output image based on the prompt</td>
+<td>upscaleCreative</td>
+<td>Takes images between 64x64 and 1 megapixel and upscales them all the way to 4K resolution</td>
 </tr>
 <tr>
 <td>videoStableFast</td>
 <td>Stable Fast 3D generates high-quality 3D assets from a single 2D input image</td>
 </tr>
 <tr>
-<td>imageToVideo</td>
-<td>Generate a short video based on an initial image with Stable Video Diffusion, a latent video diffusion model</td>
-</tr>
-<tr>
-<td>getImageToVideo</td>
-<td>Fetch the result of an image-to-video generation by ID</td>
+<td>upscaleFast</td>
+<td>Fast Upscaler service enhances image resolution by 4x using predictive and generative AI</td>
 </tr>
 </tbody>
 </table>
@@ -481,7 +610,7 @@ You can interact with a DALL-E instance using like reference the parameters and 
 <p><strong>Note:</strong> Stability API Reference
 You can interact with a Stability instance using like reference the parameters and returns specified in the <a href="https://platform.stability.ai/docs/api-reference">Stability API Reference</a>.</p>
 </blockquote>
-<h4>Start a new TensorFlow instance</h4>
+<h3>Start a new TensorFlow instance</h3>
 <pre class="prettyprint source lang-js"><code>const tf = new AIConnectify(&quot;TensorFlow&quot;).connector;
 </code></pre>
 <blockquote>
@@ -509,35 +638,53 @@ For more details, refer to the <a href="LICENSE">MIT</a> file.</p></article>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2>
+    <h2>
+        <a href="index.html">Home</a>
+    </h2>
     <h3>Modules</h3>
-        <ul>
-            <li><a href="module-AIConnectifyFactory.html">AIConnectifyFactory</a></li>
-        </ul>
+    <ul>
+        <li><a href="module-AIConnectifyFactory.html">AIConnectifyFactory</a></li>
+    </ul>
+    
     <h3>Classes</h3>
-        <ul>
-            <li><a href="AIConnectify.html">AIConnectify</a></li>
-            <li><a href="global.html#AIConnectifyError">AIConnectifyError</a></li>
-            <li><a href="AIRegistry.html">AIRegistry</a></li>
-            <li><a href="ChatGPT.html">ChatGPT</a></li>
-            <li><a href="module-ChatGPTClient-ChatGPTClient.html">ChatGPTClient</a></li>
-            <li><a href="Cohere.html">Cohere</a></li>
-            <li><a href="module-CohereClient-CohereClient.html">CohereClient</a></li>
-            <li><a href="DALLE.html">DALLE</a></li>
-            <li><a href="module-DALLEClient-DALLEClient.html">DALLEClient</a></li>
-            <li><a href="HelperFunctions.html">HelperFunctions</a></li>
-            <li><a href="HttpClient.html">HttpClient</a></li>
-            <li><a href="Stability.html">Stability</a></li>
-            <li><a href="module-StabilityClient-StabilityClient.html">StabilityClient</a></li>
-            <li><a href="TensorFlow.html">TensorFlow</a></li>
-            <li><a href="module-TensorFlowClient-TensorFlowClient.html">TensorFlowClient</a></li>
-        </ul>
+    <ul>
+        <li><a href="AIConnectify.html">AIConnectify</a></li>
+        <li><a href="global.html#AIConnectifyError">AIConnectifyError</a></li>
+        <li><a href="AIRegistry.html">AIRegistry</a></li>
+        <li><a href="HttpClient.html">HttpClient</a></li>
+    </ul>
+
+    <h3>AI Classes</h3>
+    <ul>
+        <li><a href="ChatGPT.html">ChatGPT</a></li>
+        <li><a href="module-ChatGPTClient-ChatGPTClient.html">ChatGPTClient</a></li>
+        <li><a href="Claude.html">Claude</a></li>
+        <li><a href="module-ClaudeClient-ClaudeClient.html">ClaudeClient</a></li>
+        <li><a href="Cohere.html">Cohere</a></li>
+        <li><a href="module-CohereClient-CohereClient.html">CohereClient</a></li>
+        <li><a href="DALLE.html">DALLE</a></li>
+        <li><a href="module-DALLEClient-DALLEClient.html">DALLEClient</a></li>
+        <li><a href="HelperFunctions.html">HelperFunctions</a></li>
+        <li><a href="Mistral.html">Mistral</a></li>
+        <li><a href="module-MistralClient-MistralClient.html">MistralClient</a></li>
+        <li><a href="Stability.html">Stability</a></li>
+        <li><a href="module-StabilityClient-StabilityClient.html">StabilityClient</a></li>
+        <li><a href="TensorFlow.html">TensorFlow</a></li>
+        <li><a href="module-TensorFlowClient-TensorFlowClient.html">TensorFlowClient</a></li>
+    </ul>
+    
+    <h3>Global</h3>
+    <ul>
+        <li><a href="global.html#axios">axios</a></li>
+        <li><a href="global.html#connector">connector</a></li>
+        <li><a href="global.html#fs">fs</a></li>
+    </ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sun Oct 13 2024 14:40:07 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sun Nov 03 2024 14:32:28 GMT-0500 (Eastern Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

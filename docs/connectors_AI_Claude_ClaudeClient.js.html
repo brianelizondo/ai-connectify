@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: connectors/AI/DALLE/DALLEClient.js</title>
+    <title>JSDoc: Source: connectors/AI/Claude/ClaudeClient.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: connectors/AI/DALLE/DALLEClient.js</h1>
+    <h1 class="page-title">Source: connectors/AI/Claude/ClaudeClient.js</h1>
 
     
 
@@ -34,7 +34,7 @@
 'use strict';
 
 /**
-* @module DALLEClient
+* @module ClaudeClient
 */
 /**
 * Module and dependencies
@@ -45,19 +45,19 @@ const HelperFunctions = require('../../../helpers/HelperFunctions');
 const HttpClient = require('../../HttpClient/HttpClient');
 
 /**
-* Represents a service for interacting with the DALLE API
-* @class 
+* Represents a service for interacting with the Claude API
+* @class
 */
-class DALLEClient {
+class ClaudeClient {
     /**
-    * Create a DALLE service instance
+    * Create a Claude service instance
     * @constructor
     * @param {string} apiKey - The API key for OpenAI
     */
     constructor(apiKey) {
-        this.aiName = 'DALL-E';
+        this.aiName = 'Claude';
         this.aiApiKey = apiKey;
-        this.organizationIDs = {};
+        this.anthropicVersion = "2023-06-01";
         this.httpRequest = this._createHttpClient();
         this._loadMethods();
     }
@@ -81,38 +81,30 @@ class DALLEClient {
         });
     }
 
-
     /** 
     * Create a new HttpClient instance using the class constructor params
     * @private
     * @returns {HttpClient} A new HttpClient instance
     */
     _createHttpClient(){
-        return new HttpClient('https://api.openai.com/v1', { 
-            Authorization: `Bearer ${this.aiApiKey}`, 
-            ...this.organizationIDs 
+        return new HttpClient('https://api.anthropic.com/v1', { 
+            'x-api-key': this.aiApiKey, 
+            'anthropic-version': this.anthropicVersion
         });
     }
+
     /** 
-    * Set the Organization ID to the ChatGPTClient instance
-    * @param {string} organizationID - The organization ID for OpenAI instance
-    * @throws {AIConnectifyError} Throws an error if the provided organization ID is invalid
+    * Set the anthropic-version request header
+    * @param {string} version - The anthropic-version request header
+    * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    setOrganizationId(organizationID){
-        HelperFunctions.validateKeyString(organizationID, `A valid Organization ID must be provided`);
-        this.organizationIDs['OpenAI-Organization'] = organizationID;
+    setAnthropicVersion(version){
+        HelperFunctions.validateStringInput(version, 'The version is required to set the new anthropic-version request header');
+        
+        this.anthropicVersion = version;
         this.httpRequest = this._createHttpClient();
     }
-    /** 
-    * Set the Project ID to the ChatGPTClient instance
-    * @param {string} projectID - The project ID for OpenAI instance
-    * @throws {AIConnectifyError} Throws an error if the provided project ID is invalid
-    */
-    setProjectId(projectID){
-        HelperFunctions.validateKeyString(projectID, `A valid Project ID must be provided`);
-        this.organizationIDs['OpenAI-Project'] = projectID;
-        this.httpRequest = this._createHttpClient();
-    }
+    
     /**
     * Throw a formatted AIConnectifyError with the AI service and error message
     * @private
@@ -121,14 +113,13 @@ class DALLEClient {
     */
     throwError(error){
         const errorMsg = error.response 
-            ? `${error.status} - ${error.response.data.error.message}` 
-            : `Unexpected request error - ${error}`;
-        this.httpRequest.throwError(`${this.aiName.toUpperCase()} ERROR => ${errorMsg}`);
+            ? `${this.aiName.toUpperCase()} ERROR => ${error.status} - ${error.response.data.error.message}` 
+            : `Unexpected request error`;
+        this.httpRequest.throwError(errorMsg);
     }
-
 }
 
-module.exports = DALLEClient;</code></pre>
+module.exports = ClaudeClient;</code></pre>
         </article>
     </section>
 
