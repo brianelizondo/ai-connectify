@@ -2,7 +2,8 @@ export = Stability;
 /**
 * Represents a Stability AI instance
 * Stability offer a growing set of methods to build the best in class image applications
-* @class Stability
+* @exports Stability
+* @class
 */
 declare class Stability {
     /**
@@ -58,17 +59,16 @@ declare class Stability {
     * Tools for generating new images using a Stable Diffusion 3 model
     * @async
     * @param {string} prompt - What you wish to see in the output image
-    * @param {string} pathImage - The  image (path - no the file name)  to use as the starting point for the generation
     * @param {string} destinationFolder - Folder path to save the image generated
     * @param {number} strength - Controls how much influence the image parameter has on the generated image
-    * @param {string} [modelID="sd3-large"] - (Optional) The ID of the model to use
+    * @param {string} [modelID="sd3.5-medium"] - (Optional) The ID of the model to use
     * @param {number} [mode="text-to-image"] - (Optional) Controls whether this is a text-to-image or image-to-image generation
     * @param {string} [output_format="png"] - (Optional) The output format for the response
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    generateImageDiffusion(prompt: string, pathImage: string, destinationFolder: string, strength: number, modelID?: string | undefined, mode?: number | undefined, output_format?: string | undefined, newConfig?: Object | undefined): Promise<Object>;
+    generateImageDiffusion(prompt: string, destinationFolder: string, strength: number, modelID?: string | undefined, mode?: number | undefined, output_format?: string | undefined, newConfig?: Object | undefined): Promise<Object>;
     /** UPSCALE METHODS **/
     /**
     * Tools for increasing the size of your existing images
@@ -98,12 +98,10 @@ declare class Stability {
     * @async
     * @param {string} upscaleId - The id of a generation, typically used for async generations
     * @param {string} destinationFolder - Folder path to save the image generated
-    * @param {string} [output_format="png"] - (Optional) The output format for the response
-    * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    getUpscaleCreative(upscaleId: string, destinationFolder: string, output_format?: string | undefined, newConfig?: Object | undefined): Promise<Object>;
+    getUpscaleCreative(upscaleId: string, destinationFolder: string): Promise<Object>;
     /**
     * Fast Upscaler service enhances image resolution by 4x using predictive and generative AI
     * @async
@@ -143,13 +141,12 @@ declare class Stability {
     * @async
     * @param {string} pathImage - The image (path - no the file name) you wish to outpaint
     * @param {string} destinationFolder - Folder path to save the image generated
-    * @param {string} [directions={ left:0, right:0, up:0, down:0 }] - (Optional) Along with at least one outpaint direction
     * @param {string} [output_format="png"] - (Optional) The output format for the response
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    outpaint(pathImage: string, destinationFolder: string, directions?: string | undefined, output_format?: string | undefined, newConfig?: Object | undefined): Promise<Object>;
+    outpaint(pathImage: string, destinationFolder: string, output_format?: string | undefined, newConfig?: Object | undefined): Promise<Object>;
     /**
     * The Search and Replace service is a specific version of inpainting that does not require a mask
     * @async
@@ -238,14 +235,13 @@ declare class Stability {
     * Generate a short video based on an initial image with Stable Video Diffusion, a latent video diffusion model
     * @async
     * @param {string} pathImage - The source image (path - no the file name) used in the video generation process
-    * @param {string} destinationFolder - Folder path to save the video generated
     * @param {string} [cfg_scale=1.8] - (Optional) How strongly the video sticks to the original image
     * @param {string} [motion_bucket_id=127] - (Optional) Lower values generally result in less motion in the output video
-    * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
+    * @param {Object} [seed=0] - (Optional) A specific value that is used to guide the 'randomness' of the generation
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    imageToVideo(pathImage: string, destinationFolder: string, cfg_scale?: string | undefined, motion_bucket_id?: string | undefined, newConfig?: Object | undefined): Promise<Object>;
+    imageToVideo(pathImage: string, cfg_scale?: string | undefined, motion_bucket_id?: string | undefined, seed?: Object | undefined): Promise<Object>;
     /**
     * Fetch the result of an image-to-video generation by ID
     * @async

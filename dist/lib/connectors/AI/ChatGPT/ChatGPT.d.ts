@@ -2,7 +2,8 @@ export = ChatGPT;
 /**
 * Represents a ChatGPT AI instance
 * Handles interaction with the OpenAI API for chat, completions, edits, and model information
-* @class ChatGPT
+* @exports ChatGPT
+* @class
 */
 declare class ChatGPT {
     /**
@@ -48,13 +49,13 @@ declare class ChatGPT {
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    delFineTunedModel(modelID: string): Promise<Object>;
+    deleteFineTunedModel(modelID: string): Promise<Object>;
     /** CHAT METHODS **/
     /**
     * Creates a model response for the given chat conversation
     * @async
     * @param {Array} messagesArray - A list of messages describing the conversation so far
-    * @param {string} [modelID="gpt-3.5-turbo"] - (Optional) The ID of the model to use
+    * @param {string} [modelID="gpt-4o-mini"] - (Optional) The ID of the model to use
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during chat completion generation
@@ -75,26 +76,26 @@ declare class ChatGPT {
     /**
     * Given some input text, outputs if the model classifies it as potentially harmful across several categories
     * @async
-    * @param {string} input - The input text to classify
-    * @param {string} [modelID="text-moderation-latest"] - (Optional) The ID of the model to use
+    * @param {string|Array} input - Input (or inputs) to classify
+    * @param {string} [modelID="omni-moderation-latest"] - (Optional) The ID of the model to use
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during generation
     */
-    createModeration(input: string, modelID?: string | undefined): Promise<Object>;
+    createModeration(input: string | any[], modelID?: string | undefined): Promise<Object>;
     /** AUDIO METHODS **/
     /**
     * Generates audio from the input text
     * @async
-    * @param {string} input - The text to generate audio for
+    * @param {string} input - The text to generate audio for. The maximum length is 4096 characters
     * @param {string} destinationFolder - Folder path to save the file generated
     * @param {string} [modelID="tts-1"] - (Optional) The ID of the model to use
-    * @param {string} [response_format="mp3"] - (Optional) The format to audio in
     * @param {string} [voice="alloy"] - (Optional) The voice to use when generating the audio
+    * @param {string} [response_format="mp3"] - (Optional) The format to audio in
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during generation
     */
-    createSpeech(input: string, destinationFolder: string, modelID?: string | undefined, response_format?: string | undefined, voice?: string | undefined, newConfig?: Object | undefined): Promise<Object>;
+    createSpeech(input: string, destinationFolder: string, modelID?: string | undefined, voice?: string | undefined, response_format?: string | undefined, newConfig?: Object | undefined): Promise<Object>;
     /**
     * Transcribes audio into the input language
     * @async
@@ -140,7 +141,7 @@ declare class ChatGPT {
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    getFineTuningEvents(fine_tuning_job_id: string, newConfig?: Object | undefined): Promise<Object>;
+    getFineTuningJobEvents(fine_tuning_job_id: string, newConfig?: Object | undefined): Promise<Object>;
     /**
     * List checkpoints for a fine-tuning job
     * @async
@@ -149,7 +150,7 @@ declare class ChatGPT {
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    getFineTuningCheckpoints(fine_tuning_job_id: string, newConfig?: Object | undefined): Promise<Object>;
+    getFineTuningJobCheckpoints(fine_tuning_job_id: string, newConfig?: Object | undefined): Promise<Object>;
     /**
     * Creates a fine-tuning job which begins the process of creating a new model from a given dataset
     * @async
@@ -159,7 +160,7 @@ declare class ChatGPT {
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during generation
     */
-    createFineTuning(training_file_id: string, modelID?: string | undefined, newConfig?: Object | undefined): Promise<Object>;
+    createFineTuningJob(training_file_id: string, modelID?: string | undefined, newConfig?: Object | undefined): Promise<Object>;
     /**
     * Immediately cancel a fine-tune job
     * @async
@@ -167,6 +168,6 @@ declare class ChatGPT {
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    cancelFineTuning(fine_tuning_job_id: string): Promise<Object>;
+    cancelFineTuningJob(fine_tuning_job_id: string): Promise<Object>;
 }
 import ChatGPTClient = require("./ChatGPTClient");

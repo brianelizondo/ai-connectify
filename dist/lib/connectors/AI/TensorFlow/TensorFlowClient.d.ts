@@ -1,7 +1,10 @@
 export = TensorFlowClient;
 /**
+* @module TensorFlowClient
+*/
+/**
 * Represents a service for interacting with the TensorFlow API
-* @class TensorFlowClient
+* @class
 */
 declare class TensorFlowClient {
     aiName: string;

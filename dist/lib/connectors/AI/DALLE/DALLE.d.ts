@@ -2,7 +2,8 @@ export = DALLE;
 /**
 * Represents a DALL-E AI instance
 * Given a prompt and/or an input image, the model will generate a new image
-* @class DALL-E
+* @exports DALLE
+* @class
 */
 declare class DALLE {
     /**

@@ -1,10 +1,10 @@
-export = ValidationHelpers;
+export = HelperFunctions;
 /**
-* Represents a ValidationHelpers instance
+* Represents a HelperFunctions instance
 * A collection of utility methods for input validation
-* @class ValidationHelpers
+* @class
 */
-declare class ValidationHelpers {
+declare class HelperFunctions {
     /**
     * Validates a string input to ensure it is not empty or whitespace-only
     * @static
@@ -45,4 +45,19 @@ declare class ValidationHelpers {
     * @throws {AIConnectifyError} - Throws an error if validation fails
     */
     static validateBooleanInput(value: string, errorMessage: string): void;
+    /**
+    * Generate a random ID
+    * @static
+    * @returns {string} - Random ID generated
+    */
+    static generateRandomID(): string;
+    /**
+    * Validate and clean up a directory path
+    * @static
+    * @param {string} directory - The value to validate and clean
+    * @param {string} variableName - The variable value to validate the path en return
+    * @returns {string} - Directory path validated
+    * @throws {AIConnectifyError} - Throws an error if validation fails
+    */
+    static validateAndReturnPath(directoryPath: any, variableName: string): string;
 }

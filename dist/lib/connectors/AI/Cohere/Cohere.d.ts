@@ -2,7 +2,8 @@ export = Cohere;
 /**
 * Represents a Cohere AI instance
 * Given a prompt, the model   builds natural language processing and generation
-* @class Cohere
+* @exports Cohere
+* @class
 */
 declare class Cohere {
     /**
@@ -16,16 +17,9 @@ declare class Cohere {
     /**
     * Set the name of the project that is making the request
     * @param {string} clientName - Project name that is making the request
-    */
-    setClientName(clientName: string): void;
-    /** CHECK API KEY METHOD **/
-    /**
-    * Checks that the api key in the Authorization header is valid and active
-    * @async
-    * @returns {Promise<Object>} - A Promise that resolves with the generated chat completion
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    checkApiKey(): Promise<Object>;
+    setClientName(clientName: string): void;
     /** CHAT METHODS **/
     /**
     * Generates a text response to a user message
@@ -51,13 +45,14 @@ declare class Cohere {
     /**
     * Generates an embedding list of floating point numbers that captures semantic information about the text that it represents
     * @async
-    * @param {string} texts - An array of strings for the model to embed
-    * @param {string} [modelID="embed-english-v2.0"] - (Optional) The ID of the model to use
+    * @param {string} input_type - Specifies the type of input passed to the model
+    * @param {Array} embedding_types - Specifies the types of embeddings you want to get back
+    * @param {string} [modelID="embed-english-v3.0"] - (Optional) The ID of the model to use
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    embed(texts: string, modelID?: string | undefined, newConfig?: Object | undefined): Promise<Object>;
+    embed(input_type: string, embedding_types: any[], modelID?: string | undefined, newConfig?: Object | undefined): Promise<Object>;
     /**
     * Generates a list embed job endpoint allows users to view all embed jobs history for that specific user
     * @async
@@ -77,7 +72,7 @@ declare class Cohere {
     * Launches an async Embed job for a Dataset of type embed-input
     * @async
     * @param {string} dataset_id - ID of a Dataset. The Dataset must be of type embed-input
-    * @param {string} [modelID="embed-english-light-v3.0"] - (Optional) The ID of the model to use
+    * @param {string} [modelID="embed-english-v3.0"] - (Optional) The ID of the model to use
     * @param {string} [input_type="classification"] - (Optional) Specifies the type of input passed to the model
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
     * @returns {Promise<Object>} - A Promise that resolves the generated request
@@ -111,7 +106,7 @@ declare class Cohere {
     * @async
     * @param {Array} inputs - A list of up to 96 texts to be classified
     * @param {Array} [examples=[]] - (Optional) An array of examples to provide context to the model. Each example is a text string and its associated label/class
-    * @param {string} [modelID="embed-english-light-v2.0"] - (Optional) The ID of the model to use
+    * @param {string} [modelID="embed-english-v2.0"] - (Optional) The ID of the model to use
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
@@ -146,12 +141,12 @@ declare class Cohere {
     * @async
     * @param {string} name - The name of the uploaded dataset
     * @param {string} filePath - File to create the dataset
-    * @param {string} [type="embed-input"] - (Optional) The dataset type, which is used to validate the data
+    * @param {string} type - The dataset type, which is used to validate the data
     * @param {Object} [newConfig={}] - (Optional) Additional parameters to customize the request
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    createDataset(name: string, filePath: string, type?: string | undefined, newConfig?: Object | undefined): Promise<Object>;
+    createDataset(name: string, filePath: string, type: string, newConfig?: Object | undefined): Promise<Object>;
     /**
     * Delete a dataset by ID
     * @async
@@ -165,7 +160,7 @@ declare class Cohere {
     * Generates a splits input text into smaller units called tokens using byte-pair encoding (BPE)
     * @async
     * @param {string} text The string to be tokenized
-    * @param {string} [modelID="command"] - (Optional) The ID of the model to use
+    * @param {string} [modelID="command-r-plus-08-2024"] - (Optional) The ID of the model to use
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
@@ -174,7 +169,7 @@ declare class Cohere {
     * Takes tokens using byte-pair encoding and returns their text representation
     * @async
     * @param {Array} tokens The string to be tokenized
-    * @param {string} [modelID="command"] - (Optional) The ID of the model to use
+    * @param {string} [modelID="command-r-plus-08-2024"] - (Optional) The ID of the model to use
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
@@ -233,9 +228,18 @@ declare class Cohere {
     */
     updateConnector(connector_id: string, newConfig?: Object | undefined): Promise<Object>;
     /**
+    * Authorize with oAuth a connector by ID
+    * @async
+    * @param {string} connector_id - The ID of the connector to authorize
+    * @param {string} [afterTokenRedirectUrl=false] - (Optional) The URL to redirect to after the connector has been authorized
+    * @returns {Promise<Object>} - A Promise that resolves the generated request
+    * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
+    */
+    authorizeConnector(connector_id: string, afterTokenRedirectUrl?: string | undefined): Promise<Object>;
+    /**
     * Delete a connector by ID
     * @async
-    * @param {string} connector_id - The ID of the dataset to delete
+    * @param {string} connector_id - The ID of the connector to delete
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
@@ -265,7 +269,7 @@ declare class Cohere {
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    getFineTunedChronology(finetuned_model_id: string, newConfig?: Object | undefined): Promise<Object>;
+    getFineTunedModelChronology(finetuned_model_id: string, newConfig?: Object | undefined): Promise<Object>;
     /**
     * Retrieves metrics measured during the training of a fine-tuned model
     * @async
@@ -274,7 +278,7 @@ declare class Cohere {
     * @returns {Promise<Object>} - A Promise that resolves the generated request
     * @throws {AIConnectifyError} - Will throw an error if an error occurs during the request
     */
-    getFineTunedMetrics(finetuned_model_id: string, newConfig?: Object | undefined): Promise<Object>;
+    getFineTunedModelMetrics(finetuned_model_id: string, newConfig?: Object | undefined): Promise<Object>;
     /**
     * Trains and deploys a fine-tuned model
     * @async
