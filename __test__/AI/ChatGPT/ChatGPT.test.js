@@ -13,21 +13,21 @@ describe("ChatGPT class", () => {
         mockClientInstance = {
             setOrganizationId: jest.fn(),
             setProjectId: jest.fn(),
-            getModels: jest.fn(),
-            getModel: jest.fn(),
-            delFineTunedModel: jest.fn(),
+            cancelFineTuningJob: jest.fn(),
             createChatCompletion: jest.fn(),
             createEmbeddings: jest.fn(),
+            createFineTuningJob: jest.fn(),
             createModeration: jest.fn(),
             createSpeech: jest.fn(),
             createTranscription: jest.fn(),
             createTranslation: jest.fn(),
+            deleteFineTunedModel: jest.fn(),
             getFineTuningJob: jest.fn(),
+            getFineTuningJobCheckpoints: jest.fn(),
+            getFineTuningJobEvents: jest.fn(),
             getFineTuningJobs: jest.fn(),
-            getFineTuningEvents: jest.fn(),
-            getFineTuningCheckpoints: jest.fn(),
-            createFineTuning: jest.fn(),
-            cancelFineTuning: jest.fn()
+            getModel: jest.fn(),
+            getModels: jest.fn()
         };
         ChatGPTClient.mockImplementation(() => mockClientInstance);
         chatGPT = new ChatGPT(mockApiKey);
@@ -166,7 +166,7 @@ describe("ChatGPT class", () => {
             });
         });
         
-        describe("Fine-tuning Methods", () => {
+        describe("Fine-tuning Jobs Methods", () => {
             it("Test call 'getFineTuningJob' on the client instance", async () => {
                 const jobId = 'ft-job-123';
                 const mockResponse = { id: jobId, status: 'succeeded' };
@@ -189,49 +189,49 @@ describe("ChatGPT class", () => {
                 expect(chatGPT.client.getFineTuningJobs).toHaveBeenCalledWith(config);
             });
     
-            it("Test call 'getFineTuningEvents' on the client instance", async () => {
+            it("Test call 'getFineTuningJobEvents' on the client instance", async () => {
                 const jobId = 'ft-job-123';
                 const config = { limit: 10 };
                 const mockResponse = { data: [{ type: 'metrics' }] };
                 
-                chatGPT.client.getFineTuningEvents.mockResolvedValue(mockResponse);
+                chatGPT.client.getFineTuningJobEvents.mockResolvedValue(mockResponse);
     
-                const result = await chatGPT.getFineTuningEvents(jobId, config);
+                const result = await chatGPT.getFineTuningJobEvents(jobId, config);
                 expect(result).toEqual(mockResponse);
-                expect(chatGPT.client.getFineTuningEvents).toHaveBeenCalledWith(jobId, config);
+                expect(chatGPT.client.getFineTuningJobEvents).toHaveBeenCalledWith(jobId, config);
             });
     
-            it("Test call 'createFineTuning' on the client instance", async () => {
+            it("Test call 'createFineTuningJob' on the client instance", async () => {
                 const fileId = 'file-123';
                 const modelId = 'gpt-3.5-turbo';
                 const config = { hyperparameters: { epochs: 3 } };
                 const mockResponse = { id: 'ft-job-123', status: 'created' };
                 
-                chatGPT.client.createFineTuning.mockResolvedValue(mockResponse);
+                chatGPT.client.createFineTuningJob.mockResolvedValue(mockResponse);
     
-                const result = await chatGPT.createFineTuning(fileId, modelId, config);
+                const result = await chatGPT.createFineTuningJob(fileId, modelId, config);
                 expect(result).toEqual(mockResponse);
-                expect(chatGPT.client.createFineTuning).toHaveBeenCalledWith(fileId, modelId, config);
+                expect(chatGPT.client.createFineTuningJob).toHaveBeenCalledWith(fileId, modelId, config);
             });
     
-            it("Test call 'cancelFineTuning' on the client instance", async () => {
+            it("Test call 'cancelFineTuningJob' on the client instance", async () => {
                 const jobId = 'ft-job-123';
                 const mockResponse = { id: jobId, status: 'cancelled' };
                 
-                chatGPT.client.cancelFineTuning.mockResolvedValue(mockResponse);
+                chatGPT.client.cancelFineTuningJob.mockResolvedValue(mockResponse);
     
-                const result = await chatGPT.cancelFineTuning(jobId);
+                const result = await chatGPT.cancelFineTuningJob(jobId);
                 expect(result).toEqual(mockResponse);
-                expect(chatGPT.client.cancelFineTuning).toHaveBeenCalledWith(jobId);
+                expect(chatGPT.client.cancelFineTuningJob).toHaveBeenCalledWith(jobId);
             });
-            it("Test call 'delFineTunedModel' on the client instance", async () => {
+            it("Test call 'deleteFineTunedModel' on the client instance", async () => {
                 const modelId = 'test-model';
                 const mockResponse = { deleted: true };
-                chatGPT.client.delFineTunedModel.mockResolvedValue(mockResponse);
+                chatGPT.client.deleteFineTunedModel.mockResolvedValue(mockResponse);
     
-                const result = await chatGPT.delFineTunedModel(modelId);
+                const result = await chatGPT.deleteFineTunedModel(modelId);
                 expect(result).toEqual(mockResponse);
-                expect(chatGPT.client.delFineTunedModel).toHaveBeenCalledWith(modelId);
+                expect(chatGPT.client.deleteFineTunedModel).toHaveBeenCalledWith(modelId);
             });
         });
     });

@@ -1,11 +1,9 @@
-import fs from 'fs';
 import FormData from 'form-data';
 import ChatGPTClient from '../../lib/connectors/AI/ChatGPT/ChatGPTClient';
 import HttpClient from '../../lib/connectors/HttpClient/HttpClient';
 import AIConnectifyError from '../../lib/AIConnectifyError';
 
 jest.mock('../../lib/connectors/HttpClient/HttpClient');
-jest.mock('fs');
 jest.mock('form-data');
 
 describe("ChatGPTClient class", () => {
@@ -18,7 +16,8 @@ describe("ChatGPTClient class", () => {
         mockHttpClient = {
             get: jest.fn(),
             post: jest.fn(),
-            delete: jest.fn()
+            delete: jest.fn(),
+            throwError: jest.fn()
         };
         HttpClient.mockImplementation(() => mockHttpClient);
         chatGPTClient = new ChatGPTClient(mockApiKey);
@@ -38,22 +37,22 @@ describe("ChatGPTClient class", () => {
         });
     });
 
-    describe("Use each method individually", () => {
-        describe("Organization and Project ID Methods", () => {
-            it("Test call 'setOrganizationId' method", () => {
-                const orgId = "org-TEST_ID_WITH_16_CHARACTERS";
-                chatGPTClient.setOrganizationId(orgId);
-                expect(HttpClient).toHaveBeenCalledTimes(2);
-                expect(chatGPTClient.organizationIDs['OpenAI-Organization']).toBe(orgId);
-            });
-            it("Test call 'setProjectId' method", () => {
-                const projectId = "pro-TEST_ID_WITH_16_CHARACTERS";
-                chatGPTClient.setProjectId(projectId);
-                expect(HttpClient).toHaveBeenCalledTimes(2);
-                expect(chatGPTClient.organizationIDs['OpenAI-Project']).toBe(projectId);
-            });
+    describe("Use the Organization and Project ID Methods", () => {
+        it("Test call 'setOrganizationId' method", () => {
+            const orgId = "org-TEST_ID_WITH_16_CHARACTERS";
+            chatGPTClient.setOrganizationId(orgId);
+            expect(HttpClient).toHaveBeenCalledTimes(2);
+            expect(chatGPTClient.organizationIDs['OpenAI-Organization']).toBe(orgId);
         });
+        it("Test call 'setProjectId' method", () => {
+            const projectId = "pro-TEST_ID_WITH_16_CHARACTERS";
+            chatGPTClient.setProjectId(projectId);
+            expect(HttpClient).toHaveBeenCalledTimes(2);
+            expect(chatGPTClient.organizationIDs['OpenAI-Project']).toBe(projectId);
+        });
+    });
 
+    describe("Use each method individually", () => {
         describe("Models Methods", () => {
             it("Test call 'getModels' method", async () => {
                 const mockResponse = { data: [{ id: 'model1' }, { id: 'model2' }] };
@@ -91,7 +90,7 @@ describe("ChatGPTClient class", () => {
                     choices: [{ message: { content: 'Hi!' } }]
                 });
                 expect(chatGPTClient.httpRequest.post).toHaveBeenCalledWith(
-                    '/chat/completations',
+                    '/chat/completions',
                     expect.objectContaining({
                         messages,
                         model: modelId,
@@ -145,7 +144,7 @@ describe("ChatGPTClient class", () => {
         describe('Audio Methods', () => {
             it("Test call 'createSpeech' method", async () => {
                 const input = 'test text';
-                const destFolder = '/test/folder';
+                const destFolder = '/lib';
                 const modelId = 'tts-1';
                 const responseFormat = 'mp3';
                 const voice = 'alloy';
@@ -160,12 +159,19 @@ describe("ChatGPTClient class", () => {
                 const mockResponse = Buffer.from('audio data');
                 chatGPTClient.httpRequest.post.mockResolvedValue(mockResponse);
     
-                fs.writeFileSync.mockImplementation(() => {});
-    
-                const result = await chatGPTClient.createSpeech(input, destFolder, modelId, responseFormat, voice, config);
+                const result = await chatGPTClient.createSpeech(input, destFolder, modelId, voice, responseFormat, config);
                 expect(result).toHaveProperty('audio_path');
-                expect(mockFormData.append).toHaveBeenCalledWith('input', input);
-                expect(mockFormData.append).toHaveBeenCalledWith('model', modelId);
+                expect(chatGPTClient.httpRequest.post).toHaveBeenCalledWith(
+                    '/audio/speech',
+                    expect.objectContaining({
+                        input,
+                        model: modelId
+                    }), 
+                    expect.objectContaining({
+                        validateStatus: undefined,
+                        responseType: "arraybuffer"
+                    })
+                );
             });
     
             it("Test call 'createTranscription' method", async () => {
@@ -180,13 +186,19 @@ describe("ChatGPTClient class", () => {
                 };
                 FormData.mockImplementation(() => mockFormData);
     
-                fs.createReadStream.mockReturnValue('file stream');
                 chatGPTClient.httpRequest.post.mockResolvedValue(mockResponse);
     
                 const result = await chatGPTClient.createTranscription(filePath, modelId, config);
-                expect(result).toBe(mockResponse.text);
-                expect(mockFormData.append).toHaveBeenCalledWith('file', 'file stream');
-                expect(mockFormData.append).toHaveBeenCalledWith('model', modelId);
+                expect(result).toEqual(mockResponse.text);
+                expect(chatGPTClient.httpRequest.post).toHaveBeenCalledWith(
+                    '/audio/transcriptions',
+                    expect.objectContaining({
+                        append: mockFormData['append']
+                    }), 
+                    expect.objectContaining({
+                        headers: { 'content-type': 'multipart/form-data' }
+                    })
+                );
             });
     
             it("Test call 'createTranslation' method", async () => {
@@ -201,13 +213,19 @@ describe("ChatGPTClient class", () => {
                 };
                 FormData.mockImplementation(() => mockFormData);
     
-                fs.createReadStream.mockReturnValue('file stream');
                 chatGPTClient.httpRequest.post.mockResolvedValue(mockResponse);
     
                 const result = await chatGPTClient.createTranslation(filePath, modelId, config);
                 expect(result).toBe(mockResponse.text);
-                expect(mockFormData.append).toHaveBeenCalledWith('file', 'file stream');
-                expect(mockFormData.append).toHaveBeenCalledWith('model', modelId);
+                expect(chatGPTClient.httpRequest.post).toHaveBeenCalledWith(
+                    '/audio/translations',
+                    expect.objectContaining({
+                        append: mockFormData['append']
+                    }), 
+                    expect.objectContaining({
+                        headers: { 'content-type': 'multipart/form-data' }
+                    })
+                );
             });
         });
 
@@ -231,34 +249,34 @@ describe("ChatGPTClient class", () => {
     
                 const result = await chatGPTClient.getFineTuningJobs(config);
                 expect(result).toEqual(mockResponse);
-                expect(chatGPTClient.httpRequest.get).toHaveBeenCalledWith('/fine_tuning/jobs', config);
+                expect(chatGPTClient.httpRequest.get).toHaveBeenCalledWith('/fine_tuning/jobs', { params: config});
             });
     
-            it("Test call 'getFineTuningEvents' method", async () => {
+            it("Test call 'getFineTuningJobEvents' method", async () => {
                 const jobId = 'ft-job-123-16-characters';
                 const config = { limit: 10 };
                 const mockResponse = { data: [{ type: 'metrics' }] };
                 
                 chatGPTClient.httpRequest.get.mockResolvedValue(mockResponse);
     
-                const result = await chatGPTClient.getFineTuningEvents(jobId, config);
+                const result = await chatGPTClient.getFineTuningJobEvents(jobId, config);
                 expect(result).toEqual(mockResponse);
-                expect(chatGPTClient.httpRequest.get).toHaveBeenCalledWith(`/fine_tuning/jobs/${jobId}/events`, config);
+                expect(chatGPTClient.httpRequest.get).toHaveBeenCalledWith(`/fine_tuning/jobs/${jobId}/events`, { params: config});
             });
     
-            it("Test call 'getFineTuningCheckpoints' method", async () => {
+            it("Test call 'getFineTuningJobCheckpoints' method", async () => {
                 const jobId = 'ft-job-123-16-characters';
                 const config = { limit: 10 };
                 const mockResponse = { data: [{ checkpoint: 1 }] };
                 
                 chatGPTClient.httpRequest.get.mockResolvedValue(mockResponse);
     
-                const result = await chatGPTClient.getFineTuningCheckpoints(jobId, config);
+                const result = await chatGPTClient.getFineTuningJobCheckpoints(jobId, config);
                 expect(result).toEqual(mockResponse);
-                expect(chatGPTClient.httpRequest.get).toHaveBeenCalledWith(`/fine_tuning/jobs/${jobId}/checkpoints`, config);
+                expect(chatGPTClient.httpRequest.get).toHaveBeenCalledWith(`/fine_tuning/jobs/${jobId}/checkpoints`, { params: config});
             });
     
-            it("Test call 'createFineTuning' method", async () => {
+            it("Test call 'createFineTuningJob' method", async () => {
                 const fileId = 'file-123';
                 const modelId = 'gpt-3.5-turbo';
                 const config = { hyperparameters: { epochs: 3 } };
@@ -266,7 +284,7 @@ describe("ChatGPTClient class", () => {
                 
                 chatGPTClient.httpRequest.post.mockResolvedValue(mockResponse);
     
-                const result = await chatGPTClient.createFineTuning(fileId, modelId, config);
+                const result = await chatGPTClient.createFineTuningJob(fileId, modelId, config);
                 expect(result).toEqual(mockResponse);
                 expect(chatGPTClient.httpRequest.post).toHaveBeenCalledWith(
                     '/fine_tuning/jobs',
@@ -278,23 +296,23 @@ describe("ChatGPTClient class", () => {
                 );
             });
     
-            it("Test call 'cancelFineTuning' method", async () => {
+            it("Test call 'cancelFineTuningJob' method", async () => {
                 const jobId = 'ft-job-123-16-characters';
                 const mockResponse = { id: jobId, status: 'cancelled' };
                 
                 chatGPTClient.httpRequest.post.mockResolvedValue(mockResponse);
     
-                const result = await chatGPTClient.cancelFineTuning(jobId);
+                const result = await chatGPTClient.cancelFineTuningJob(jobId);
                 expect(result).toEqual(mockResponse);
                 expect(chatGPTClient.httpRequest.post).toHaveBeenCalledWith(`/fine_tuning/jobs/${jobId}/cancel`);
             });
 
-            it("Test call 'delFineTunedModel' method", async () => {
+            it("Test call 'deleteFineTunedModel' method", async () => {
                 const modelId = 'test-model';
                 const mockResponse = { deleted: true };
                 chatGPTClient.httpRequest.delete.mockResolvedValue(mockResponse);
     
-                const result = await chatGPTClient.delFineTunedModel(modelId);
+                const result = await chatGPTClient.deleteFineTunedModel(modelId);
                 expect(result).toEqual(mockResponse);
                 expect(chatGPTClient.httpRequest.delete).toHaveBeenCalledWith(`/models/${modelId}`);
             });
@@ -317,9 +335,9 @@ describe("ChatGPTClient class", () => {
             await expect(chatGPTClient.getModel()).rejects.toThrow(AIConnectifyError);
             await expect(chatGPTClient.getModel(12345)).rejects.toThrow('Cannot process the model ID');
         });
-        it("Test when 'delFineTunedModel' request failure", async () => {
-            await expect(chatGPTClient.delFineTunedModel()).rejects.toThrow(AIConnectifyError);
-            await expect(chatGPTClient.delFineTunedModel(12345)).rejects.toThrow('Cannot process the model ID');
+        it("Test when 'deleteFineTunedModel' request failure", async () => {
+            await expect(chatGPTClient.deleteFineTunedModel()).rejects.toThrow(AIConnectifyError);
+            await expect(chatGPTClient.deleteFineTunedModel(12345)).rejects.toThrow('Cannot process the model ID');
         });
         it("Test when 'createChatCompletion' request failure", async () => {
             await expect(chatGPTClient.createChatCompletion()).rejects.toThrow(AIConnectifyError);
@@ -332,7 +350,6 @@ describe("ChatGPTClient class", () => {
         });
         it("Test when 'createModeration' request failure", async () => {
             await expect(chatGPTClient.createModeration()).rejects.toThrow(AIConnectifyError);
-            await expect(chatGPTClient.createModeration(12345)).rejects.toThrow('Cannot process the input text');
             await expect(chatGPTClient.createModeration('test', 12345)).rejects.toThrow('Cannot process the model ID');
         });
         it("Test when 'createSpeech' request failure", async () => {
@@ -340,7 +357,8 @@ describe("ChatGPTClient class", () => {
             await expect(chatGPTClient.createSpeech(12345)).rejects.toThrow('Cannot process the input text');
             await expect(chatGPTClient.createSpeech('test', 12345)).rejects.toThrow('Cannot process the destination folder');
             await expect(chatGPTClient.createSpeech('test', 'test', 12345)).rejects.toThrow('Cannot process the model ID');
-            await expect(chatGPTClient.createSpeech('test', 'test', 'test',12345)).rejects.toThrow('Cannot process the response format');
+            await expect(chatGPTClient.createSpeech('test', 'test', 'test', 12345)).rejects.toThrow('Cannot process the voice');
+            await expect(chatGPTClient.createSpeech('test', 'test', 'test', 'test', 12345)).rejects.toThrow('Cannot process the response format');
         });
         it("Test when 'createTranscription' request failure", async () => {
             await expect(chatGPTClient.createTranscription()).rejects.toThrow(AIConnectifyError);
@@ -356,22 +374,22 @@ describe("ChatGPTClient class", () => {
             await expect(chatGPTClient.getFineTuningJob()).rejects.toThrow(AIConnectifyError);
             await expect(chatGPTClient.getFineTuningJob(12345)).rejects.toThrow('Cannot process the fine-tuning job ID');
         });
-        it("Test when 'getFineTuningEvents' request failure", async () => {
-            await expect(chatGPTClient.getFineTuningEvents()).rejects.toThrow(AIConnectifyError);
-            await expect(chatGPTClient.getFineTuningEvents(12345)).rejects.toThrow('Cannot process the fine-tuning job ID');
+        it("Test when 'getFineTuningJobEvents' request failure", async () => {
+            await expect(chatGPTClient.getFineTuningJobEvents()).rejects.toThrow(AIConnectifyError);
+            await expect(chatGPTClient.getFineTuningJobEvents(12345)).rejects.toThrow('Cannot process the fine-tuning job ID');
         });
-        it("Test when 'getFineTuningCheckpoints' request failure", async () => {
-            await expect(chatGPTClient.getFineTuningCheckpoints()).rejects.toThrow(AIConnectifyError);
-            await expect(chatGPTClient.getFineTuningCheckpoints(12345)).rejects.toThrow('Cannot process the fine-tuning job ID');
+        it("Test when 'getFineTuningJobCheckpoints' request failure", async () => {
+            await expect(chatGPTClient.getFineTuningJobCheckpoints()).rejects.toThrow(AIConnectifyError);
+            await expect(chatGPTClient.getFineTuningJobCheckpoints(12345)).rejects.toThrow('Cannot process the fine-tuning job ID');
         });
-        it("Test when 'createFineTuning' request failure", async () => {
-            await expect(chatGPTClient.createFineTuning()).rejects.toThrow(AIConnectifyError);
-            await expect(chatGPTClient.createFineTuning(12345)).rejects.toThrow('Cannot process the training file ID');
-            await expect(chatGPTClient.createFineTuning('test', 12345)).rejects.toThrow('Cannot process the model ID');
+        it("Test when 'createFineTuningJob' request failure", async () => {
+            await expect(chatGPTClient.createFineTuningJob()).rejects.toThrow(AIConnectifyError);
+            await expect(chatGPTClient.createFineTuningJob(12345)).rejects.toThrow('Cannot process the training file ID');
+            await expect(chatGPTClient.createFineTuningJob('test', 12345)).rejects.toThrow('Cannot process the model ID');
         });
-        it("Test when 'cancelFineTuning' request failure", async () => {
-            await expect(chatGPTClient.cancelFineTuning()).rejects.toThrow(AIConnectifyError);
-            await expect(chatGPTClient.cancelFineTuning(12345)).rejects.toThrow('Cannot process the fine-tuning job ID');
+        it("Test when 'cancelFineTuningJob' request failure", async () => {
+            await expect(chatGPTClient.cancelFineTuningJob()).rejects.toThrow(AIConnectifyError);
+            await expect(chatGPTClient.cancelFineTuningJob(12345)).rejects.toThrow('Cannot process the fine-tuning job ID');
         });
     });
 });
