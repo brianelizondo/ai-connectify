@@ -1,8 +1,8 @@
-import AIConnectifyError from '../../lib/AIConnectifyError';
-import ChatGPT from '../../lib/connectors/AI/ChatGPT/ChatGPT';
-import ChatGPTClient from '../../lib/connectors/AI/ChatGPT/ChatGPTClient';
+import AIConnectifyError from '../../../lib/AIConnectifyError';
+import ChatGPT from '../../../lib/connectors/AI/ChatGPT/ChatGPT';
+import ChatGPTClient from '../../../lib/connectors/AI/ChatGPT/ChatGPTClient';
 
-jest.mock('../../lib/connectors/AI/ChatGPT/ChatGPTClient');
+jest.mock('../../../lib/connectors/AI/ChatGPT/ChatGPTClient');
 
 describe("ChatGPT class", () => { 
     const mockApiKey = 'TEST_API_KEY_WITH_16_CHARACTERS';

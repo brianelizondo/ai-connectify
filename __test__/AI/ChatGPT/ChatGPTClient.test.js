@@ -1,9 +1,9 @@
+import ChatGPTClient from '../../../lib/connectors/AI/ChatGPT/ChatGPTClient'
+import HttpClient from '../../../lib/connectors/HttpClient/HttpClient';
+import AIConnectifyError from '../../../lib/AIConnectifyError';
 import FormData from 'form-data';
-import ChatGPTClient from '../../lib/connectors/AI/ChatGPT/ChatGPTClient';
-import HttpClient from '../../lib/connectors/HttpClient/HttpClient';
-import AIConnectifyError from '../../lib/AIConnectifyError';
 
-jest.mock('../../lib/connectors/HttpClient/HttpClient');
+jest.mock('../../../lib/connectors/HttpClient/HttpClient');
 jest.mock('form-data');
 
 describe("ChatGPTClient class", () => {
