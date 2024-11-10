@@ -1,4 +1,4 @@
-import createImageVariation from '../../../../lib/connectors/AI/DALLE/methods/createdImageVariation';
+import createImageVariation from '../../../../lib/connectors/AI/DALLE/methods/createImageVariation';
 import FormData from 'form-data';
 
 jest.mock('form-data');

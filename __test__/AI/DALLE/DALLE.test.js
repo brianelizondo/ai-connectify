@@ -1,8 +1,8 @@
-import AIConnectifyError from '../../lib/AIConnectifyError';
-import DALLE from '../../lib/connectors/AI/DALLE/DALLE';
-import DALLEClient from '../../lib/connectors/AI/DALLE/DALLEClient';
+import AIConnectifyError from '../../../lib/AIConnectifyError';
+import DALLE from '../../../lib/connectors/AI/DALLE/DALLE';
+import DALLEClient from '../../../lib/connectors/AI/DALLE/DALLEClient';
 
-jest.mock('../../lib/connectors/AI/DALLE/DALLEClient');
+jest.mock('../../../lib/connectors/AI/DALLE/DALLEClient');
 
 describe("DALLE class", () => {
     const mockApiKey = 'TEST_API_KEY_WITH_16_CHARACTERS';

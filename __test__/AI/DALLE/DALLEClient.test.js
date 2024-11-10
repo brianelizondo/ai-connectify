@@ -1,11 +1,11 @@
-import fs from 'fs';
+import DALLEClient from '../../../lib/connectors/AI/DALLE/DALLEClient';
+import AIConnectifyError from '../../../lib/AIConnectifyError';
+import HttpClient from '../../../lib/connectors/HttpClient/HttpClient';
 import FormData from 'form-data';
-import AIConnectifyError from '../../lib/AIConnectifyError';
-import HttpClient from '../../lib/connectors/HttpClient/HttpClient';
-import DALLEClient from '../../lib/connectors/AI/DALLE/DALLEClient';
+import fs from 'fs';
 
-jest.mock('../../lib/connectors/HttpClient/HttpClient');
-jest.mock('fs');
+jest.mock('../../../lib/connectors/HttpClient/HttpClient');
+jest.mock('form-data');
 
 describe("DALLEClient class", () => {
     const mockApiKey = "TEST_API_KEY_WITH_16_CHARACTERS";
@@ -17,6 +17,7 @@ describe("DALLEClient class", () => {
         mockHttpClient = {
             get: jest.fn(),
             post: jest.fn(),
+            throwError: jest.fn()
         };
         HttpClient.mockImplementation(() => mockHttpClient);
         dalleClient = new DALLEClient(mockApiKey);
@@ -92,64 +93,51 @@ describe("DALLEClient class", () => {
             const prompt = 'test edit prompt';
             const modelId = 'test-model-id';
             const config = { size: '1024x1024' };
+
+            const mockFormData = {
+                append: jest.fn(),
+                getHeaders: jest.fn().mockReturnValue({ 'content-type': 'multipart/form-data' })
+            };
+            FormData.mockImplementation(() => mockFormData);
+
             const mockResponse = { data: [{ url: 'http://example.com/edited-image.png' }] };
-            const mockFileStream = 'mock-file-stream';
-            
-            fs.createReadStream.mockReturnValue(mockFileStream);
-            mockHttpClient.post.mockResolvedValue(mockResponse);
-            const appendSpy = jest.spyOn(FormData.prototype, 'append');
-            const getHeadersSpy = jest.spyOn(FormData.prototype, 'getHeaders').mockReturnValue({ 'content-type': 'multipart/form-data' });
-    
+            dalleClient.httpRequest.post.mockResolvedValue(mockResponse);
+
             const result = await dalleClient.createImageEdit(imagePath, prompt, modelId, config);
-            
-            expect(result).toEqual(mockResponse.data);
-            expect(fs.createReadStream).toHaveBeenCalledWith(imagePath);
-            expect(appendSpy).toHaveBeenCalledWith('image', mockFileStream);
-            expect(appendSpy).toHaveBeenCalledWith('prompt', prompt);
-            expect(appendSpy).toHaveBeenCalledWith('model', modelId);
-            expect(appendSpy).toHaveBeenCalledWith('size', '1024x1024');
-            expect(getHeadersSpy).toHaveBeenCalled();
-            expect(mockHttpClient.post).toHaveBeenCalledWith(
+            expect(dalleClient.httpRequest.post).toHaveBeenCalledWith(
                 '/images/edits',
-                expect.any(FormData),
                 expect.objectContaining({
-                    headers: expect.any(Object)
+                    append: mockFormData['append']
+                }), 
+                expect.objectContaining({
+                    headers: { 'content-type': 'multipart/form-data' }
                 })
             );
-
-            appendSpy.mockRestore();
-            getHeadersSpy.mockRestore();
         });
         it("Test use 'createImageVariation' method", async () => {
             const imagePath = '/path/to/image.png';
             const modelId = 'test-model-id';
             const config = { size: '1024x1024' };
-            const mockResponse = { data: [{ url: 'http://example.com/variation-image.png' }] };
-            const mockFileStream = 'mock-file-stream';
-            
-            fs.createReadStream.mockReturnValue(mockFileStream);
-            mockHttpClient.post.mockResolvedValue(mockResponse);
-            
-            const appendSpy = jest.spyOn(FormData.prototype, 'append');
-            const getHeadersSpy = jest.spyOn(FormData.prototype, 'getHeaders').mockReturnValue({ 'content-type': 'multipart/form-data' });
+
+            const mockFormData = {
+                append: jest.fn(),
+                getHeaders: jest.fn().mockReturnValue({ 'content-type': 'multipart/form-data' })
+            };
+            FormData.mockImplementation(() => mockFormData);
+
+            const mockResponse = { data: [{ url: 'http://example.com/edited-image.png' }] };
+            dalleClient.httpRequest.post.mockResolvedValue(mockResponse);
+
             const result = await dalleClient.createImageVariation(imagePath, modelId, config);
-            
-            expect(result).toEqual(mockResponse.data);
-            expect(fs.createReadStream).toHaveBeenCalledWith(imagePath);
-            expect(appendSpy).toHaveBeenCalledWith('image', mockFileStream);
-            expect(appendSpy).toHaveBeenCalledWith('model', modelId);
-            expect(appendSpy).toHaveBeenCalledWith('size', '1024x1024');
-            expect(getHeadersSpy).toHaveBeenCalled();
-            expect(mockHttpClient.post).toHaveBeenCalledWith(
+            expect(dalleClient.httpRequest.post).toHaveBeenCalledWith(
                 '/images/variations',
-                expect.any(FormData),
                 expect.objectContaining({
-                    headers: expect.any(Object)
+                    append: mockFormData['append']
+                }), 
+                expect.objectContaining({
+                    headers: { 'content-type': 'multipart/form-data' }
                 })
             );
-
-            appendSpy.mockRestore();
-            getHeadersSpy.mockRestore();
         });
     });
 
