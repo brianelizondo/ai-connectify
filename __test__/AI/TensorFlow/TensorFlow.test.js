@@ -1,7 +1,7 @@
-import TensorFlow from '../../lib/connectors/AI/TensorFlow/TensorFlow';
-import TensorFlowClient from '../../lib/connectors/AI/TensorFlow/TensorFlowClient';
+import TensorFlow from '../../../lib/connectors/AI/TensorFlow/TensorFlow';
+import TensorFlowClient from '../../../lib/connectors/AI/TensorFlow/TensorFlowClient';
 
-jest.mock('../../lib/connectors/AI/TensorFlow/TensorFlowClient');
+jest.mock('../../../lib/connectors/AI/TensorFlow/TensorFlowClient');
 
 describe("TensorFlow class", () => { 
     let tensorflow;

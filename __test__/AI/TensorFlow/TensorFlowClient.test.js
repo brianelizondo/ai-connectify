@@ -1,4 +1,4 @@
-import TensorFlowClient  from '../../lib/connectors/AI/TensorFlow/TensorFlowClient';
+import TensorFlowClient  from '../../../lib/connectors/AI/TensorFlow/TensorFlowClient';
 
 jest.mock('@tensorflow/tfjs-node', () => ({
     tensor: jest.fn(),
