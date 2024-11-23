@@ -21,7 +21,7 @@ describe("Mistral - updateFineTuningModel method", () => {
     });
 
     describe('API Interaction', () => {
-        it('Test make a POST request to the correct endpoint', async () => {
+        it('Test make a PATCH request to the correct endpoint', async () => {
             const expectedResponse = {
                 id: fine_tuning_model_id,
                 object: "model",

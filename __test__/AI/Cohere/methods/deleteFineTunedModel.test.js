@@ -1,10 +1,10 @@
-import deleteFineTuningModel from '../../../../lib/connectors/AI/Mistral/methods/deleteFineTuningModel';
+import deleteFineTunedModel from '../../../../lib/connectors/AI/Cohere/methods/deleteFineTunedModel';
 
-describe("Mistral - deleteFineTuningModel method", () => {
+describe("Cohere - deleteFineTunedModel method", () => {
     let httpRequestMock;
     let throwErrorMock;
     // test variables
-    const fine_tuning_model_id = "fine-tuned-model-test-id";
+    const finetuned_model_id = 'fine-tuned-model-test-id';
     
     beforeEach(() => {
         httpRequestMock = {
@@ -19,35 +19,33 @@ describe("Mistral - deleteFineTuningModel method", () => {
     describe('API Interaction', () => {
         it('Test make a DELETE request to the correct endpoint', async () => {
             const expectedResponse = {
-                id: fine_tuning_model_id,
-                object: "model",
-                deleted: true
+                finetuned_model_id,
+                status: "deleted"
             };
             httpRequestMock.delete.mockResolvedValue(expectedResponse);
 
-            const response = await deleteFineTuningModel(httpRequestMock, throwErrorMock, fine_tuning_model_id);
-
+            const response = await deleteFineTunedModel(httpRequestMock, throwErrorMock, finetuned_model_id);
             expect(httpRequestMock.delete).toHaveBeenCalledTimes(1);
-            expect(httpRequestMock.delete).toHaveBeenCalledWith(`/models/${fine_tuning_model_id}`);
+            expect(httpRequestMock.delete).toHaveBeenCalledWith(`/v1/finetuning/finetuned-models/${finetuned_model_id}`);
             expect(response).toEqual(expectedResponse);
         });
     });
 
     describe("Throw the AIConnectifyError error", () => {
-        it('Test when fine_tuning_model_id is not provided', async () => {
+        it('Test when finetuned_model_id is not provided', async () => {
             await expect(
-                deleteFineTuningModel(httpRequestMock, throwErrorMock, undefined)
-            ).rejects.toThrow('Cannot process the fine tunning model ID');
+                deleteFineTunedModel(httpRequestMock, throwErrorMock)
+            ).rejects.toThrow('Cannot process the fine-tuned model ID');
         });
-        it('Test when fine_tuning_model_id is empty string', async () => {
+        it('Test when finetuned_model_id is empty string', async () => {
             await expect(
-                deleteFineTuningModel(httpRequestMock, throwErrorMock, '')
-            ).rejects.toThrow('Cannot process the fine tunning model ID');
+                deleteFineTunedModel(httpRequestMock, throwErrorMock, '')
+            ).rejects.toThrow('Cannot process the fine-tuned model ID');
         });
-        it('Test when fine_tuning_model_id is not a string', async () => {
+        it('Test when finetuned_model_id is not a string', async () => {
             await expect(
-                deleteFineTuningModel(httpRequestMock, throwErrorMock, 123)
-            ).rejects.toThrow('Cannot process the fine tunning model ID');
+                deleteFineTunedModel(httpRequestMock, throwErrorMock, 123)
+            ).rejects.toThrow('Cannot process the fine-tuned model ID');
         });
 
         
@@ -62,7 +60,7 @@ describe("Mistral - deleteFineTuningModel method", () => {
             };
             httpRequestMock.delete.mockRejectedValue(apiError);
 
-            await deleteFineTuningModel(httpRequestMock, throwErrorMock, fine_tuning_model_id);
+            await deleteFineTunedModel(httpRequestMock, throwErrorMock, finetuned_model_id);
             expect(throwErrorMock).toHaveBeenCalledTimes(1);
             expect(throwErrorMock).toHaveBeenCalledWith(apiError);
         });
@@ -70,7 +68,7 @@ describe("Mistral - deleteFineTuningModel method", () => {
             const networkError = new Error('Network Error');
             httpRequestMock.delete.mockRejectedValue(networkError);
 
-            await deleteFineTuningModel(httpRequestMock, throwErrorMock, fine_tuning_model_id);
+            await deleteFineTunedModel(httpRequestMock, throwErrorMock, finetuned_model_id);
             expect(throwErrorMock).toHaveBeenCalledTimes(1);
             expect(throwErrorMock).toHaveBeenCalledWith(networkError);
         });
