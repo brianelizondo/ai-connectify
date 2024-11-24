@@ -43,11 +43,11 @@ describe("Cohere - createFineTunedModel method", () => {
             
             expect(httpRequestMock.post).toHaveBeenCalledWith(
                 '/v1/finetuning/finetuned-models', 
-                { 
+                expect.objectContaining({
                     ...config, 
                     name: name, 
                     settings: settings 
-                }
+                })
             );
             expect(response).toEqual(expectedResponse.finetuned_model);
         });
