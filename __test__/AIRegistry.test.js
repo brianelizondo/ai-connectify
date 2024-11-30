@@ -1,6 +1,6 @@
 import AIConnectifyError from '../lib/AIConnectifyError';
 import AIRegistry from '../lib/connectors/AIRegistry';
-import TensorFlow from '../lib/connectors/AI/TensorFlow/TensorFlow';
+import ChatGPT from '../lib/connectors/AI/ChatGPT/ChatGPT';
 
 const fs = require('fs');
 const path = require('path');
@@ -8,7 +8,8 @@ const aiConnectorsDirectory = path.resolve(__dirname, 'AI');
 const directories = fs.readdirSync(aiConnectorsDirectory, { withFileTypes: true });
 
 const aiRegistryInstance = new AIRegistry();
-const testValidAI = "TensorFlow";
+const testValidAI = "ChatGPT";
+const testValidAIKey = "TEST_API_KEY_WITH_16_CHARACTERS";
 
 describe("AIRegistry class", () => {
     describe("Create new instance", () => {
@@ -20,13 +21,13 @@ describe("AIRegistry class", () => {
         it("Tests if the '_loadAIs' method generates the AI list correctly", () => {
             expect(aiRegistryInstance.registeredAIs.lenght).toEqual(directories.lenght);
             expect(aiRegistryInstance.registeredAIs).toHaveProperty(testValidAI);
-            expect(aiRegistryInstance.registeredAIs[testValidAI].apiKeyRequired).toBe(false);
+            expect(aiRegistryInstance.registeredAIs[testValidAI].apiKeyRequired).toBe(true);
         });
         it("Tests if the '_registerAI' method register a new AI service correctly", () => {
             const newAiService = {
-                name: "tensorFlowTest",
-                instance: new TensorFlow(),
-                apiKeyRequired: false
+                name: "ChatGPT",
+                instance: new ChatGPT(testValidAIKey),
+                apiKeyRequired: true
             }
             aiRegistryInstance._registerAI(newAiService.name, newAiService.instance, newAiService.apiKeyRequired);
 
@@ -35,8 +36,8 @@ describe("AIRegistry class", () => {
             expect(aiRegistryInstance.registeredAIs[newAiService.name].apiKeyRequired).toBe(newAiService.apiKeyRequired);
         });
         it("Tests if the 'getAI' method get the AI instance correctly", () => {
-            const ai = aiRegistryInstance.getAI(testValidAI);
-            expect(new ai.aiInstance()).toBeInstanceOf(TensorFlow);
+            const aiObject = aiRegistryInstance.getAI(testValidAI);
+            expect(aiObject.aiInstance).toBeInstanceOf(ChatGPT);
         });
     });
     describe("Throw the AIConnectifyError error", () => {
