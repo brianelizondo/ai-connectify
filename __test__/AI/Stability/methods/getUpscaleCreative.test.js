@@ -21,7 +21,7 @@ describe("Stability - getUpscaleCreative method", () => {
     });
 
     describe('API Interaction', () => {
-        it('Test make a POST request to the correct endpoint', async () => {
+        it('Test make a GET request to the correct endpoint with response status 200', async () => {
             jest.spyOn(fs.promises, 'writeFile').mockResolvedValue();
 
             const mockResponseBuffer = Buffer.from('mock image data');
@@ -54,6 +54,30 @@ describe("Stability - getUpscaleCreative method", () => {
                 mockResponseBuffer
             );
             expect(response).toEqual(expectedResponse);
+
+            // restore mocks
+            jest.restoreAllMocks();
+        });
+        it('Test make a GET request to the correct endpoint and handle pending status', async () => {
+            const mockResponse = {
+                status: 202
+            };
+            httpRequestMock.getFull.mockResolvedValue(mockResponse);
+            
+            const response = await getUpscaleCreative(httpRequestMock, throwErrorMock, upscaleId, destinationFolder);
+            expect(httpRequestMock.getFull).toHaveBeenCalledTimes(1);
+            expect(httpRequestMock.getFull).toHaveBeenCalledWith(
+                `/stable-image/upscale/creative/${upscaleId}`,
+                {}, 
+                expect.objectContaining({
+                    validateStatus: null,
+                    responseType: "arraybuffer",
+                    headers: { 
+                        Accept: "image/*" 
+                    }
+                })
+            );
+            expect(response).toEqual({ status: "Generation is still running, try again in 10 seconds" });
 
             // restore mocks
             jest.restoreAllMocks();
